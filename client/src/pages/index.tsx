@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   return (
     <main>
-      No weather today.
+      No weather today. Change.
     </main>
   )
 }
