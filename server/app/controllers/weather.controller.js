@@ -1,8 +1,6 @@
 const Weather = require('../models/weather.model.js');
 
 const apiKey = process.env.OPENWEATHER_API_KEY;
-console.log(apiKey);
-
 const weatherModel = new Weather(apiKey);
 
 // Retrieve temperature.

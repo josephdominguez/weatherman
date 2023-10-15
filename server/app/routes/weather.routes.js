@@ -1,5 +1,5 @@
 module.exports = app => {
-    const weather = require("../controllers/weather.controller.js");
+    const weather = require('../controllers/weather.controller.js');
 
     // Retrieve temperature
     app.get('/temperature', async (req, res) => {
