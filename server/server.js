@@ -1,26 +1,29 @@
-const express = require("express");
-const expressValidator = require("express-validator");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+const express = require('express');
+const expressValidator = require('express-validator');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
+// Defines port for Express server.
 const PORT = process.env.PORT || 8080;
+
+// Configures CORS options, allowing all origins for test purposes.
 var corsOptions = {
     origin: "*"
 };
 
+// Initializes and configures Express.
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
 
+// Loads environment variables.
+require('dotenv').config();
 
-// simple route
-app.get("/", (req, res) => {
-    res.json({message: "Hello world!"});
-});
+// Loads routes.
+require('./app/routes/weather.routes.js')(app);
 
-// require("./app/routes/weather.routes.js")(app);
-
+// Starts server.
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
