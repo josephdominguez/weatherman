@@ -8,7 +8,7 @@ const PORT = process.env.PORT || 8080;
 
 // Configures CORS options, allowing all origins for test purposes.
 var corsOptions = {
-    origin: "*"
+    origin: '*'
 };
 
 // Initializes and configures Express.
@@ -22,6 +22,11 @@ require('dotenv').config();
 
 // Loads routes.
 require('./app/routes/weather.routes.js')(app);
+
+// Creates default route.
+app.get("/", (req, res) => {
+    res.json({message: 'Server is running.'});
+});
 
 // Starts server.
 app.listen(PORT, () => {
