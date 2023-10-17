@@ -24,7 +24,7 @@ require('dotenv').config();
 require('./app/routes/weather.routes.js')(app);
 
 // Creates default route.
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
     res.json({message: 'Server is running.'});
 });
 
