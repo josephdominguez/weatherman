@@ -16,3 +16,16 @@ exports.getTemperature = async (req, res) => {
         });
     }
 }
+
+exports.getWeather = async (req, res) => {
+    const { zipCode } = req.query;
+
+    try {
+        const weather = await weatherModel.getWeatherByZipCode(zipCode);
+        res.json( {weather} );
+    } catch (e) {
+        res.status(404).json({
+            message: 'Invalid ZIP code.'
+        });
+    }
+}

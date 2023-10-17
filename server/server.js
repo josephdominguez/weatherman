@@ -7,7 +7,7 @@ const cors = require('cors');
 const PORT = process.env.PORT || 8080;
 
 // Configures CORS options, allowing all origins for test purposes.
-var corsOptions = {
+const corsOptions = {
     origin: '*'
 };
 
