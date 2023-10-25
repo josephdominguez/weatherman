@@ -12,7 +12,5 @@ module.exports = app => {
         try { await weather.getWeather(req, res); }
         catch(e) { throw(e); }
     });
-
-    
 }
 
