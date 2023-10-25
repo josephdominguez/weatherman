@@ -3,7 +3,7 @@ import styles from '@css/app/header.module.css';
 import WeathermanLogo from '@images/logos/logo.svg';
 import '@scripts/clock.js';
 
-function AppHeader() {
+function AppHeader({ pageTitle }) {
   return (
     <header className={styles['app-header']}>
         <div className={styles['header-container']}>
@@ -12,8 +12,10 @@ function AppHeader() {
                     <img className={styles['logo']} src={WeathermanLogo} alt="Weather Logo" />
                 </div>
                 <div>
-                    Salt Lake City's {' '} Local Forecast
+                    <div> Salt Lake City's </div>
+                    <div> {pageTitle} </div>
                 </div>
+
             </div>
 
             <div className={styles['header-item']}>
