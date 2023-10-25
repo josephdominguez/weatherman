@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from '@css/homepage/footer.module.css';
 import githubIcon from '@images/icons/github.png';
 
@@ -11,7 +12,7 @@ function HomepageFooter() {
           <a href="./extended_forecast.html">Extended Forecast</a>
         </div>
         <div>
-          <a href="./local_forecast.html">Local Forecast</a>
+          <Link to="/LocalForecast">Local Forecast</Link>
         </div>
         <div>
           <a href="./current_conditions.html">Current Conditions</a>
