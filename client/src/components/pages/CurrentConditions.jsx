@@ -75,7 +75,7 @@ function CurrentConditions() {
           </div>
         </div>
       </main>
-      <AppFooter />
+      <AppFooter humidity={weatherData.humidity} dewpoint={weatherData.dewpoint} />
     </>
   );
 }
