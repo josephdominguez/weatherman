@@ -4,5 +4,11 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/client/src', // Sets the base path
+  resolve: {
+    alias: {
+      '@components' :'/src/components',
+      '@css': '/src/css',
+      '@images': '/src/images',
+    }
+  }
 })
