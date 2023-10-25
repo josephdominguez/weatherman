@@ -1,4 +1,4 @@
-header {
+.homepage-header {
     background-image: url('@images/backgrounds/landing_skies.jpg');
     background-size: cover;
     min-height: 80vh;

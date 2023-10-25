@@ -45,6 +45,12 @@ html, body {
     padding: 0;
 }
 
+#root  {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
 button {
     padding: 10px 20px;
     border: none;
