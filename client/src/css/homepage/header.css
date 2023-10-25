@@ -1,0 +1,43 @@
+header {
+    background-image: url('/client/src/images/backgrounds/landing_skies.jpg');
+    background-size: cover;
+    min-height: 80vh;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+    top: 0;
+    position: sticky;
+}
+
+.logo-image {
+    margin-right: auto;
+    max-height: 125px;
+}
+
+.header-links {
+    margin-left: auto;
+    padding-right: 5%;
+}
+
+.about-button {
+    background-color: var(--dark-purple);
+    color: #fff;
+    filter: drop-shadow(3px 3px 2px black);
+}
+
+.signin-button {
+    background-color: var(--orange);
+    color: #fff;
+    filter: drop-shadow(3px 3px 2px black);
+}
+
+.header-text {
+    font-family: 'Arial';
+    font-size: 200px;
+    color: white;
+    text-align: center;
+}

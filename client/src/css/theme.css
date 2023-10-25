@@ -1,0 +1,64 @@
+/* Imports custom font styles. */
+@font-face {
+    font-family: 'Star4000';
+    src: url('../fonts/Star4000.woff2') format('woff2'),
+         url('../fonts/Star4000.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Star4000Radar';
+    src: url('../fonts/Star4000Radar.woff'),
+         url('../fonts/Star4000Radar.woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* General theme styles  */
+:root {
+    /* Colors */
+    --orange: rgb(255, 150, 30);
+    --light-purple: rgb(90, 60, 140);
+    --dark-purple: rgb(50, 30, 125);
+    --light-blue: rgb(145, 150, 255);
+    --bright-blue: rgb(15, 40, 240);
+    --blue: rgb(70, 100, 180);
+    --dark-blue: rgb(25, 35, 90);
+    --magenta: rgb(85, 35, 60);
+    --blue-hawk: rgb(3, 6, 21);
+
+    /* Gradients */
+    --sunset-gradient-right: linear-gradient(to right, var(--orange), 25%, var(--dark-purple));
+    --sunset-gradient-top: linear-gradient(to top, var(--orange), var(--light-purple));
+    --sunset-gradient-bottom: linear-gradient(to bottom, var(--orange), var(--light-purple));
+    --skies-gradient-top: linear-gradient(to top, var(--light-blue), var(--bright-blue));
+
+    /* Font */
+    font-family: 'Star4000';
+    font-size: 32px;
+    color: white;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: var(--light-blue);
+}
+
+.gradient-border {
+    border-width: 10px;
+    border-style: solid;
+    border-image: var(--skies-gradient-top) 1;
+}
+
+.highlight {
+    color: yellow;
+    font-style: bold;
+}
