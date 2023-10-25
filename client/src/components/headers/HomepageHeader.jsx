@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '@css/homepage/header.css';
-import WeatherManLogo from '@images/logos/logo.svg';
+import WeathermanLogo from '@images/logos/logo.svg';
 
 function HomepageHeader() {
   return (
@@ -9,7 +9,7 @@ function HomepageHeader() {
       <div className="header-container">
         <div className="logo">
           <Link to="/">
-            <img className="logo-image" src={WeatherManLogo} alt="Weather Logo" />
+            <img className="logo-image" src={WeathermanLogo} alt="Weather Logo" />
           </Link>
         </div>
         <div className="header-links">
