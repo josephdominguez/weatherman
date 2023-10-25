@@ -11,7 +11,7 @@ export default defineConfig({
       '@css': '/src/css',
       '@fonts': '/src/fonts',
       '@images': '/src/images',
-      '@scripts': '/public/scripts',
+      '@scripts': '/src/scripts'
     }
   }
 })
