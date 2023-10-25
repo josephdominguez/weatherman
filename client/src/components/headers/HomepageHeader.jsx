@@ -1,20 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '@css/homepage/header.css';
+import WeatherManLogo from '@images/logos/logo.svg';
 
 function HomepageHeader() {
   return (
     <header>
       <div className="header-container">
         <div className="logo">
-          <a href="./landing.html">
-            <img className="logo-image" src="@images/logos/logo.svg" alt="Weather Logo" />
-          </a>
+          <Link to="/">
+            <img className="logo-image" src={WeatherManLogo} alt="Weather Logo" />
+          </Link>
         </div>
         <div className="header-links">
-          <button className="about-button">About</button>
-          <a href="./login.html">
+          <button className="about-button">About</button> {' '}
+
+          <Link to="/Login">
             <button className="signin-button">Sign in</button>
-          </a>
+          </Link>
         </div>
       </div>
       <div className="header-text">WEATHERSTAR 2084</div>

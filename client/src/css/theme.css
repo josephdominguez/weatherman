@@ -1,16 +1,16 @@
 /* Imports custom font styles. */
 @font-face {
     font-family: 'Star4000';
-    src: url('../fonts/Star4000.woff2') format('woff2'),
-         url('../fonts/Star4000.woff') format('woff');
+    src: url('@fonts/Star4000.woff2') format('woff2'),
+         url('@fonts/Star4000.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Star4000Radar';
-    src: url('../fonts/Star4000Radar.woff'),
-         url('../fonts/Star4000Radar.woff2');
+    src: url('@fonts/Star4000Radar.woff'),
+         url('@fonts/Star4000Radar.woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -38,6 +38,15 @@
     font-family: 'Star4000';
     font-size: 32px;
     color: white;
+}
+
+#root {
+    height: 100vh;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
 button {

@@ -1,5 +1,5 @@
 header {
-    background-image: url('/client/src/images/backgrounds/landing_skies.jpg');
+    background-image: url('@images/backgrounds/landing_skies.jpg');
     background-size: cover;
     min-height: 80vh;
 }

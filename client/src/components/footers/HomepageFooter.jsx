@@ -1,5 +1,6 @@
 import React from 'react';
 import '@css/homepage/footer.css';
+import githubIcon from '@images/icons/github.png';
 
 function HomepageFooter() {
   return (
@@ -19,17 +20,17 @@ function HomepageFooter() {
       <div className="footer-contact">
         <h2>Contact</h2>
         <div>
-          <img src="@images/icons/github.png" className="icon" />
+          <img src={githubIcon} className="icon" /> {' '}
           <a href="https://github.com/josephdominguez/weatherman">Github Project</a>
         </div>
         <div>
           Made by
-          <img src="./images/icons/github.png" className="icon" />
+          {' '} <img src={githubIcon} className="icon" /> {' '}
           <a href="https://github.com/josephdominguez">Joseph Dominguez</a>
         </div>
         <div>
           and
-          <img src="./images/icons/github.png" className="icon" />
+          {' '} <img src={githubIcon} className="icon" /> {' '}
           <a href="https://github.com/kylelarsenlarsen">Kyle Larsen</a>
         </div>
       </div>
