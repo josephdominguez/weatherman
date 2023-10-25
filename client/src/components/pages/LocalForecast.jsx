@@ -6,7 +6,7 @@ import styles from '@css/local_forecast.module.css';
 function LocalForecast() {
     return (
         <> 
-            <AppHeader />
+            <AppHeader pageTitle="Local Forecast"/>
 
             <main className={styles['local-forecast-main']}>
                 <div className={`${styles['local-forecast-container']} gradient-border`}>
