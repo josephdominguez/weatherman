@@ -14,18 +14,17 @@ main {
 .current-conditions-item {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 2vh 6vh;
     text-align: center;
+    align-items: center;
 }
 
-.align-start {
-    align-self: flex-start;
-    margin-bottom: auto;
+.condition-container {
+    margin-bottom: 150px;
 }
 
-.condition {
-    max-height: 222px;
+.condition-icon {
+    min-height: 150px;
 }
 
 .details {
