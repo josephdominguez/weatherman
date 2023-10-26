@@ -85,7 +85,7 @@ function CurrentConditions() {
           <div className={`${styles["current-conditions-container"]} gradient-border`}>
             <div className={styles["current-conditions-item"]}>
               <div className={styles["temperature"]}>
-                {weatherData.temperature}°F
+                {weatherData.temperature}&deg;F
               </div>
               <div className={styles["condition-container"]}>
                 <div>{weatherData.condition}</div>
@@ -102,7 +102,7 @@ function CurrentConditions() {
                   <span className="highlight"> {weatherData.location} </span>
                 </div>
                 <WeatherInfo label="Humidity" value={weatherData.humidity} unit="%" />
-                <WeatherInfo label="Dewpoint" value={weatherData.dewpoint} unit="°F" />
+                <WeatherInfo label="Dewpoint" value={weatherData.dewpoint} unit="&deg;F" />
                 <WeatherInfo label="Ceiling" value={weatherData.ceiling} unit="" />
                 <WeatherInfo label="Visibility" value={weatherData.visibility} unit="mi." />
                 <WeatherInfo label="Pressure" value={weatherData.pressure} unit="mb" highlightUnit />
