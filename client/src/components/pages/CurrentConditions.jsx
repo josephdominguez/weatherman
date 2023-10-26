@@ -40,8 +40,14 @@ function CurrentConditions() {
       <>
         <AppHeader pageTitle="Current Conditions" location="" />
         <main>
-          <div>Loading...</div>
-        </main>
+            <div className={styles["current-conditions"]}>
+              <div className={`${styles["current-conditions-container"]} gradient-border`}>
+                <div className={styles["current-conditions-item"]}>
+                    <div>Loading...</div>
+                </div>
+              </div>
+            </div>
+          </main>
         <AppFooter humidity="" dewpoint="" />
       </>
     );
@@ -52,10 +58,19 @@ function CurrentConditions() {
       <>
           <AppHeader pageTitle="Current Conditions" location="" />
           <main>
-            <div>Error: {error.message} </div>
+            <div className={styles["current-conditions"]}>
+              <div className={`${styles["current-conditions-container"]} gradient-border`}>
+                <div className={styles["current-conditions-item"]}>
+                    <div>Error: {error.message} </div>
+                    <div>
+                      <input type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange}/> {' '}
+                      <button onClick={fetchWeatherData}>Get Weather</button>
+                    </div>
+                </div>
+              </div>
+            </div>
           </main>
           <AppFooter humidity="" dewpoint="" />
-
       </>
     );
   }
@@ -98,7 +113,6 @@ function CurrentConditions() {
             </div>
           </div>
         </div>
-    
       </main>
       <AppFooter humidity={weatherData.humidity} dewpoint={weatherData.dewpoint} />
     </>
