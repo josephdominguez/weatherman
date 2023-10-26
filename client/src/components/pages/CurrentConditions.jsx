@@ -4,9 +4,9 @@ import AppHeader from '@components/headers/AppHeader';
 import AppFooter from '@components/footers/AppFooter';
 import styles from '@css/current_conditions.module.css';
 
-const WeatherInfo = ({ label, value }) => (
+const WeatherInfo = ({ label, value, unit, highlightUnit}) => (
   <div>
-    {label}: &nbsp; {value}
+    {label}: &nbsp; {value} {highlightUnit ? <span className="highlight">{unit}</span> : unit}
   </div>
 );
 
@@ -99,12 +99,12 @@ function CurrentConditions() {
                 <div className={styles["details-heading"]}>
                   <span className="highlight"> {weatherData.location} </span>
                 </div>
-                <WeatherInfo label="Humidity" value={`${weatherData.humidity} %`} />
-                <WeatherInfo label="Dewpoint" value={`${weatherData.dewpoint}°F`}/>
-                <WeatherInfo label="Ceiling" value={weatherData.ceiling} />
-                <WeatherInfo label="Visibility" value={`${weatherData.visibility} mi.`} />
-                <WeatherInfo label="Pressure" value={`${weatherData.pressure} S`} />
-                <WeatherInfo label="Heat Index" value={weatherData.heatIndex} />
+                <WeatherInfo label="Humidity" value={weatherData.humidity} unit="%" />
+                <WeatherInfo label="Dewpoint" value={weatherData.dewpoint} unit="°F" />
+                <WeatherInfo label="Ceiling" value={weatherData.ceiling} unit="" />
+                <WeatherInfo label="Visibility" value={weatherData.visibility} unit="mi." />
+                <WeatherInfo label="Pressure" value={weatherData.pressure} unit="S" highlightUnit />
+                <WeatherInfo label="Heat Index" value={weatherData.heatIndex} unit="" />
                 <div>
                   <input type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange}/> {' '}
                   <button onClick={fetchWeatherData}>Get Weather</button>
