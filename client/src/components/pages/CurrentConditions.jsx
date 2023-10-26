@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import AppHeader from '@components/headers/AppHeader';
 import AppFooter from '@components/footers/AppFooter';
 import styles from '@css/current_conditions.module.css';
+import { ZipCodeContext } from '@contexts/ZipCodeContext';
 
 const WeatherInfo = ({ label, value, unit, highlightUnit}) => (
   <div>
@@ -14,7 +15,7 @@ function CurrentConditions() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [zipCode, setZipCode] = useState('84101'); // Initial zip code
+  const {zipCode, setZipCode} = useContext(ZipCodeContext); // Loads zip code context
 
   const handleZipCodeChange = (event) => {
     setZipCode(event.target.value);
@@ -84,7 +85,7 @@ function CurrentConditions() {
           <div className={`${styles["current-conditions-container"]} gradient-border`}>
             <div className={styles["current-conditions-item"]}>
               <div className={styles["temperature"]}>
-                {weatherData.temperature} °F
+                {weatherData.temperature}°F
               </div>
               <div className={styles["condition-container"]}>
                 <div>{weatherData.condition}</div>
@@ -104,7 +105,7 @@ function CurrentConditions() {
                 <WeatherInfo label="Dewpoint" value={weatherData.dewpoint} unit="°F" />
                 <WeatherInfo label="Ceiling" value={weatherData.ceiling} unit="" />
                 <WeatherInfo label="Visibility" value={weatherData.visibility} unit="mi." />
-                <WeatherInfo label="Pressure" value={weatherData.pressure} unit="S" highlightUnit />
+                <WeatherInfo label="Pressure" value={weatherData.pressure} unit="mb" highlightUnit />
                 <WeatherInfo label="Heat Index" value={weatherData.heatIndex} unit="" />
                 <div>
                   <input type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange}/> {' '}
