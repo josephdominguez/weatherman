@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from '@css/app/header.module.css';
 import WeathermanLogo from '@images/logos/logo.svg';
 import '@scripts/clock.js';
@@ -9,7 +10,9 @@ function AppHeader({ pageTitle, location }) {
         <div className={styles['header-container']}>
             <div className={styles['header-item']}>
                 <div>
-                    <img className={styles['logo']} src={WeathermanLogo} alt="Weather Logo" />
+                    <Link to="/">
+                        <img className={styles['logo']} src={WeathermanLogo} alt="Weather Logo" />
+                    </Link>
                 </div>
                 <div>
                     <div> {location}'s </div>
