@@ -87,7 +87,7 @@ function CurrentConditions() {
                 <WeatherInfo label="Humidity" value={`${weatherData.humidity} %`} />
                 <WeatherInfo label="Dewpoint" value={`${weatherData.dewpoint}°F`}/>
                 <WeatherInfo label="Ceiling" value={weatherData.ceiling} />
-                <WeatherInfo label="Visibility" value={weatherData.visibility} />
+                <WeatherInfo label="Visibility" value={`${weatherData.visibility} mi.`} />
                 <WeatherInfo label="Pressure" value={`${weatherData.pressure} S`} />
                 <WeatherInfo label="Heat Index" value={weatherData.heatIndex} />
                 <div>
