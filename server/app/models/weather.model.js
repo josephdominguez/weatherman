@@ -1,5 +1,5 @@
 const axios = require('axios');
-const conditionIcons = require('./condition-icons.model.js');
+const { conditionIconsDay, conditionIconsNight } = require('./condition-icons.model.js');
 
 class Weather {
     constructor(weatherAPIKey, metarAPIKey) {
@@ -30,7 +30,7 @@ class Weather {
             // Extract and format weather details for the response object.
             const temperature = parseInt(weatherData.current.temp_f);
             const condition = weatherData.current.condition.text;
-            const conditionIcon = conditionIcons[condition];
+            const conditionIcon = weatherData.current.is_day ? conditionIconsDay[condition] : conditionIconsNight[condition];
             const wind = weatherData.current.wind_mph;
             const location = weatherData.location.name;
             const humidity = weatherData.current.humidity;
@@ -52,10 +52,10 @@ class Weather {
                 location,
                 humidity,
                 dewpoint,
-                ceiling,
                 visibility,
                 pressure,
                 heatIndex,
+                ceiling,
             }
         } catch(e) { throw e; }
     }
