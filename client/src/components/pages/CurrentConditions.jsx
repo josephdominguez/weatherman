@@ -26,6 +26,7 @@ function CurrentConditions() {
       const response = await axios.get(`http://localhost:8080/current-conditions?zipCode=${zipCode}`);
       const data = response.data;
       setWeatherData(data.currentConditions);
+      setError(null);
       setLoading(false);
     } catch (e) {
       setError(e);
