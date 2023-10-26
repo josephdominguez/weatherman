@@ -1,20 +1,8 @@
 const Weather = require('../models/weather.model.js');
-const apiKey = process.env.OPENWEATHER_API_KEY;
-const weatherModel = new Weather(apiKey);
+const weatherAPIKey = process.env.WEATHERAPI_API_KEY;
+const metarAPIKey = process.env.CHECKWX_API_KEY;
 
-// Retrieve temperature.
-exports.getTemperature = async (req, res) => {
-    const { zipCode } = req.query;
-
-    try {
-        const temperature = await weatherModel.getTemperature(zipCode);
-        res.json( {temperature} );
-    } catch (e) {
-        res.status(404).json({
-            message: 'Invalid ZIP code.'
-        });
-    }
-}
+const weatherModel = new Weather(weatherAPIKey, metarAPIKey);
 
 // Retrieve current conditions.
 exports.getCurrentConditions = async (req, res) => {
