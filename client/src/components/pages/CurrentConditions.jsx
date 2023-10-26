@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AppHeader from "@components/headers/AppHeader";
-import AppFooter from "@components/footers/AppFooter";
-import styles from "@css/current_conditions.module.css";
+import AppHeader from '@components/headers/AppHeader';
+import AppFooter from '@components/footers/AppFooter';
+import styles from '@css/current_conditions.module.css';
 
 const WeatherInfo = ({ label, value }) => (
   <div>
