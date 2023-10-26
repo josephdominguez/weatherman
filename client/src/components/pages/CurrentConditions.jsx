@@ -10,8 +10,6 @@ const WeatherInfo = ({ label, value }) => (
   </div>
 );
 
-
-
 function CurrentConditions() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
