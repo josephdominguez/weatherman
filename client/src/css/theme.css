@@ -27,6 +27,9 @@
     --dark-blue: rgb(25, 35, 90);
     --magenta: rgb(85, 35, 60);
     --blue-hawk: rgb(3, 6, 21);
+    
+    /* Transparent Colors */
+    --purp-shadow: rgba(115, 50, 175, 0.15);
 
     /* Gradients */
     --sunset-gradient-right: linear-gradient(to right, var(--orange), 25%, var(--dark-purple));
@@ -57,10 +60,6 @@ button {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-}
-
-button:hover {
-    background-color: var(--light-blue);
 }
 
 .gradient-border {

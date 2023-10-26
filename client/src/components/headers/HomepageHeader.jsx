@@ -20,7 +20,7 @@ function HomepageHeader() {
           </Link>
         </div>
       </div>
-      <div className={styles['header-text']}>WEATHERSTAR 2084</div>
+      <div className={styles['header-text']}></div>
     </header>
   );
 }
