@@ -41,7 +41,7 @@ class Weather {
             const condition = weatherData.current.condition.text;
             const conditionIcon = weatherData.current.is_day ? conditionIconsDay[condition] : conditionIconsNight[condition];
             const wind = weatherData.current.wind_mph;
-            const location = weatherData.location.name;
+            const city = weatherData.location.name;
             const humidity = weatherData.current.humidity;
             const dewpoint = weatherData.forecast.forecastday[0].hour[0].dewpoint_f;
             const visibility = weatherData.current.vis_miles;
@@ -58,7 +58,7 @@ class Weather {
                 condition,
                 conditionIcon,
                 wind,
-                location,
+                city,
                 humidity,
                 dewpoint,
                 visibility,
@@ -97,10 +97,10 @@ class Weather {
                 });
             }
             // Extract location for page title.
-            const location = weatherData.location.name;
+            const city = weatherData.location.name;
 
             return {
-                location: location,
+                city: city,
                 extendedForecast: extendedForecast
             }
         } catch(e) { throw e; }
