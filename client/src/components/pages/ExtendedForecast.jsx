@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AppPage from '@components/pages/AppPage';
 import ErrorComponent from '@components/app/ErrorComponent';
@@ -15,7 +15,7 @@ function ExtendedForecast() {
     const { location, updateLocation } = useLocation();
     const { zipCode, city } = location;
   
-    const pageTitle = "Extended Forecast";
+    const pageTitle = 'Extended Forecast';
 
     const fetchWeatherData = async () => {
         try {
@@ -24,9 +24,8 @@ function ExtendedForecast() {
             setWeatherData(weatherData);
             updateLocation({city: weatherData.city});
             setError(null);
-            setError(null);
             setLoading(false);
-        } catch (e) {
+        } catch(e) {
             setError(e);
             setLoading(false);
         }
@@ -38,7 +37,7 @@ function ExtendedForecast() {
 
     if (loading) {
         return (
-        <AppPage pageTitle={pageTitle} humidity="" dewpoint="">
+        <AppPage pageTitle={pageTitle}>
             <LoadingComponent />
         </AppPage>
         );
@@ -46,7 +45,7 @@ function ExtendedForecast() {
 
     if (error) {
         return (
-        <AppPage pageTitle={pageTitle} humidity="" dewpoint="">
+        <AppPage pageTitle={pageTitle}>
             <ErrorComponent error={error}>
                 <ZipCodeUpdater />
             </ErrorComponent>
@@ -55,7 +54,7 @@ function ExtendedForecast() {
     }
 
   return (
-    <AppPage pageTitle={pageTitle} location={city} humidity="" dewpoint="">
+    <AppPage pageTitle={pageTitle} location={city}>
         <div className={styles['forecast-container']}>
             {weatherData.extendedForecast.map((forecast, index) => (
             <div className={styles['forecast-item']} key={index}>

@@ -42,7 +42,7 @@ function CurrentConditions() {
 
   if (loading) {
     return (
-      <AppPage pageTitle={pageTitle} humidity="" dewpoint="">
+      <AppPage pageTitle={pageTitle}>
         <LoadingComponent />
       </AppPage>
     );
@@ -50,7 +50,7 @@ function CurrentConditions() {
 
   if (error) {
     return (
-      <AppPage pageTitle={pageTitle} humidity="" dewpoint="">
+      <AppPage pageTitle={pageTitle}>
         <ErrorComponent error={error}>
           <ZipCodeUpdater />
         </ErrorComponent>
@@ -59,7 +59,7 @@ function CurrentConditions() {
   }
 
   return (
-    <AppPage pageTitle={pageTitle} location={city} humidity={weatherData.humidity} dewpoint={weatherData.dewpoint}>
+    <AppPage pageTitle={pageTitle} location={city}>
       <div className={`${styles["card-container"]}`}>
         <div className={styles["card-item"]}>
           <div className={styles["temperature"]}>
