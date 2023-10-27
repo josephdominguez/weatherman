@@ -61,7 +61,7 @@ function CurrentConditions() {
       <AppPage pageTitle={pageTitle} humidity="" dewpoint="">
         <ErrorComponent error={error}>
           <div>
-            <input type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange} />{' '}
+            <input type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange} onKeyDown={handleKeyPress} />{' '}
             <button onClick={fetchWeatherData}>Get Weather</button>
           </div>
         </ErrorComponent>
@@ -96,7 +96,7 @@ function CurrentConditions() {
             <WeatherInfo label="Pressure" value={weatherData.pressure} unit="mb" highlightUnit />
             <WeatherInfo label="Heat Index" value={weatherData.heatIndex} unit="" />
             <div>
-              <input onKeyDown={handleKeyPress} type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange} />{' '}
+              <input type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange} onKeyDown={handleKeyPress} />{' '}
               <button onClick={fetchWeatherData}>Get Weather</button>
             </div>
           </div>
