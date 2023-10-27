@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useLocation } from "@contexts/LocationContext";
 import styles from "@css/app/header.module.css";
 import WeathermanLogo from "@images/logos/logo.svg";
 import "@scripts/clock.js";
 
-function AppHeader({ pageTitle, location }) {
-  const [currentLocation, setCurrentLocation] = useState(location);
+function AppHeader({ pageTitle }) {
+  const { location } = useLocation();
+  const [ city, setCity ] = useState(location.city);
 
   useEffect(() => {
-    setCurrentLocation(location);
-  }, [location]);
+    setCity(location.city);
+  }, [location.city]);
 
   return (
     <header className={styles["app-header"]}>
@@ -25,12 +27,12 @@ function AppHeader({ pageTitle, location }) {
             </Link>
           </div>
           <div className={styles["location-container"]}>
-            {currentLocation && (
+            {city && (
               <>
-                <div>{currentLocation}'s <br/> {pageTitle}</div>
+                <div>{city}'s <br/> {pageTitle}</div>
               </>
             )}
-            {!currentLocation && (
+            {!city && (
               <>
                 <div>{pageTitle}</div>
               </>

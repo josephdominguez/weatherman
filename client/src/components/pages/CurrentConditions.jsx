@@ -19,7 +19,7 @@ function CurrentConditions() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { location, updateLocation } = useLocation();
-  const { zipCode, city } = location;
+  const { zipCode } = location;
   const pageTitle = "Current Conditions";
 
   const fetchWeatherData = async () => {
@@ -27,12 +27,13 @@ function CurrentConditions() {
       const response = await axios.get(`http://localhost:8080/current-conditions?zipCode=${zipCode}`);
       const weatherData = response.data.currentConditions;
       setWeatherData(weatherData);
-      updateLocation({city: weatherData.city});
       setError(null);
       setLoading(false);
+      updateLocation({city: weatherData.city});
     } catch (e) {
       setError(e);
       setLoading(false);
+      updateLocation({city: ''});
     }
   };
 
@@ -59,7 +60,7 @@ function CurrentConditions() {
   }
 
   return (
-    <AppPage pageTitle={pageTitle} location={city}>
+    <AppPage pageTitle={pageTitle}>
       <div className={`${styles["card-container"]}`}>
         <div className={styles["card-item"]}>
           <div className={styles["temperature"]}>

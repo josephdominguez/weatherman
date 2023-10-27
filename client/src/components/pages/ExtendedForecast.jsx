@@ -13,7 +13,7 @@ function ExtendedForecast() {
     const [error, setError] = useState(null);
 
     const { location, updateLocation } = useLocation();
-    const { zipCode, city } = location;
+    const { zipCode } = location;
   
     const pageTitle = 'Extended Forecast';
 
@@ -26,6 +26,7 @@ function ExtendedForecast() {
             setError(null);
             setLoading(false);
         } catch(e) {
+            updateLocation({city: ''});
             setError(e);
             setLoading(false);
         }
@@ -54,7 +55,7 @@ function ExtendedForecast() {
     }
 
   return (
-    <AppPage pageTitle={pageTitle} location={city}>
+    <AppPage pageTitle={pageTitle}>
         <div className={styles['forecast-container']}>
             {weatherData.extendedForecast.map((forecast, index) => (
             <div className={styles['forecast-item']} key={index}>
