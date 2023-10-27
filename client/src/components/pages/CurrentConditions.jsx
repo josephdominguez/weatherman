@@ -24,6 +24,13 @@ function CurrentConditions() {
     setZipCode(event.target.value);
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      // Perform the action here that you want to execute on pressing enter
+        fetchWeatherData();
+    }
+  };
+
   const fetchWeatherData = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/current-conditions?zipCode=${zipCode}`);
@@ -89,7 +96,7 @@ function CurrentConditions() {
             <WeatherInfo label="Pressure" value={weatherData.pressure} unit="mb" highlightUnit />
             <WeatherInfo label="Heat Index" value={weatherData.heatIndex} unit="" />
             <div>
-              <input type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange} />{' '}
+              <input onKeyDown={handleKeyPress} type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange} />{' '}
               <button onClick={fetchWeatherData}>Get Weather</button>
             </div>
           </div>
