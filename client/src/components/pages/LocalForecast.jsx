@@ -9,8 +9,8 @@ function LocalForecast() {
             <AppHeader pageTitle="Local Forecast" location=""/>
 
             <main className={styles['local-forecast-main']}>
-                <div className={`${styles['local-forecast-container']} gradient-border`}>
-                    <div className={styles['local-forecast-item']}>
+                <div className={styles['card-container']}>
+                    <div className={styles['card-item']}>
                         <div className={styles['forecast']}>
                             .SYNOPSIS...A COLD EARLY SEASON STORM SYSTEM WILL MOVE THROUGH
                             UTAH AND SOUTHWEST WYOMING TONIGHT THROUGH THURSDAY. THIS WILL

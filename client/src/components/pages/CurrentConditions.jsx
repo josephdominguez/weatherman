@@ -61,21 +61,21 @@ function CurrentConditions() {
 
   return (
     <AppPage pageTitle={pageTitle}>
-      <div className={`${styles["card-container"]}`}>
-        <div className={styles["card-item"]}>
-          <div className={styles["temperature"]}>
+      <div className={styles['card-container']}>
+        <div className={styles['card-item']}>
+          <div className={styles['temperature']}>
             {weatherData.temperature}&deg;F
           </div>
-          <div className={styles["condition-container"]}>
+          <div className={styles['condition-container']}>
             <div>{weatherData.condition}</div>
-            <img className={styles["condition-icon"]} src={weatherData.conditionIcon} alt={weatherData.condition} />
+            <img className={styles['condition-icon']} src={weatherData.conditionIcon} alt={weatherData.condition} />
           </div>
-          <div className={styles["wind-container"]}>
+          <div className={styles['wind-container']}>
             <WeatherInfo label="Wind" value={`${weatherData.wind} MPH`} />
           </div>
         </div>
-        <div className={styles["card-item"]}>
-          <div className={styles["details"]}>
+        <div className={styles['card-item']}>
+          <div className={styles['details']}>
             <div className={styles["details-heading"]}>
               <span className="highlight"> {weatherData.location} </span>
             </div>

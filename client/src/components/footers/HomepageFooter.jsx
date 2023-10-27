@@ -7,7 +7,7 @@ function HomepageFooter() {
   return (
     <footer className={styles['homepage-footer']}>
       <nav className={styles['footer-nav']}>
-        <h2>Navigation</h2>
+        <h3>Navigation</h3>
         <div>
           <Link to="/ExtendedForecast">Extended Forecast</Link>
         </div>
@@ -16,6 +16,9 @@ function HomepageFooter() {
         </div>
         <div>
           <Link to="/CurrentConditions">Current Conditions</Link>
+        </div>
+        <div>
+          <Link to="/Cycle">Cycle</Link>
         </div>
       </nav>
       <div className={styles['footer-contact']}>

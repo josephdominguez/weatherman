@@ -2,10 +2,10 @@ import React from 'react';
 import AppHeader from '@components/headers/AppHeader';
 import AppFooter from '@components/footers/AppFooter';
 
-function AppPage({ pageTitle, location, children }) {
+function AppPage({ pageTitle, children }) {
   return (
     <>
-      <AppHeader pageTitle={pageTitle} location={location} />
+      <AppHeader pageTitle={pageTitle} />
       <main>
         {children}
       </main>
