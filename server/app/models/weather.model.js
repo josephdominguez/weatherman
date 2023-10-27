@@ -26,7 +26,7 @@ class Weather {
     // Converts date into abbreviated day of week.
     _getDayOfWeekAbbreviation(date) {
         const options = { weekday: 'short' };
-        return date.toLocaleDateString('en-US', options);
+        return date.toLocaleDateString('en-US', options)
     }
 
     // Retrieves current weather conditions.
@@ -82,7 +82,7 @@ class Weather {
                 const forecast = weatherData.forecast.forecastday[i];
                 const date = new Date(forecast.date);
 
-                const day = this._getDayOfWeekAbbreviation(date);
+                const day = this._getDayOfWeekAbbreviation(date).toUpperCase();
                 const condition = forecast.day.condition.text;
                 const conditionIcon = conditionIconsDay[condition];
                 const minTemp = parseInt(forecast.day.mintemp_f);
