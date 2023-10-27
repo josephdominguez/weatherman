@@ -62,12 +62,6 @@ button {
     font-size: 16px;
 }
 
-.gradient-border {
-    border-width: 10px;
-    border-style: solid;
-    border-image: var(--skies-gradient-top) 1;
-}
-
 .highlight {
     color: yellow;
     font-style: bold;

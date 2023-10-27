@@ -1,0 +1,30 @@
+.card-container {
+    display: flex;
+    justify-content: center;
+    min-height: 70vh;
+    width: fit-content;
+    min-width: 900px;
+    margin: auto;
+    background: var(--dark-blue);
+    border-width: 10px;
+    border-style: solid;
+    border-image: var(--skies-gradient-top) 1;
+}
+
+.card-item {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh 6vh;
+    text-align: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 1280px) {
+    /* Stack items vertically for mobile. */
+    .card-container {
+        align-items: center;
+        flex-direction: column; 
+        justify-content: space-around;
+        min-width: 425px;
+    }
+}
