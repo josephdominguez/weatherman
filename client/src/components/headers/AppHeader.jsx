@@ -13,8 +13,8 @@ function AppHeader({ pageTitle, location }) {
 
   return (
     <header className={styles["app-header"]}>
-      <div className={styles["header-container"]}>
-        <div className={styles["header-item"]}>
+      <div className={styles["app-header-container"]}>
+        <div className={styles["app-header-item"]}>
           <div>
             <Link to="/">
               <img
@@ -38,7 +38,7 @@ function AppHeader({ pageTitle, location }) {
           </div>
         </div>
 
-        <div className={styles["header-item"]}>
+        <div className={styles["app-header-item"]}>
           <div className={styles["clock"]}>
             <div id="time">0:00:00 AM</div>
             <div id="date">Sun, Jan 1</div>

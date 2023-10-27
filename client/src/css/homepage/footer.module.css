@@ -1,9 +1,10 @@
 .homepage-footer {
     display: flex;
+    flex: auto;
     justify-content: space-between;
     align-content: center;
     background-color: var(--blue-hawk);
-    font-size: 22px;
+    font-size: 28px;
 }
 
 .footer-nav {

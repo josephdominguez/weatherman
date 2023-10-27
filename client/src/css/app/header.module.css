@@ -3,7 +3,7 @@
     padding-top: 20px;
 }
 
-.header-container {
+.app-header-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -11,12 +11,12 @@
     background: var(--sunset-gradient-right) transparent;
 }
 
-.header-item {
+.app-header-item {
     display: flex;
     z-index: 1;
 }
 
-.header-item div {
+.app-header-item div {
     padding-left: 10px;
 }
 
