@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import context
-import { ZipCodeProvider } from '@contexts/ZipCodeContext';
+import { LocationProvider } from '@contexts/LocationContext';
 
 // Import pages
 import Homepage from '@components/pages/Homepage';
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      <ZipCodeProvider>
+      <LocationProvider>
         <Router>
             <Routes>
               <Route path="/" element={<Homepage/>} />
@@ -23,7 +23,7 @@ function App() {
               <Route path="/ExtendedForecast" element={<ExtendedForecast/>} />
             </Routes>
         </Router>
-      </ZipCodeProvider>
+      </LocationProvider>
     </>
   )
 }
