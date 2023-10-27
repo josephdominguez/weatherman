@@ -4,6 +4,7 @@
     min-height: 70vh;
     width: fit-content;
     min-width: 900px;
+    max-width: 900px;
     margin: auto;
     background: var(--dark-blue);
     border-width: 10px;

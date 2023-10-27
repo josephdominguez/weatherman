@@ -1,24 +1,8 @@
-.local-forecast-main {
-    padding: 0vh 2vh;
-    background: var(--sunset-gradient-top) fixed;
-}
-
-.local-forecast-container {
-    display: flex;
-    justify-content: center;
-    min-height: 70vh;
-    width: 50vw;
-    margin: auto;
-    background: var(--dark-blue);
-}
-
-.local-forecast-item {
-    padding: 10px;
-}
+@import 'app/card_container.module.css';
 
 .forecast {
-    font-size: 42px;
-    line-height: 2rem;
+    font-size: 38px;
+    line-height: 1.5rem;
 }
 
 @media screen and (max-width: 1280px) {
