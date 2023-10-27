@@ -3,24 +3,27 @@ import axios from 'axios';
 import AppPage from '@components/pages/AppPage';
 import ErrorComponent from '@components/app/ErrorComponent';
 import LoadingComponent from '@components/app/LoadingComponent';
+import ZipCodeUpdater from '@components/app/ZipCodeUpdater';
+import { useLocation } from '@contexts/LocationContext';
 import styles from '@css/extended_forecast.module.css';
-import { ZipCodeContext } from '@contexts/ZipCodeContext';
 
 function ExtendedForecast() {
     const [weatherData, setWeatherData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { zipCode, setZipCode } = useContext(ZipCodeContext);
-    const pageTitle = "Extended Forecast"
 
-    const handleZipCodeChange = (event) => {
-        setZipCode(event.target.value);
-    };
+    const { location, updateLocation } = useLocation();
+    const { zipCode, city } = location;
+  
+    const pageTitle = "Extended Forecast";
 
     const fetchWeatherData = async () => {
         try {
             const response = await axios.get(`http://localhost:8080/extended-forecast?zipCode=${zipCode}`);
-            setWeatherData(response.data.extendedForecast);
+            const weatherData = response.data.extendedForecast;
+            setWeatherData(weatherData);
+            updateLocation({city: weatherData.city});
+            setError(null);
             setError(null);
             setLoading(false);
         } catch (e) {
@@ -31,7 +34,7 @@ function ExtendedForecast() {
 
     useEffect(() => {
         fetchWeatherData();
-    }, []);
+    }, [zipCode]);
 
     if (loading) {
         return (
@@ -45,17 +48,14 @@ function ExtendedForecast() {
         return (
         <AppPage pageTitle={pageTitle} humidity="" dewpoint="">
             <ErrorComponent error={error}>
-            <div>
-                <input type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange} />{' '}
-                <button onClick={fetchWeatherData}>Get Weather</button>
-            </div>
+                <ZipCodeUpdater />
             </ErrorComponent>
         </AppPage>
         );
     }
 
   return (
-    <AppPage pageTitle={pageTitle} location={weatherData.location} humidity="" dewpoint="">
+    <AppPage pageTitle={pageTitle} location={city} humidity="" dewpoint="">
         <div className={styles['forecast-container']}>
             {weatherData.extendedForecast.map((forecast, index) => (
             <div className={styles['forecast-item']} key={index}>
