@@ -10,9 +10,7 @@ function ZipCodeUpdater() {
   };
 
   const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      updateLocation({ zipCode: tempZipCode });
-    }
+    if (event.key === 'Enter') { updateZipCode(); }
   };
 
   const updateZipCode = () => {
@@ -29,3 +27,4 @@ function ZipCodeUpdater() {
 }
 
 export default ZipCodeUpdater;
+
