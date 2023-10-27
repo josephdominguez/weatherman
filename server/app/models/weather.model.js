@@ -1,6 +1,9 @@
 const axios = require('axios');
 const { conditionIconsDay, conditionIconsNight } = require('./condition-icons.model.js');
 
+// Sets length of extended forecast. Free Weather API access is limited to 3 days.
+const FORECAST_LENGTH = 3;
+
 class Weather {
     constructor(weatherAPIKey, metarAPIKey) {
         this.weatherAPIKey = weatherAPIKey;
@@ -18,6 +21,12 @@ class Weather {
             const ceiling = metarData.data[0].ceiling?.feet ?? 'N/A';
             return ceiling;
         } catch(e) { throw e; }
+    }
+
+    // Converts date into abbreviated day of week.
+    _getDayOfWeekAbbreviation(date) {
+        const options = { weekday: 'short' };
+        return date.toLocaleDateString('en-US', options);
     }
 
     // Retrieves current weather conditions.
@@ -56,6 +65,43 @@ class Weather {
                 pressure,
                 heatIndex,
                 ceiling,
+            }
+        } catch(e) { throw e; }
+    }
+
+    // Retrieves extended forecast.
+    async getExtendedForecast(zipCode) {
+        const url = `http://api.weatherapi.com/v1/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=${FORECAST_LENGTH}&aqi=no&alerts=no`;
+        try {
+            const response = await axios.get(url);
+            const weatherData = response.data;
+
+            // Extracts and formats each day's forecast.
+            const extendedForecast = [];
+            for (let i = 0; i < FORECAST_LENGTH; i++) {
+                const forecast = weatherData.forecast.forecastday[i];
+                const date = new Date(forecast.date);
+
+                const day = this._getDayOfWeekAbbreviation(date);
+                const condition = forecast.day.condition.text;
+                const conditionIcon = conditionIconsDay[condition];
+                const minTemp = parseInt(forecast.day.mintemp_f);
+                const maxTemp = parseInt(forecast.day.maxtemp_f);
+
+                extendedForecast.push({
+                    day,
+                    condition,
+                    conditionIcon,
+                    minTemp,
+                    maxTemp,
+                });
+            }
+            // Extract location for page title.
+            const location = weatherData.location.name;
+
+            return {
+                location: location,
+                extendedForecast: extendedForecast
             }
         } catch(e) { throw e; }
     }

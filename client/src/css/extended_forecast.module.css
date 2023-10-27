@@ -1,0 +1,76 @@
+.forecast-container {
+    display: flex;
+    justify-content: space-around;
+    min-height: 70vh;
+}
+
+.forecast-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    column-gap: 25px;
+    border: 10px solid white;
+    padding: 2vh 6vh 2vh 6vh;
+    height: auto;
+    min-width: 250px;
+    max-width: 250px;
+    background: var(--skies-gradient-top) fixed;
+    text-align: center;
+}
+
+.forecast-item .day {
+    color: yellow;
+}
+
+.condition {
+    max-height: 222px; /* Should be set to the maximum height of images found
+                          in images/conditions. */
+}
+
+.temperature-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.temperature-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.temperature {
+    font-size: 64px;
+}
+
+@media screen and (max-width: 1280px) {
+    /* Reduce font sizes for smaller screens. */
+    body {
+        font-size: 18px;
+    }
+    .temperature {
+        font-size: 36px;
+    }
+
+    /* Shrink images. */
+    .condition, .condition img {
+        min-height: 60px;
+        max-height: 60px;
+    }
+
+    /* Reduce width of forecast items.  */
+    .forecast-item {
+        min-width: 100px;
+        max-width: 100px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Stack forecast items vertically for mobile. */
+    .forecast-container {
+        align-items: center;
+        flex-direction: column; 
+        justify-content: space-between;
+        gap: 20px;
+    }
+}

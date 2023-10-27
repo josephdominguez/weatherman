@@ -9,7 +9,7 @@ function HomepageFooter() {
       <nav className={styles['footer-nav']}>
         <h2>Navigation</h2>
         <div>
-          <a href="./extended_forecast.html">Extended Forecast</a>
+          <Link to="/ExtendedForecast">Extended Forecast</Link>
         </div>
         <div>
           <Link to="/LocalForecast">Local Forecast</Link>

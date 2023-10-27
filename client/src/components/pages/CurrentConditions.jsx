@@ -18,6 +18,7 @@ function CurrentConditions() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { zipCode, setZipCode } = useContext(ZipCodeContext);
+  const pageTitle = "Current Conditions";
 
   const handleZipCodeChange = (event) => {
     setZipCode(event.target.value);
@@ -42,7 +43,7 @@ function CurrentConditions() {
 
   if (loading) {
     return (
-      <AppPage pageTitle="Current Conditions" humidity="" dewpoint="">
+      <AppPage pageTitle={pageTitle} humidity="" dewpoint="">
         <LoadingComponent />
       </AppPage>
     );
@@ -50,7 +51,7 @@ function CurrentConditions() {
 
   if (error) {
     return (
-      <AppPage pageTitle="Current Conditions" humidity="" dewpoint="">
+      <AppPage pageTitle={pageTitle} humidity="" dewpoint="">
         <ErrorComponent error={error}>
           <div>
             <input type="text" placeholder="Enter Zip Code" value={zipCode} onChange={handleZipCodeChange} />{' '}
@@ -62,7 +63,7 @@ function CurrentConditions() {
   }
 
   return (
-    <AppPage pageTitle="Current Conditions" location={weatherData.location} humidity={weatherData.humidity} dewpoint={weatherData.dewpoint}>
+    <AppPage pageTitle={pageTitle} location={weatherData.location} humidity={weatherData.humidity} dewpoint={weatherData.dewpoint}>
       <div className={`${styles["card-container"]}`}>
         <div className={styles["card-item"]}>
           <div className={styles["temperature"]}>

@@ -17,3 +17,17 @@ exports.getCurrentConditions = async (req, res) => {
         });
     }
 }
+
+// Retrieve extended forecast.
+exports.getExtendedForecast = async (req, res) => {
+    const { zipCode } = req.query;
+
+    try {
+        const extendedForecast = await weatherModel.getExtendedForecast(zipCode);
+        res.json( {extendedForecast} );
+    } catch (e) {
+        res.status(404).json({
+            message: 'Invalid ZIP code.'
+        });
+    }
+}
