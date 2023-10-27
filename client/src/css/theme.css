@@ -41,6 +41,9 @@
     font-family: 'Star4000';
     font-size: 32px;
     color: white;
+    -webkit-text-stroke-width: 0.1px;
+    -webkit-text-stroke-color: black;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, 1);
 }
 
 html, body {

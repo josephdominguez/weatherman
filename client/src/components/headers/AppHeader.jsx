@@ -24,11 +24,10 @@ function AppHeader({ pageTitle, location }) {
               />
             </Link>
           </div>
-          <div>
+          <div className={styles["location-container"]}>
             {currentLocation && (
               <>
-                <div>{currentLocation}'s</div>
-                <div>{pageTitle}</div>
+                <div>{currentLocation}'s <br/> {pageTitle}</div>
               </>
             )}
             {!currentLocation && (

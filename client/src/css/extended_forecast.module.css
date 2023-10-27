@@ -18,13 +18,18 @@
     text-align: center;
 }
 
-.forecast-item .day {
+.day {
     color: yellow;
+    font-size: 72px;
 }
 
-.condition {
+.condition-icon {
     max-height: 222px; /* Should be set to the maximum height of images found
                           in images/conditions. */
+}
+
+.condition-text {
+    font-size: 56px;
 }
 
 .temperature-container {
@@ -39,29 +44,40 @@
     justify-content: flex-start;
 }
 
+.temperature-type {
+    font-size: 48px;
+}
+
 .temperature {
     font-size: 64px;
 }
 
 @media screen and (max-width: 1280px) {
     /* Reduce font sizes for smaller screens. */
-    body {
-        font-size: 18px;
+    .day {
+        font-size: 54px;
+    }
+    .condition-text {
+        font-size: 48px;
+    }
+    .temperature-type {
+        font-size: 42px;
     }
     .temperature {
-        font-size: 36px;
+        font-size: 56px;
     }
+    
 
     /* Shrink images. */
-    .condition, .condition img {
-        min-height: 60px;
-        max-height: 60px;
+    .condition-icon {
+        min-height: 110px;
+        max-height: 110px;
     }
 
     /* Reduce width of forecast items.  */
     .forecast-item {
-        min-width: 100px;
-        max-width: 100px;
+        min-width: 140px;
+        max-width: 140px;
     }
 }
 
@@ -72,5 +88,22 @@
         flex-direction: column; 
         justify-content: space-between;
         gap: 20px;
+    }
+
+    /* Reduce font. */
+    .condition-text {
+        font-size: 32px;
+    }
+    .temperature-type {
+        font-size: 30px;
+    }
+    .temperature {
+        font-size: 36px;
+    }
+
+    /* Shrink images. */
+    .condition-icon {
+        min-height: 90px;
+        max-height: 90px;
     }
 }

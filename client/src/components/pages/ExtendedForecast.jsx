@@ -62,18 +62,18 @@ function ExtendedForecast() {
                 <div className={styles['day']}>{forecast.day}</div>
 
                 <div>
-                    <img className={styles['condition']} src={forecast.conditionIcon} alt={forecast.condition} />
+                    <img className={styles['condition-icon']} src={forecast.conditionIcon} alt={forecast.condition} />
                 </div>
 
-                <div>{forecast.condition}</div>
+                <div className={styles['condition-text']}>{forecast.condition}</div>
 
                 <div className={styles['temperature-container']}>
                     <div className={styles['temperature-item']}>
-                        <div>LO</div>
+                        <div className={styles['temperature-type']}>LO</div>
                         <div className={styles['temperature']}>{forecast.minTemp}</div>
                     </div>
                     <div className={styles['temperature-item']}>
-                        <div>HI</div>
+                        <div className={styles['temperature-type']}>HI</div>
                         <div className={styles['temperature']}>{forecast.maxTemp}</div>
                     </div>
                 </div>
