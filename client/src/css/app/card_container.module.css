@@ -3,8 +3,8 @@
     justify-content: center;
     min-height: 70vh;
     width: fit-content;
-    min-width: 925px;
-    max-width: 925px;
+    min-width: 940px;
+    max-width: 940px;
     margin: auto;
     background: var(--dark-blue);
     border-width: 10px;
