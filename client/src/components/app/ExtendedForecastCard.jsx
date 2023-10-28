@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from '@css/extended_forecast.module.css';
 
+// ForecastItem component for displaying forecast data.
 function ForecastItem({ forecast }) {
     return (
       <div className={styles['forecast-item']}>
@@ -26,7 +27,7 @@ function ForecastItem({ forecast }) {
     );
 }
 
-function ExtendedForecastContent({ weatherData }) {
+function ExtendedForecastCard({ weatherData }) {
   return (
     <div className={styles['forecast-container']}>
       {weatherData.extendedForecast.map((forecast, index) => (
@@ -36,4 +37,4 @@ function ExtendedForecastContent({ weatherData }) {
   );
 }
 
-export default ExtendedForecastContent;
+export default ExtendedForecastCard;
