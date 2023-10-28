@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import AppPage from '@components/pages/AppPage';
 import CurrentConditionsComponent from '@components/app/CurrentConditionsComponent';
 import ExtendedForecastComponent from '@components/app/ExtendedForecastComponent';
-import LocalForecast from '@components/app/LocalForecastComponent';
+import LocalForecastComponent from '@components/app/LocalForecastComponent';
 
 // List of pages to cycle through
 const pages = [CurrentConditionsComponent, 
                ExtendedForecastComponent,
-               LocalForecast,];
+               LocalForecastComponent,];
 
 function Cycle() {
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
