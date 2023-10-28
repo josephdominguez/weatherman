@@ -13,4 +13,3 @@ function CurrentConditions() {
 }
 
 export default CurrentConditions;
-
