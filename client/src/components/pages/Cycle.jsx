@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 import AppPage from '@components/pages/AppPage';
 import CurrentConditionsComponent from '@components/app/CurrentConditionsComponent';
 import ExtendedForecastComponent from '@components/app/ExtendedForecastComponent';
+import LocalForecast from '@components/app/LocalForecastComponent';
 
 // List of pages to cycle through
 const pages = [CurrentConditionsComponent, 
-               ExtendedForecastComponent];
+               ExtendedForecastComponent,
+               LocalForecast,];
 
 function Cycle() {
   const [currentPageIndex, setCurrentPageIndex] = useState(0);
@@ -21,8 +23,9 @@ function Cycle() {
     return () => clearInterval(timer);
   }, [currentPageIndex]);
   
+  // TO-DO: Figure out how to pass pageTitle, possibly through context component
   return (
-      <AppPage pageTitle=''>
+      <AppPage pageTitle='Forecast'>
         <CurrentPageComponent />
       </AppPage>
   );

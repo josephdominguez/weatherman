@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import AppPage from '@components/pages/AppPage';
 import ExtendedForecastComponent from '@components/app/ExtendedForecastComponent';
 
-function ExtendedForecast() {  
+function ExtendedForecast() {
     const pageTitle = 'Extended Forecast';
 
     return (
