@@ -9,7 +9,7 @@ export function useLocation() {
 export function LocationProvider({ children }) {
   const [location, setLocation] = useState({
     zipCode: '84101',
-    city: 'Salt Lake City', // Default values for now
+    city: 'Salt Lake City', // TO-DO: Replace default values from a UserContext object.
   });
 
   const updateLocation = (newLocation) => {
