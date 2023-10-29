@@ -16,7 +16,6 @@ function AppFooter() {
       // TO-DO: Replace endpoint with footer endpoint.
       const response = await axios.get(`http://localhost:8080/current-conditions?zipCode=${zipCode}`);
       const weatherData = response.data.currentConditions;
-      console.log(response);
       setWeatherData(weatherData);
       setError(null);
       setLoading(false);
