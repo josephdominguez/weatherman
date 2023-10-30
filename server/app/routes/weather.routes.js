@@ -19,5 +19,10 @@ module.exports = app => {
         catch(e) { throw e; }
     })
 
+    // Retrieve data for travel forecast
+    app.get('/travel-forecast', async (req, res) => {
+        try{ await weatherController.getTravelForecast(req, res); }
+        catch(e) { throw e; }
+    })
 
 }
