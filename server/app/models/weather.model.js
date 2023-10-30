@@ -3,6 +3,9 @@ const { conditionIconsDay, conditionIconsNight } = require('./condition-icons.mo
 
 // Sets length of extended forecast. Free Weather API access is limited to 3 days.
 const FORECAST_LENGTH = 3;
+// Sets endpoints for APIs.
+const WEATHERAPI_ENDPOINT = 'http://api.weatherapi.com/v1';
+const METARAPI_ENDPOINT = 'https://api.checkwx.com/metar';
 
 class Weather {
     constructor(weatherAPIKey, metarAPIKey) {
@@ -12,7 +15,7 @@ class Weather {
 
     // Retrieves cloud ceiling using METAR data provider.
     async _getCloudCeiling(lat, lon) {
-        const url = `https://api.checkwx.com/metar/lat/${lat}/lon/${lon}/decoded?x-api-key=${this.metarAPIKey}`;
+        const url = `${METARAPI_ENDPOINT}/lat/${lat}/lon/${lon}/decoded?x-api-key=${this.metarAPIKey}`;
         try {
             const response = await axios.get(url);
             const metarData = response.data;
@@ -29,9 +32,25 @@ class Weather {
         return date.toLocaleDateString('en-US', options)
     }
 
+    // Retrieves location given zip code.
+    async getLocation(zipCode) {
+        const url = `${WEATHERAPI_ENDPOINT}/search.json?key=${this.weatherAPIKey}&q=${zipCode}`;
+        try {
+            const response = await axios.get(url);
+            const location = response.data[0];
+
+            const city = location.name;
+            
+            return {
+                city: city,
+                zipCode: zipCode,
+            }
+        } catch(e) { throw e; }
+    }
+
     // Retrieves current weather conditions.
     async getCurrentConditions(zipCode) {
-        const url = `http://api.weatherapi.com/v1/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
+        const url = `${WEATHERAPI_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
         try {
             const response = await axios.get(url);
             const weatherData = response.data;
@@ -71,7 +90,7 @@ class Weather {
 
     // Retrieves extended forecast.
     async getExtendedForecast(zipCode) {
-        const url = `http://api.weatherapi.com/v1/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=${FORECAST_LENGTH}&aqi=no&alerts=no`;
+        const url = `${WEATHERAPI_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=${FORECAST_LENGTH}&aqi=no&alerts=no`;
         try {
             const response = await axios.get(url);
             const weatherData = response.data;
