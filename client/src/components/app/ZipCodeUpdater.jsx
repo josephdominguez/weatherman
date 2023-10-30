@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { useLocation } from '@contexts/LocationContext';
 
 function ZipCodeUpdater() {
@@ -13,8 +14,14 @@ function ZipCodeUpdater() {
     if (event.key === 'Enter') { updateZipCode(); }
   };
 
-  const updateZipCode = () => {
-    updateLocation({ zipCode: tempZipCode });
+  const updateZipCode = async () => {
+    try {
+      const response = await axios.get(`http://localhost:8080/location?zipCode=${tempZipCode}`);
+      const location = response.data.location;
+      updateLocation({ ...location });
+    } catch(e) {
+      updateLocation({ zipCode: tempZipCode });
+    }
   };
 
   return (

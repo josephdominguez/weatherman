@@ -20,11 +20,9 @@ function CurrentConditionsComponent() {
         setWeatherData(weatherData);
         setError(null);
         setLoading(false);
-        updateLocation({city: weatherData.city});
       } catch (e) {
         setError(e);
         setLoading(false);
-        updateLocation({city: ''});
       }
     };
   
