@@ -5,25 +5,12 @@
     align-content: center;
     background-color: var(--blue-hawk);
     font-size: 22px;
-}
-
-.footer-nav {
-    display: flex;
-    flex-direction: column;
-    padding-left: 25px;
-    padding-bottom: 25px;
-}
-   
-.footer-nav a, .footer-nav a:visited {
-    text-decoration: none;
-    color: white;
+    padding: 15px 30px;
 }
 
 .footer-contact {
     display: flex;
     flex-direction: column;
-    padding-right: 30px;
-    padding-bottom: 30px;
 }
 
 .footer-contact a, .footer-contact a:visited {
