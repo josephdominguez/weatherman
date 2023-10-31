@@ -14,13 +14,13 @@ function Options() {
         setToggle(!toggle);
     }
 
-    const closeModal = () => {
+    const closeOptions = () => {
         setToggle(false);
     }
 
     return (
         <>
-            <Modal toggle={toggle} onClose={closeModal}>
+            <Modal toggle={toggle} onClose={closeOptions}>
                 <div className={styles.options}>
                     <h1>Options</h1>
                     <ZipCodeUpdater />
