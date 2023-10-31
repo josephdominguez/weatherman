@@ -46,7 +46,7 @@
 
 .clock {
     font-size: 42px;
-    align-items: end;
+    text-align: right;
     margin-top: auto;
 }
 
