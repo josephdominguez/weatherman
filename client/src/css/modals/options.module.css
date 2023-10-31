@@ -1,0 +1,13 @@
+.options {
+    margin: 100px;
+}
+
+.toggleOptionsButton {
+    margin: auto;
+    cursor: pointer;
+    transition: fill 0.3s;
+}
+
+.toggleOptionsButton:hover {
+    fill: var(--light-blue);
+}
