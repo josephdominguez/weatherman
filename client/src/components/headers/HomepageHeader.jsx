@@ -2,11 +2,18 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '@css/homepage/header.module.css';
 import WeathermanLogo from '@images/logos/logo.svg';
+import HeroVideo from '/public/videos/hero_video.mp4';
 
 function HomepageHeader() {
   return (
     <header className={styles['homepage-header']}>
-      <div className={styles['header-container']}>
+        <div className={styles['background-video']}>
+          <video autoPlay muted loop className={styles['header-video']}>
+            <source src={HeroVideo} type="video/mp4" />
+          </video>
+        </div>
+        <div className={styles['header-container']}>
+
         <div className={styles['logo']}>
           <Link to="/">
             <img className={styles['logo-image']} src={WeathermanLogo} alt="Weather Logo" />
@@ -20,7 +27,6 @@ function HomepageHeader() {
           </Link>
         </div>
       </div>
-      <div className={styles['header-text']}></div>
     </header>
   );
 }
