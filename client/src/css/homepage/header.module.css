@@ -5,6 +5,7 @@
 }
 
 .background-video {
+    background-image: url("@images/backgrounds/hero_image.png");
     position: absolute;
     top: 0;
     left: 0;
