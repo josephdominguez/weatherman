@@ -16,8 +16,18 @@
     z-index: 1;
 }
 
-.app-header-item div {
-    padding-left: 10px;
+.page-title {
+    padding: 0 10px;
+}
+
+.app-header-item-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.options-gear {
+    margin-left: auto;
+    align-items: right;
 }
 
 .location-container {

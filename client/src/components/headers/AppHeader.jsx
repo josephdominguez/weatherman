@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from '@contexts/LocationContext';
-import Options from '@components/app/Options';
+import Options from '@components/modals/Options';
 import styles from '@css/app/header.module.css';
 import WeathermanLogo from '@images/logos/logo.svg';
 import '@scripts/clock.js';
@@ -18,7 +18,7 @@ function AppHeader({ pageTitle }) {
     <header className={styles['app-header']}>
       <div className={styles['app-header-container']}>
         <div className={styles['app-header-item']}>
-          <div>
+          <div className={styles['page-title']}>
             <Link to="/">
               <img
                 className={styles['logo']}
@@ -42,10 +42,14 @@ function AppHeader({ pageTitle }) {
         </div>
 
         <div className={styles['app-header-item']}>
-          <Options />
-          <div className={styles['clock']}>
-            <div id="time">0:00:00 AM</div>
-            <div id="date">Sun, Jan 1</div>
+          <div className={styles['app-header-item-column']}>
+            <div className={styles['options-gear']}>
+              <Options />
+            </div>
+            <div className={styles['clock']}>
+              <div id="time">0:00:00 AM</div>
+              <div id="date">Sun, Jan 1</div>
+            </div>
           </div>
         </div>
       </div>
