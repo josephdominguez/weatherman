@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Modal from '@components/modals/Modal';
+import NavigationMenu from '@components/app/NavigationMenu';
 import ZipCodeUpdater from '@components/app/ZipCodeUpdater';
 import { GoGear } from 'react-icons/go';
 import styles from '@css/modals/options.module.css';
@@ -23,6 +24,7 @@ function Options() {
                 <div className={styles.options}>
                     <h1>Options</h1>
                     <ZipCodeUpdater />
+                    <NavigationMenu />
                 </div>
             </Modal>
             <GoGear className={styles.toggleOptionsButton} onClick={toggleOptions} />
