@@ -1,19 +1,17 @@
 import React from 'react';
 import Cycle from '@components/utilities/Cycle';
 import AppPage from '@components/pages/AppPage';
-import CurrentConditionsComponent from '@components/app/CurrentConditionsComponent';
-import ExtendedForecastComponent from '@components/app/ExtendedForecastComponent';
-import LocalForecastComponent from '@components/app/LocalForecastComponent';
+import { pages } from '@config/config';
 
-// List of pages to cycle through
-const pages = [CurrentConditionsComponent, 
-               ExtendedForecastComponent,
-               LocalForecastComponent,];
+// Generates list of components to cycle through. 
+// Removes 'CompleteForecast' component to avoid loading itself.
+const components = pages.map(page => page.component)
+                   .filter(component => component !== 'CompleteForecast');
 
 function CompleteForecast() {
   return (
       <AppPage pageTitle='Forecast'>
-        <Cycle components={pages} />
+        <Cycle components={components} skippedComponents='CompleteForecast' />
       </AppPage>
   );
 }

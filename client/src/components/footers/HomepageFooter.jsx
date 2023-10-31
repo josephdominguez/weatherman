@@ -1,26 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import NavigationMenu from '@components/app/NavigationMenu';
 import styles from '@css/homepage/footer.module.css';
 import githubIcon from '@images/icons/github.png';
 
 function HomepageFooter() {
   return (
     <footer className={styles['homepage-footer']}>
-      <nav className={styles['footer-nav']}>
-        <h3>Navigation</h3>
-        <div>
-          <Link to="/ExtendedForecast">Extended Forecast</Link>
-        </div>
-        <div>
-          <Link to="/LocalForecast">Local Forecast</Link>
-        </div>
-        <div>
-          <Link to="/CurrentConditions">Current Conditions</Link>
-        </div>
-        <div>
-          <Link to="/CompleteForecast">Complete Forecast</Link>
-        </div>
-      </nav>
+      <NavigationMenu />
       <div className={styles['footer-contact']}>
         <h2>Contact</h2>
         <div>

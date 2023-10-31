@@ -1,0 +1,18 @@
+.navigation-menu {
+    display: flex;
+    flex-direction: column;
+}
+   
+.navigation-menu a, .navigation-menu a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.current-link {
+    color: var(--orange) !important;
+}
+
+.current-link::before {
+    content: '>';
+    margin-right: 5px;
+}
