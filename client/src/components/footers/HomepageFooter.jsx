@@ -18,7 +18,7 @@ function HomepageFooter() {
           <Link to="/CurrentConditions">Current Conditions</Link>
         </div>
         <div>
-          <Link to="/Cycle">Cycle</Link>
+          <Link to="/CompleteForecast">Complete Forecast</Link>
         </div>
       </nav>
       <div className={styles['footer-contact']}>

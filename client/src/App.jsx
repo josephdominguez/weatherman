@@ -6,7 +6,7 @@ import { LocationProvider } from '@contexts/LocationContext';
 
 // Import pages
 import Homepage from '@components/pages/Homepage';
-import Cycle from '@components/pages/Cycle';
+import CompleteForecast from '@components/pages/CompleteForecast';
 import CurrentConditions from '@components/pages/CurrentConditions';
 import LocalForecast from '@components/pages/LocalForecast';
 import ExtendedForecast from '@components/pages/ExtendedForecast';
@@ -19,10 +19,10 @@ function App() {
         <Router>
             <Routes>
               <Route path="/" element={<Homepage/>} />
+              <Route path="/CompleteForecast" element={<CompleteForecast/>} />
               <Route path="/CurrentConditions" element={<CurrentConditions/>} />
               <Route path="/LocalForecast" element={<LocalForecast/>} />
               <Route path="/ExtendedForecast" element={<ExtendedForecast/>} />
-              <Route path="/Cycle" element={<Cycle/>} />
             </Routes>
         </Router>
       </LocationProvider>
