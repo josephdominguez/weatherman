@@ -14,10 +14,17 @@ const MusicPlayer = () => {
 
     const handleProgress = (state) => {
         if (state.loaded && state.played >= 0.9) {
-            setNextTrack(selectNextTrack());
+            const nextTrackUrl = selectNextTrack();
+            setNextTrack(nextTrackUrl);
+
+            // Preload the next track
+            const audio = new Audio(nextTrackUrl);
+            audio.preload = 'auto';
+            audio.load();
         }
     };
 
+    // Select new track upon component mounting.
     useEffect(() => {
         setCurrentTrack(selectNextTrack());
     }, [selectNextTrack]);
