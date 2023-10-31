@@ -25,8 +25,8 @@ const CurrentConditionsCard = ({ weatherData }) => (
     </div>
     <div className={styles['card-item']}>
       <div className={styles['details']}>
-        <div className={styles["details-heading"]}>
-          <span className="highlight"> {weatherData.city} </span>
+        <div className={styles['details-heading']}>
+          <span className='highlight'> {weatherData.city} </span>
         </div>
         <WeatherInfo label="Humidity" value={weatherData.humidity} unit="%" />
         <WeatherInfo label="Dewpoint" value={weatherData.dewpoint} unit="&deg;F" />

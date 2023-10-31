@@ -4,8 +4,8 @@ import ZipCodeUpdater from '@components/app/ZipCodeUpdater';
 
 function ErrorComponent({ error, children }) {
   return (
-    <div className={`${styles["card-container"]}`}>
-      <div className={styles["card-item"]}>
+    <div className={styles['card-container']}>
+      <div className={styles['card-item']}>
         <div>Error: {error.message}</div>
         <ZipCodeUpdater />
       </div>
