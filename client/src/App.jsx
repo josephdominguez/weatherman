@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Import context
 import { LocationProvider } from '@contexts/LocationContext';
+import { MusicPlayerProvider } from './contexts/MusicPlayerContext';
 
 // Import pages
 import Homepage from '@components/pages/Homepage';
@@ -16,15 +17,17 @@ function App() {
   return (
     <>
       <LocationProvider>
-        <Router>
-            <Routes>
-              <Route path="/" element={<Homepage/>} />
-              <Route path="/CompleteForecast" element={<CompleteForecast/>} />
-              <Route path="/CurrentConditions" element={<CurrentConditions/>} />
-              <Route path="/LocalForecast" element={<LocalForecast/>} />
-              <Route path="/ExtendedForecast" element={<ExtendedForecast/>} />
-            </Routes>
-        </Router>
+        <MusicPlayerProvider>
+          <Router>
+              <Routes>
+                <Route path="/" element={<Homepage/>} />
+                <Route path="/CompleteForecast" element={<CompleteForecast/>} />
+                <Route path="/CurrentConditions" element={<CurrentConditions/>} />
+                <Route path="/LocalForecast" element={<LocalForecast/>} />
+                <Route path="/ExtendedForecast" element={<ExtendedForecast/>} />
+              </Routes>
+          </Router>
+        </MusicPlayerProvider>
       </LocationProvider>
     </>
   )

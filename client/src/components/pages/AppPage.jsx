@@ -1,14 +1,16 @@
 import React from 'react';
 import AppHeader from '@components/headers/AppHeader';
 import AppFooter from '@components/footers/AppFooter';
+import MusicPlayer from '../utilities/MusicPlayer';
 
 function AppPage({ pageTitle, children }) {
   return (
     <>
       <AppHeader pageTitle={pageTitle} />
-      <main>
-        {children}
-      </main>
+        <main>
+          {children}
+        </main>
+        <MusicPlayer />
       <AppFooter />
     </>
   );
