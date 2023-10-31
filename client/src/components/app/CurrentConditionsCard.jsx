@@ -1,5 +1,4 @@
 import React from 'react';
-import ZipCodeUpdater from '@components/app/ZipCodeUpdater';
 import styles from '@css/current_conditions.module.css';
 
 // WeatherInfo component for displaying weather information
@@ -35,7 +34,6 @@ const CurrentConditionsCard = ({ weatherData }) => (
         <WeatherInfo label="Visibility" value={weatherData.visibility} unit="mi." />
         <WeatherInfo label="Pressure" value={weatherData.pressure} unit="mb" highlightUnit />
         <WeatherInfo label="Heat Index" value={weatherData.heatIndex} unit="" />
-        <ZipCodeUpdater />
       </div>
     </div>
   </div>
