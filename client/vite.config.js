@@ -13,7 +13,8 @@ export default defineConfig({
       '@css': '/src/css',
       '@fonts': '/src/fonts',
       '@images': '/src/images',
-      '@scripts': '/src/scripts'
+      '@scripts': '/src/scripts',
+      '@videos': '/src/videos/',
     }
   }
 })
