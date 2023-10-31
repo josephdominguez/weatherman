@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import ExtendedForecastCard from '@components/app/ExtendedForecastCard';
 import ErrorComponent from '@components/app/ErrorComponent';
 import LoadingComponent from '@components/app/LoadingComponent';
-import ExtendedForecastCard from '@components/app/ExtendedForecastCard';
-import ZipCodeUpdater from '@components/app/ZipCodeUpdater';
 import { useLocation } from '@contexts/LocationContext';
 
 function ExtendedForecastComponent() {
@@ -11,7 +10,7 @@ function ExtendedForecastComponent() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const { location, updateLocation } = useLocation();
+    const { location } = useLocation();
     const { zipCode } = location;
   
 
@@ -41,7 +40,6 @@ function ExtendedForecastComponent() {
     if (error) {
         return (
             <ErrorComponent error={error}>
-                <ZipCodeUpdater />
             </ErrorComponent>
         );
     }
