@@ -25,12 +25,12 @@ export const MusicPlayerProvider = ({ children }) => {
         setIsPlaying(!isPlaying);
     };
 
-    const randomTrack = () => {
-        setCurrentTrack(selectRandomTrack());
+    const selectNextTrack = () => {
+        return selectRandomTrack();
     }
 
     return (
-        <MusicPlayerContext.Provider value={{ currentTrack, isPlaying, togglePlayer, randomTrack }}>
+        <MusicPlayerContext.Provider value={{ currentTrack, setCurrentTrack, isPlaying, togglePlayer, selectNextTrack }}>
             {children}
         </MusicPlayerContext.Provider>
     );
