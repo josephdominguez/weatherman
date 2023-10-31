@@ -30,7 +30,7 @@ export const MusicPlayerProvider = ({ children }) => {
     }
 
     return (
-        <MusicPlayerContext.Provider value={{ currentTrack, setCurrentTrack, isPlaying, togglePlayer, selectNextTrack }}>
+        <MusicPlayerContext.Provider value={{ currentTrack, setCurrentTrack, selectNextTrack, isPlaying, togglePlayer, }}>
             {children}
         </MusicPlayerContext.Provider>
     );

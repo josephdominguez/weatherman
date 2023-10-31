@@ -3,7 +3,7 @@ import ReactPlayer from "react-player";
 import { useMusicPlayer } from "@contexts/MusicPlayerContext";
 
 const MusicPlayer = () => {
-    const { currentTrack, setCurrentTrack, isPlaying, selectNextTrack } = useMusicPlayer();
+    const { currentTrack, setCurrentTrack, selectNextTrack, isPlaying } = useMusicPlayer();
     const [nextTrack, setNextTrack] = useState(null);
 
     const handleEnded = () => {
