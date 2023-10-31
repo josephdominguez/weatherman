@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useLocation } from '@contexts/LocationContext';
+import { API_ENDPOINT } from '@config/config';
 import styles from '@css/app/footer.module.css';
 
 function AppFooter() {
@@ -14,7 +15,7 @@ function AppFooter() {
   const fetchWeatherData = async () => {
     try {
       // TO-DO: Replace endpoint with footer endpoint.
-      const response = await axios.get(`http://localhost:8080/current-conditions?zipCode=${zipCode}`);
+      const response = await axios.get(`http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`);
       const weatherData = response.data.currentConditions;
       setWeatherData(weatherData);
       setError(null);

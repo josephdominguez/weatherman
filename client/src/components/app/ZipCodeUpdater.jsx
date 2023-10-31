@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useLocation } from '@contexts/LocationContext';
+import { API_ENDPOINT } from '@config/config';
 
 function ZipCodeUpdater() {
   const { location, updateLocation } = useLocation();
@@ -16,7 +17,7 @@ function ZipCodeUpdater() {
 
   const updateZipCode = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/location?zipCode=${tempZipCode}`);
+      const response = await axios.get(`http://${API_ENDPOINT}/location?zipCode=${tempZipCode}`);
       const location = response.data.location;
       updateLocation({ ...location });
     } catch(e) {

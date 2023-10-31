@@ -4,6 +4,7 @@ import CurrentConditionsCard from '@components/app/CurrentConditionsCard.jsx';
 import LoadingComponent from '@components/app/LoadingComponent';
 import ErrorComponent from '@components/app/ErrorComponent';
 import { useLocation } from '@contexts/LocationContext';
+import { API_ENDPOINT } from '@config/config';
 
 function CurrentConditionsComponent() {
     const [weatherData, setWeatherData] = useState(null);
@@ -14,7 +15,7 @@ function CurrentConditionsComponent() {
   
     const fetchWeatherData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/current-conditions?zipCode=${zipCode}`);
+        const response = await axios.get(`http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`);
         const weatherData = response.data.currentConditions;
         setWeatherData(weatherData);
         setError(null);

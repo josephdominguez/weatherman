@@ -9,6 +9,7 @@ export default defineConfig({
     alias: {
       '@components': '/src/components',
       '@contexts': '/src/contexts',
+      '@config': '/config',
       '@css': '/src/css',
       '@fonts': '/src/fonts',
       '@images': '/src/images',

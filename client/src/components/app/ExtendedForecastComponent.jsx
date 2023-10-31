@@ -4,6 +4,7 @@ import ExtendedForecastCard from '@components/app/ExtendedForecastCard';
 import ErrorComponent from '@components/app/ErrorComponent';
 import LoadingComponent from '@components/app/LoadingComponent';
 import { useLocation } from '@contexts/LocationContext';
+import { API_ENDPOINT } from '@config/config';
 
 function ExtendedForecastComponent() {
     const [weatherData, setWeatherData] = useState(null);
@@ -16,7 +17,7 @@ function ExtendedForecastComponent() {
 
     const fetchWeatherData = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/extended-forecast?zipCode=${zipCode}`);
+            const response = await axios.get(`http://${API_ENDPOINT}/extended-forecast?zipCode=${zipCode}`);
             const weatherData = response.data.extendedForecast;
             setWeatherData(weatherData);
             setError(null);
