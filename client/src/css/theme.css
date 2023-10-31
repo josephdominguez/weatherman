@@ -19,6 +19,7 @@
 :root {
     /* Colors */
     --orange: rgb(255, 150, 30);
+    --red: rgb(240, 120, 120);
     --light-purple: rgb(90, 60, 140);
     --dark-purple: rgb(50, 30, 125);
     --light-blue: rgb(145, 150, 255);

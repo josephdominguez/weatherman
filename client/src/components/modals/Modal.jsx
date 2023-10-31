@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from "react";
+import { GoXCircle } from "react-icons/go";
 import styles from "@css/modals/modal.module.css";
 
 function Modal({ toggle, onClose, children }) {
@@ -20,6 +21,7 @@ function Modal({ toggle, onClose, children }) {
             {toggle && (
                 <div className={styles['modal']}>
                     <div ref={modalRef} className={styles['modal-content']}>
+                        < GoXCircle className={styles['close-modal-button']} onClick={onClose} />
                         {children}
                     </div>
                 </div>
