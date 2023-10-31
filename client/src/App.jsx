@@ -11,6 +11,7 @@ import CompleteForecast from '@components/pages/CompleteForecast';
 import CurrentConditions from '@components/pages/CurrentConditions';
 import LocalForecast from '@components/pages/LocalForecast';
 import ExtendedForecast from '@components/pages/ExtendedForecast';
+import NotFound from '@components/pages/NotFound';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/CurrentConditions" element={<CurrentConditions/>} />
                 <Route path="/LocalForecast" element={<LocalForecast/>} />
                 <Route path="/ExtendedForecast" element={<ExtendedForecast/>} />
+                <Route path="*" element={<NotFound />} />
               </Routes>
           </Router>
         </MusicPlayerProvider>
