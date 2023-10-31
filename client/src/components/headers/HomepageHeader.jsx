@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styles from '@css/homepage/header.module.css';
 import WeathermanLogo from '@images/logos/logo.svg';
-import HeroVideo from '/public/videos/hero_video.mp4';
+import HeroVideo from '@videos/hero_video.mp4';
 
 function HomepageHeader() {
   return (
