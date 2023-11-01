@@ -1,5 +1,5 @@
 exports.extractSynopsis = (forecastText) => {
-    const synopsisRegExp = /SYNOPSIS([\s\S]*?)SHORT TERM/g;
+    const synopsisRegExp = /SYNOPSIS([\s\S]*?)&&/g;
     const match = synopsisRegExp.exec(forecastText);
 
     if (match) {
@@ -10,8 +10,8 @@ exports.extractSynopsis = (forecastText) => {
     }
 }
 
-exports.extractShortTermForecast = (forecastText) => {
-    const shortTermRegExp = /SHORT TERM([\s\S]*?)LONG TERM/g;
+exports.extractShortTerm = (forecastText) => {
+    const shortTermRegExp = /SHORT TERM([\s\S]*?)&&/g;
     const match = shortTermRegExp.exec(forecastText);
   
     if (match) {
