@@ -46,6 +46,20 @@ exports.getExtendedForecast = async (req, res) => {
     }
 }
 
+// Retrieve local forecast.
+exports.getLocalForecast = async (req, res) => {
+    const { zipCode } = req.query;
+
+    try {
+        const localForecast = await weatherModel.getLocalForecast(zipCode);
+        res.json( {localForecast} );
+    } catch (e) {
+        res.status(404).json({
+            message: 'Invalid ZIP code.'
+        });
+    }
+}
+
 exports.getTravelForecast = async (req, res) => {
     /* Code for getTravelForecast function here
     */

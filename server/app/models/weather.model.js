@@ -1,11 +1,14 @@
 const axios = require('axios');
+const forecastModel = require('./forecast.model.js');
 const { conditionIconsDay, conditionIconsNight } = require('./condition-icons.model.js');
 
 // Sets length of extended forecast. Free Weather API access is limited to 3 days.
 const FORECAST_LENGTH = 3;
+
 // Sets endpoints for APIs.
-const WEATHERAPI_ENDPOINT = 'http://api.weatherapi.com/v1';
-const METARAPI_ENDPOINT = 'https://api.checkwx.com/metar';
+const NWS_API_ENDPOINT = 'https://api.weather.gov'
+const WEATHER_API_ENDPOINT = 'https://api.weatherapi.com/v1';
+const METAR_API_ENDPOINT = 'https://api.checkwx.com/metar';
 
 class Weather {
     constructor(weatherAPIKey, metarAPIKey) {
@@ -15,7 +18,7 @@ class Weather {
 
     // Retrieves cloud ceiling using METAR data provider.
     async _getCloudCeiling(lat, lon) {
-        const url = `${METARAPI_ENDPOINT}/lat/${lat}/lon/${lon}/decoded?x-api-key=${this.metarAPIKey}`;
+        const url = `${METAR_API_ENDPOINT}/lat/${lat}/lon/${lon}/decoded?x-api-key=${this.metarAPIKey}`;
         try {
             const response = await axios.get(url);
             const metarData = response.data;
@@ -32,25 +35,51 @@ class Weather {
         return date.toLocaleDateString('en-US', options)
     }
 
+    // Retrieves NWS forecast station given zip code.
+    async _getForecastStation(zipCode) {
+        const location = await this.getLocation(zipCode);
+        const { lat, lon } = location;
+        const url = `${NWS_API_ENDPOINT}/points/${lat},${lon}`;
+        try {
+            const response = await axios.get(url);
+            const station = response.data.properties.gridId;
+            return station
+        } catch(e) { throw e; }
+    }
+
+    // Retrieves URL for accessing area forecast discussion for station.
+    async _getAreaForecastDiscussionUrl(station) {
+        const url = `${NWS_API_ENDPOINT}/products/types/AFD/locations/${station}`;
+        try {
+            const response = await axios.get(url);
+            const areaForecastDiscussionUrl = response.data['@graph'][0]['@id'];
+            return areaForecastDiscussionUrl;
+        } catch(e) { throw e; }
+    }
+
     // Retrieves location given zip code.
     async getLocation(zipCode) {
-        const url = `${WEATHERAPI_ENDPOINT}/search.json?key=${this.weatherAPIKey}&q=${zipCode}`;
+        const url = `${WEATHER_API_ENDPOINT}/search.json?key=${this.weatherAPIKey}&q=${zipCode}`;
         try {
             const response = await axios.get(url);
             const location = response.data[0];
 
             const city = location.name;
+            const lat = parseInt(location.lat);
+            const lon = parseInt(location.lon);
             
             return {
                 city: city,
                 zipCode: zipCode,
+                lat: lat,
+                lon: lon
             }
         } catch(e) { throw e; }
     }
 
     // Retrieves current weather conditions.
     async getCurrentConditions(zipCode) {
-        const url = `${WEATHERAPI_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
+        const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
         try {
             const response = await axios.get(url);
             const weatherData = response.data;
@@ -90,7 +119,7 @@ class Weather {
 
     // Retrieves extended forecast.
     async getExtendedForecast(zipCode) {
-        const url = `${WEATHERAPI_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=${FORECAST_LENGTH}&aqi=no&alerts=no`;
+        const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=${FORECAST_LENGTH}&aqi=no&alerts=no`;
         try {
             const response = await axios.get(url);
             const weatherData = response.data;
@@ -121,6 +150,25 @@ class Weather {
             return {
                 city: city,
                 extendedForecast: extendedForecast
+            }
+        } catch(e) { throw e; }
+    }
+
+    // Retrieves local forecast.
+    async getLocalForecast(zipCode) {
+        const station = await this._getForecastStation(zipCode);
+        const url = await this._getAreaForecastDiscussionUrl(station);
+        try {
+            const response = await axios.get(url);
+            const localForecast = response.data.productText
+            
+            // Extract forecast discussions from text.
+            const synopsis = forecastModel.extractSynopsis(localForecast);
+            const shortTermForecast = forecastModel.extractShortTermForecast(localForecast);
+
+            return {
+                synopsis: synopsis,
+                shortTermForecast: shortTermForecast,
             }
         } catch(e) { throw e; }
     }
