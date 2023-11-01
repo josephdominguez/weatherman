@@ -164,11 +164,11 @@ class Weather {
             
             // Extract forecast discussions from text.
             const synopsis = forecastModel.extractSynopsis(localForecast);
-            const shortTermForecast = forecastModel.extractShortTermForecast(localForecast);
+            const shortTerm = forecastModel.extractShortTerm(localForecast);
 
             return {
                 synopsis: synopsis,
-                shortTermForecast: shortTermForecast,
+                shortTerm: shortTerm,
             }
         } catch(e) { throw e; }
     }
