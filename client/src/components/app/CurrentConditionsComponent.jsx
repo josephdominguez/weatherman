@@ -25,7 +25,7 @@ function CurrentConditionsComponent() {
         <AppPageComponent
             fetchFunction={fetchWeatherData}
             renderData={renderData}
-            zipCode={zipCode}
+            dependencies={zipCode}
         />
     );
 }

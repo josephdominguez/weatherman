@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import LoadingComponent from '@components/app/LoadingComponent';
 import ErrorComponent from '@components/app/ErrorComponent';
 
-function AppPageComponent({ fetchFunction, renderData, zipCode }) {
+function AppPageComponent({ fetchFunction, renderData, dependencies }) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -21,7 +21,7 @@ function AppPageComponent({ fetchFunction, renderData, zipCode }) {
 
     useEffect(() => {
         fetchData();
-    }, [zipCode]);
+    }, [dependencies]);
 
     if (loading) {
         return <LoadingComponent />;
