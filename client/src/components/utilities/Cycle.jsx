@@ -1,6 +1,9 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import LoadingComponent from "@components/app/LoadingComponent";
 
+// Sets cycle speed in milliseconds.
+const CYCLE_SPEED = 8000;
+
 function Cycle({ components }) {
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const CurrentComponent = components[currentComponentIndex];
@@ -13,7 +16,7 @@ function Cycle({ components }) {
   };
 
   useEffect(() => {
-      const timer = setInterval(cycleToNextComponent, 5000);
+      const timer = setInterval(cycleToNextComponent, CYCLE_SPEED);
       return () => clearInterval(timer);
   }, [currentComponentIndex]);
 
