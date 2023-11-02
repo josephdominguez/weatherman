@@ -9,21 +9,20 @@ function CurrentConditionsComponent() {
     const { location } = useLocation();
     const { zipCode } = location;
 
-    const fetchWeatherData = async () => {
+    const fetchData = async () => {
         try {
             const response = await axios.get(`http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`);
-            const weatherData = response.data.currentConditions;
-            return weatherData;
+            return response.data.currentConditions;
         } catch (e) { throw e; }
     };
 
-    const renderData = (weatherData) => {
-        return <CurrentConditionsCard weatherData={weatherData} />;
+    const renderData = (data) => {
+        return <CurrentConditionsCard weatherData={data} />;
     };
 
     return (
         <AppPageComponent
-            fetchFunction={fetchWeatherData}
+            fetchFunction={fetchData}
             renderData={renderData}
             dependencies={zipCode}
         />

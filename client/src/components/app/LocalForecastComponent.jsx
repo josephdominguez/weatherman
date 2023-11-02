@@ -9,21 +9,20 @@ function LocalForecastComponent() {
     const { location } = useLocation();
     const { zipCode } = location;
 
-    const fetchWeatherData = async () => {
+    const fetchData = async () => {
         try {
             const response = await axios.get(`http://${API_ENDPOINT}/local-forecast?zipCode=${zipCode}`);
-            const weatherData = response.data.localForecast;
-            return weatherData;
+            return response.data.localForecast;
         } catch (e) { throw e; }
     };
 
-    const renderData = (weatherData) => {
-        return <LocalForecastCard weatherData={weatherData} />;
+    const renderData = (data) => {
+        return <LocalForecastCard weatherData={data} />;
     };
 
     return (
         <AppPageComponent
-            fetchFunction={fetchWeatherData}
+            fetchFunction={fetchData}
             renderData={renderData}
             dependencies={zipCode}
         />
