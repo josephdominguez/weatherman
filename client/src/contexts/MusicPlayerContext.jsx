@@ -15,7 +15,7 @@ export const useMusicPlayer = () => {
 
 export const MusicPlayerProvider = ({ children }) => {
     const [isPlaying, setIsPlaying] = useState(false);
-    const [currentTrack, setCurrentTrack] = useState(selectRandomTrack());
+    const [currentTrack, setCurrentTrack] = useState(null);
 
     const togglePlayer = () => {
         if (!isPlaying) {

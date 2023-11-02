@@ -5,6 +5,11 @@ import { useMusicPlayer } from "@contexts/MusicPlayerContext";
 const MusicPlayer = () => {
     const { currentTrack, setCurrentTrack, selectNextTrack, isPlaying } = useMusicPlayer();
     const [nextTrack, setNextTrack] = useState(null);
+    const [playerReady, setPlayerReady] = useState(false);
+
+    const handleReady = () => {
+        setPlayerReady(true);
+    };
 
     const handleEnded = () => {
         if (isPlaying) {
@@ -24,22 +29,27 @@ const MusicPlayer = () => {
         }
     };
 
-    // Select new track upon component mounting.
     useEffect(() => {
-        setCurrentTrack(selectNextTrack());
-    }, [selectNextTrack]);
+        if (isPlaying && !playerReady) {
+            setCurrentTrack(selectNextTrack());
+            setPlayerReady(true);
+        }
+    }, [isPlaying, playerReady, setCurrentTrack, selectNextTrack]);
 
     return (
         <div>
-            <ReactPlayer
-                url={currentTrack}
-                playing={isPlaying}
-                controls={false}
-                onEnded={handleEnded}
-                onProgress={handleProgress}
-                height="0px"
-                width="0px"
-            />
+            {playerReady && (
+                <ReactPlayer
+                    url={currentTrack}
+                    playing={isPlaying}
+                    controls={false}
+                    onReady={handleReady}
+                    onEnded={handleEnded}
+                    onProgress={handleProgress}
+                    height="0px"
+                    width="0px"
+                />
+            )}
         </div>
     );
 };
