@@ -28,6 +28,15 @@ class Weather {
         const options = { weekday: 'short' };
         return date.toLocaleDateString('en-US', options);
     }
+
+    /**
+     * Retrieves location information for a given zip code.
+     * @param {string} zipCode - The zip code to fetch location information for.
+     * @returns {object} An object containing location details.
+     */
+    async getLocation(zipCode) {
+        return await this.locationService.getLocation(zipCode);
+    }
     
     /**
      * Retrieves current weather conditions for a given zip code.
@@ -127,7 +136,7 @@ class Weather {
      * @returns {object} An object containing the local weather forecast.
      */
     async getLocalForecast(zipCode) {
-        const { lat, lon } = await this.locationService.getLocation(zipCode);
+        const { lat, lon } = await this.getLocation(zipCode);
         const station = await this.nwsService.getForecastStation(lat, lon);
         const url = await this.nwsService.getAreaForecastDiscussionUrl(station);
         try {
