@@ -1,10 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import LoadingComponent from "@components/app/LoadingComponent";
 
-// Sets cycle speed in milliseconds.
-const CYCLE_SPEED = 8000;
-
-function Cycle({ components }) {
+function Cycle({ components, cycleSpeed }) {
   const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
   const CurrentComponent = components[currentComponentIndex];
   const Component = lazy(() => import(`../app/${CurrentComponent}.jsx`));
@@ -16,7 +13,7 @@ function Cycle({ components }) {
   };
 
   useEffect(() => {
-      const timer = setInterval(cycleToNextComponent, CYCLE_SPEED);
+      const timer = setInterval(cycleToNextComponent, cycleSpeed);
       return () => clearInterval(timer);
   }, [currentComponentIndex]);
 

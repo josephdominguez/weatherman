@@ -11,7 +11,7 @@ const components = pages.map(page => page.component)
 function CompleteForecast() {
   return (
       <AppPage pageTitle='Forecast'>
-        <Cycle components={components} skippedComponents='CompleteForecast' />
+        <Cycle components={components} cycleSpeed={8000} />
       </AppPage>
   );
 }
