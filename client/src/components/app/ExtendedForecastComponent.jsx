@@ -1,53 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
-import ExtendedForecastCard from '@components/app/ExtendedForecastCard';
-import ErrorComponent from '@components/app/ErrorComponent';
-import LoadingComponent from '@components/app/LoadingComponent';
+import AppPageComponent from './AppPageComponent';
+import ExtendedForecastCard from '@components/app/ExtendedForecastCard.jsx';
 import { useLocation } from '@contexts/LocationContext';
 import { API_ENDPOINT } from '@config/config';
 
 function ExtendedForecastComponent() {
-    const [weatherData, setWeatherData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
     const { location } = useLocation();
     const { zipCode } = location;
-  
 
     const fetchWeatherData = async () => {
         try {
             const response = await axios.get(`http://${API_ENDPOINT}/extended-forecast?zipCode=${zipCode}`);
             const weatherData = response.data.extendedForecast;
-            setWeatherData(weatherData);
-            setError(null);
-            setLoading(false);
-        } catch(e) {
-            setError(e);
-            setLoading(false);
-        }
+            return weatherData;
+        } catch (e) { throw e; }
     };
 
-    useEffect(() => {
-        fetchWeatherData();
-    }, [zipCode]);
+    const renderData = (weatherData) => {
+        return <ExtendedForecastCard weatherData={weatherData} />;
+    };
 
-    if (loading) {
-        return (
-            <LoadingComponent />
-        );
-    }
-
-    if (error) {
-        return (
-            <ErrorComponent error={error}>
-            </ErrorComponent>
-        );
-    }
-
-  return (
-    <ExtendedForecastCard weatherData={weatherData} />
-  );
+    return (
+        <AppPageComponent
+            fetchFunction={fetchWeatherData}
+            renderData={renderData}
+            zipCode={zipCode}
+        />
+    );
 }
 
 export default ExtendedForecastComponent;

@@ -1,16 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
-import LocalForecastCard from '@components/app/LocalForecastCard';
-import ErrorComponent from '@components/app/ErrorComponent';
-import LoadingComponent from '@components/app/LoadingComponent';
+import AppPageComponent from './AppPageComponent';
+import LocalForecastCard from '@components/app/LocalForecastCard.jsx';
 import { useLocation } from '@contexts/LocationContext';
 import { API_ENDPOINT } from '@config/config';
 
 function LocalForecastComponent() {
-    const [weatherData, setWeatherData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
     const { location } = useLocation();
     const { zipCode } = location;
 
@@ -18,34 +13,20 @@ function LocalForecastComponent() {
         try {
             const response = await axios.get(`http://${API_ENDPOINT}/local-forecast?zipCode=${zipCode}`);
             const weatherData = response.data.localForecast;
-            setWeatherData(weatherData);
-            setError(null);
-            setLoading(false);
-        } catch(e) {
-            setError(e);
-            setLoading(false);
-        }
+            return weatherData;
+        } catch (e) { throw e; }
     };
 
-    useEffect(() => {
-        fetchWeatherData();
-    }, [zipCode]);
-
-    if (loading) {
-        return (
-            <LoadingComponent />
-        );
-    }
-
-    if (error) {
-        return (
-            <ErrorComponent error={error}>
-            </ErrorComponent>
-        );
-    }
+    const renderData = (weatherData) => {
+        return <LocalForecastCard weatherData={weatherData} />;
+    };
 
     return (
-        <LocalForecastCard weatherData={weatherData} />
+        <AppPageComponent
+            fetchFunction={fetchWeatherData}
+            renderData={renderData}
+            zipCode={zipCode}
+        />
     );
 }
 

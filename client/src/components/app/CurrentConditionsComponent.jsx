@@ -1,47 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
+import AppPageComponent from './AppPageComponent';
 import CurrentConditionsCard from '@components/app/CurrentConditionsCard.jsx';
-import LoadingComponent from '@components/app/LoadingComponent';
-import ErrorComponent from '@components/app/ErrorComponent';
 import { useLocation } from '@contexts/LocationContext';
 import { API_ENDPOINT } from '@config/config';
 
 function CurrentConditionsComponent() {
-    const [weatherData, setWeatherData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const { location } = useLocation();
     const { zipCode } = location;
-  
+
     const fetchWeatherData = async () => {
-      try {
-        const response = await axios.get(`http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`);
-        const weatherData = response.data.currentConditions;
-        setWeatherData(weatherData);
-        setError(null);
-        setLoading(false);
-      } catch (e) {
-        setError(e);
-        setLoading(false);
-      }
+        try {
+            const response = await axios.get(`http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`);
+            const weatherData = response.data.currentConditions;
+            return weatherData;
+        } catch (e) { throw e; }
     };
-  
-    useEffect(() => {
-      fetchWeatherData();
-    }, [zipCode]);
-    
-    if (loading) {
-        return <LoadingComponent />;
-    }
 
-    if (error) {
-        return (
-        <ErrorComponent error={error}>
-        </ErrorComponent>
-        );
-    }
+    const renderData = (weatherData) => {
+        return <CurrentConditionsCard weatherData={weatherData} />;
+    };
 
-    return <CurrentConditionsCard weatherData={weatherData} />;
+    return (
+        <AppPageComponent
+            fetchFunction={fetchWeatherData}
+            renderData={renderData}
+            zipCode={zipCode}
+        />
+    );
 }
 
 export default CurrentConditionsComponent;
