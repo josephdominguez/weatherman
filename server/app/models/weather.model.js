@@ -1,83 +1,39 @@
 const axios = require('axios');
+const LocationService = require('../services/location.service.js');
+const MetarService = require('../services/metar.service.js');
+const NWSService = require('../services/nws.service.js');
 const forecastModel = require('./forecast.model.js');
 const { conditionIconsDay, conditionIconsNight } = require('./condition-icons.model.js');
 
+// Sets endpoints for APIs.
+const WEATHER_API_ENDPOINT = 'https://api.weatherapi.com/v1';
 // Sets length of extended forecast. Free Weather API access is limited to 3 days.
 const FORECAST_LENGTH = 3;
-
-// Sets endpoints for APIs.
-const NWS_API_ENDPOINT = 'https://api.weather.gov'
-const WEATHER_API_ENDPOINT = 'https://api.weatherapi.com/v1';
-const METAR_API_ENDPOINT = 'https://api.checkwx.com/metar';
 
 class Weather {
     constructor(weatherAPIKey, metarAPIKey) {
         this.weatherAPIKey = weatherAPIKey;
         this.metarAPIKey = metarAPIKey;
+        this.locationService = new LocationService(this.weatherAPIKey);
+        this.metarService = new MetarService(this.metarAPIKey);
+        this.nwsService = new NWSService();
     }
 
-    // Retrieves cloud ceiling using METAR data provider.
-    async _getCloudCeiling(lat, lon) {
-        const url = `${METAR_API_ENDPOINT}/lat/${lat}/lon/${lon}/decoded?x-api-key=${this.metarAPIKey}`;
-        try {
-            const response = await axios.get(url);
-            const metarData = response.data;
-            
-            // Extract ceiling height. Sets default value if ceiling data does not exist.
-            const ceiling = metarData.data[0].ceiling?.feet ?? 'N/A';
-            return ceiling;
-        } catch(e) { throw e; }
-    }
-
-    // Converts date into abbreviated day of week.
+    /**
+     * Converts a date into an abbreviated day of the week.
+     * @param {Date} date - The date to convert.
+     * @returns {string} An abbreviated day of the week.
+     */
     _getDayOfWeekAbbreviation(date) {
         const options = { weekday: 'short' };
-        return date.toLocaleDateString('en-US', options)
+        return date.toLocaleDateString('en-US', options);
     }
-
-    // Retrieves NWS forecast station given zip code.
-    async _getForecastStation(zipCode) {
-        const location = await this.getLocation(zipCode);
-        const { lat, lon } = location;
-        const url = `${NWS_API_ENDPOINT}/points/${lat},${lon}`;
-        try {
-            const response = await axios.get(url);
-            const station = response.data.properties.gridId;
-            return station
-        } catch(e) { throw e; }
-    }
-
-    // Retrieves URL for accessing area forecast discussion for station.
-    async _getAreaForecastDiscussionUrl(station) {
-        const url = `${NWS_API_ENDPOINT}/products/types/AFD/locations/${station}`;
-        try {
-            const response = await axios.get(url);
-            const areaForecastDiscussionUrl = response.data['@graph'][0]['@id'];
-            return areaForecastDiscussionUrl;
-        } catch(e) { throw e; }
-    }
-
-    // Retrieves location given zip code.
-    async getLocation(zipCode) {
-        const url = `${WEATHER_API_ENDPOINT}/search.json?key=${this.weatherAPIKey}&q=${zipCode}`;
-        try {
-            const response = await axios.get(url);
-            const location = response.data[0];
-
-            const city = location.name;
-            const lat = parseInt(location.lat);
-            const lon = parseInt(location.lon);
-            
-            return {
-                city: city,
-                zipCode: zipCode,
-                lat: lat,
-                lon: lon
-            }
-        } catch(e) { throw e; }
-    }
-
-    // Retrieves current weather conditions.
+    
+    /**
+     * Retrieves current weather conditions for a given zip code.
+     * @param {string} zipCode - The zip code to fetch weather data for.
+     * @returns {object} An object containing current weather conditions.
+     */
     async getCurrentConditions(zipCode) {
         const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
         try {
@@ -87,7 +43,9 @@ class Weather {
             // Extract and format weather details for the response object.
             const temperature = parseInt(weatherData.current.temp_f);
             const condition = weatherData.current.condition.text;
-            const conditionIcon = weatherData.current.is_day ? conditionIconsDay[condition] : conditionIconsNight[condition];
+            const conditionIcon = weatherData.current.is_day
+                ? conditionIconsDay[condition]
+                : conditionIconsNight[condition];
             const wind = weatherData.current.wind_mph;
             const city = weatherData.location.name;
             const humidity = weatherData.current.humidity;
@@ -99,7 +57,7 @@ class Weather {
             // Use METAR API to obtain cloud ceiling.
             const lat = weatherData.location.lat;
             const lon = weatherData.location.lon;
-            const ceiling = await this._getCloudCeiling(lat, lon);
+            const ceiling = await this.metarService.getCloudCeiling(lat, lon);
 
             return {
                 temperature,
@@ -113,11 +71,17 @@ class Weather {
                 pressure,
                 heatIndex,
                 ceiling,
-            }
-        } catch(e) { throw e; }
+            };
+        } catch (e) {
+            throw e;
+        }
     }
 
-    // Retrieves extended forecast.
+    /**
+     * Retrieves an extended weather forecast for a given zip code.
+     * @param {string} zipCode - The zip code to fetch the extended forecast for.
+     * @returns {object} An object containing the extended weather forecast.
+     */
     async getExtendedForecast(zipCode) {
         const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=${FORECAST_LENGTH}&aqi=no&alerts=no`;
         try {
@@ -145,23 +109,31 @@ class Weather {
                 });
             }
             // Extract location for page title.
-            const city = weatherData.location.name;
+            const location = await this.locationService.getLocation(zipCode);
+            const city = location.city;
 
             return {
                 city: city,
-                extendedForecast: extendedForecast
-            }
-        } catch(e) { throw e; }
+                extendedForecast: extendedForecast,
+            };
+        } catch (e) {
+            throw e;
+        }
     }
 
-    // Retrieves local forecast.
+    /**
+     * Retrieves a local weather forecast for a given zip code.
+     * @param {string} zipCode - The zip code to fetch the local forecast for.
+     * @returns {object} An object containing the local weather forecast.
+     */
     async getLocalForecast(zipCode) {
-        const station = await this._getForecastStation(zipCode);
-        const url = await this._getAreaForecastDiscussionUrl(station);
+        const { lat, lon } = await this.locationService.getLocation(zipCode);
+        const station = await this.nwsService.getForecastStation(lat, lon);
+        const url = await this.nwsService.getAreaForecastDiscussionUrl(station);
         try {
             const response = await axios.get(url);
-            const localForecast = response.data.productText
-            
+            const localForecast = response.data.productText;
+
             // Extract forecast discussions from text.
             const synopsis = forecastModel.extractSynopsis(localForecast);
             const shortTerm = forecastModel.extractShortTerm(localForecast);
@@ -169,8 +141,10 @@ class Weather {
             return {
                 synopsis: synopsis,
                 shortTerm: shortTerm,
-            }
-        } catch(e) { throw e; }
+            };
+        } catch (e) {
+            throw e;
+        }
     }
 }
 
