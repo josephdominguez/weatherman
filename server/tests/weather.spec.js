@@ -5,6 +5,7 @@ const expect = require('chai').expect;
 
 // Defines valid zip code (Sandy, UT), and invalid zip code.
 const VALID = '84093';
+const INVALID = '00000';
 
 describe('GET /', function() {
     it('returns a 200 status code', async function() {
