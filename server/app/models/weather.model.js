@@ -49,7 +49,7 @@ class Weather {
             const response = await axios.get(url);
             const weatherData = response.data;
 
-            // Extract and format weather details for the response object.
+            // Extract and format current weather conditions.
             const temperature = parseInt(weatherData.current.temp_f);
             const condition = weatherData.current.condition.text;
             const conditionIcon = weatherData.current.is_day
