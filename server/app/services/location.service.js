@@ -10,7 +10,7 @@ class LocationService {
     /**
      * Retrieves location information based on a provided ZIP code.
      *
-     * @param {string} zipCode - The ZIP code for which to retrieve location information.
+     * @param {string} zipCode - The ZIP code to fetch location data for.
      * @returns {object} - An object containing city, ZIP code, latitude, and longitude.
      */
     async getLocation(zipCode) {
