@@ -28,9 +28,7 @@ class LocationService {
                 lat: lat,
                 lon: lon
             };
-        } catch (e) {
-            throw e;
-        }
+        } catch (e) { throw e; }
     }
 }
 

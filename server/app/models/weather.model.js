@@ -81,9 +81,7 @@ class Weather {
                 heatIndex,
                 ceiling,
             };
-        } catch (e) {
-            throw e;
-        }
+        } catch (e) { throw e; }
     }
 
     /**
@@ -125,9 +123,7 @@ class Weather {
                 city: city,
                 extendedForecast: extendedForecast,
             };
-        } catch (e) {
-            throw e;
-        }
+        } catch (e) { throw e; }
     }
 
     /**
@@ -151,9 +147,7 @@ class Weather {
                 synopsis: synopsis,
                 shortTerm: shortTerm,
             };
-        } catch (e) {
-            throw e;
-        }
+        } catch (e) { throw e; }
     }
 }
 

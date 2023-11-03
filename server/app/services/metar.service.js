@@ -23,9 +23,7 @@ class MetarService {
             // Extract ceiling height. Sets default value if ceiling data does not exist.
             const ceiling = metarData.data[0].ceiling?.feet ?? "N/A";
             return ceiling;
-        } catch (e) {
-            throw e;
-        }
+        } catch (e) { throw e; }
     }
 }
 

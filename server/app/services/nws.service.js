@@ -16,9 +16,7 @@ class NWSService {
             const response = await axios.get(url);
             const station = response.data.properties.gridId;
             return station;
-        } catch (e) {
-            throw e;
-        }
+        } catch (e) { throw e; }
     }
 
     /**
@@ -33,9 +31,7 @@ class NWSService {
             const response = await axios.get(url);
             const areaForecastDiscussionUrl = response.data["@graph"][0]["@id"];
             return areaForecastDiscussionUrl;
-        } catch (e) {
-            throw e;
-        }
+        } catch (e) { throw e; }
     }
 }
 
