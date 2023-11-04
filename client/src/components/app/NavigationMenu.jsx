@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { pages } from '@config/config';
-import styles from '@css/app/navigation_menu.module.css'
+import styles from '@css/app/navigation_menu.module.css';
 
 const NavigationMenu = () => {
   const location = useLocation();
