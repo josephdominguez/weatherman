@@ -6,7 +6,7 @@
  * @returns {string} - The extracted section text, or an empty string if not found.
  */
 _extractForecastSection = (section, text) => {
-    const regExp = new RegExp(`${section}([\\s\\S]*?)&&`, "g");
+    const regExp = new RegExp(`${section}([\\s\\S]*?)&&`, 'g');
     const match = regExp.exec(text);
     if (match) {
         const extractedText = match[1].trim();
@@ -16,9 +16,8 @@ _extractForecastSection = (section, text) => {
 };
 
 exports.extractSynopsis = (text) => {
-    return _extractForecastSection("SYNOPSIS", text);
-};
+    return _extractForecastSection('SYNOPSIS', text);};
 
 exports.extractShortTerm = (text) => {
-    return _extractForecastSection("SHORT TERM", text);
+    return _extractForecastSection('SHORT TERM', text);
 };
