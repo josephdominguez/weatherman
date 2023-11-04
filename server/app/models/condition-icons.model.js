@@ -43,7 +43,7 @@ const commonIcons = {
     'Moderate or heavy showers of ice pellets': 'images/conditions/freezing_rain_sleet.gif',
     'Patchy light snow with thunder': 'images/conditions/thundersnow.gif',
     'Moderate or heavy snow with thunder': 'images/conditions/thundersnow.gif',
-}
+};
 
 // Define icons specific to daytime conditions
 const conditionIconsDay = {
@@ -53,7 +53,7 @@ const conditionIconsDay = {
     'Partly cloudy': 'images/conditions/partly_cloudy_day.gif',
     'Overcast': 'images/conditions/mostly_cloudy_day.gif',
     
-}
+};
 
 // Define icons specific to nighttime conditions
 const conditionIconsNight = {
@@ -63,6 +63,6 @@ const conditionIconsNight = {
     'Partly cloudy': 'images/conditions/partly_cloudy_night.gif',
     'Cloudy': 'images/conditions/cloudy.gif',
     'Overcast': 'images/conditions/mostly_cloudy_night.gif',
-}
+};
 
 module.exports = { conditionIconsDay, conditionIconsNight };
