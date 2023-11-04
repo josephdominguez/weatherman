@@ -29,6 +29,11 @@ export const pages = [
         title: "Local Forecast",
         path: "/LocalForecast",
     },
+    {
+        component: "TravelForecastComponent",
+        title: "Travel Forecast",
+        path: "/TravelForecast",
+    },
 ];
 
 /**

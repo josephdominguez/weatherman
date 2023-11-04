@@ -45,6 +45,7 @@ class Weather {
      */
     async getCurrentConditions(zipCode) {
         const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
+        console.log(url);
         try {
             const response = await axios.get(url);
             const weatherData = response.data;
@@ -146,6 +147,30 @@ class Weather {
             return {
                 synopsis: synopsis,
                 shortTerm: shortTerm,
+            };
+        } catch (e) { throw e; }
+    }
+
+    async getTravelForecast(zipCode) {
+        const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
+        try {
+            const response = await axios.get(url);
+            const weatherData = response.data;
+            
+            // Extract travel forecast check from data :)
+            const city = weatherData.location.name;
+            const condition = weatherData.current.condition.text;
+            const conditionIcon = weatherData.current.is_day
+                ? conditionIconsDay[condition]
+                : conditionIconsNight[condition];
+            const minTemp = weatherData.forecast.forecastday[0].day.mintemp_f;
+            const maxTemp = weatherData.forecast.forecastday[0].day.maxtemp_f;
+            
+            return {
+                city,
+                conditionIcon,
+                minTemp,
+                maxTemp,
             };
         } catch (e) { throw e; }
     }
