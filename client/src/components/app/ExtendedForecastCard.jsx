@@ -30,7 +30,7 @@ function ForecastItem({ forecast }) {
 function ExtendedForecastCard({ weatherData }) {
   return (
     <div className={styles['forecast-container']}>
-      {weatherData.extendedForecast.map((forecast, index) => (
+      {weatherData.forecasts.map((forecast, index) => (
         <ForecastItem forecast={forecast} key={index} />
       ))}
     </div>

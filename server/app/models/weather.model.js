@@ -96,7 +96,7 @@ class Weather {
             const weatherData = response.data;
 
             // Extracts and formats each day's forecast.
-            const extendedForecast = [];
+            const forecasts = [];
             for (let i = 0; i < FORECAST_LENGTH; i++) {
                 const forecast = weatherData.forecast.forecastday[i];
                 const date = new Date(forecast.date);
@@ -107,7 +107,7 @@ class Weather {
                 const minTemp = parseInt(forecast.day.mintemp_f);
                 const maxTemp = parseInt(forecast.day.maxtemp_f);
 
-                extendedForecast.push({
+                forecasts.push({
                     day,
                     condition,
                     conditionIcon,
@@ -121,7 +121,7 @@ class Weather {
 
             return {
                 city: city,
-                extendedForecast: extendedForecast,
+                forecasts: forecasts,
             };
         } catch (e) { throw e; }
     }
