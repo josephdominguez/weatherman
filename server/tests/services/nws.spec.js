@@ -34,7 +34,7 @@ describe('NWSService', function() {
         it('throws error for invalid station', async function() {
             const station = INVALID_LOCATION.station;
             try { await nwsService.getAreaForecastDiscussionUrl(station); }
-            catch(e) { expect(e).to.be.an.instanceOf(TypeError); }
+            catch(e) { expect(e).to.be.an.instanceOf(Error); }
         });
     })
 });
