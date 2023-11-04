@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
 import { useLocation } from '@contexts/LocationContext';
 import { API_ENDPOINT } from '@config/config';

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Modal from '@components/modals/Modal';
 import NavigationMenu from '@components/app/NavigationMenu';
 import ZipCodeUpdater from '@components/app/ZipCodeUpdater';

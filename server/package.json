@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "mocha tests/*.spec.js",
+    "test": "mocha --recursive './tests/**/*.spec.js'",
     "start": "node server",
     "dev": "nodemon server"
   },

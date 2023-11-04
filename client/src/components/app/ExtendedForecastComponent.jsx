@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 import AppPageComponent from './AppPageComponent';
 import ExtendedForecastCard from '@components/app/ExtendedForecastCard.jsx';
@@ -10,10 +9,8 @@ function ExtendedForecastComponent() {
     const { zipCode } = location;
 
     const fetchData = async () => {
-        try {
-            const response = await axios.get(`http://${API_ENDPOINT}/extended-forecast?zipCode=${zipCode}`);
-            return response.data.extendedForecast;
-        } catch (e) { throw e; }
+        const response = await axios.get(`http://${API_ENDPOINT}/extended-forecast?zipCode=${zipCode}`);
+        return response.data.extendedForecast;
     };
 
     const renderData = (data) => {

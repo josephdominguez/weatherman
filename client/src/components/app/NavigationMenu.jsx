@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { pages } from '@config/config';
 import styles from '@css/app/navigation_menu.module.css';
@@ -9,7 +8,7 @@ const NavigationMenu = () => {
     <nav className={styles['navigation-menu']}>
         <h3>Navigation</h3>
         {pages.map((page) => (
-            <div>
+            <div key={page.title}>
                 <Link to={page.path} 
                 className={location.pathname === page.path ? styles['current-link'] : ''}
                 >

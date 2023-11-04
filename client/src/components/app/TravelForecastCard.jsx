@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '@css/current_conditions.module.css';
 
 // WeatherInfo component for displaying weather information

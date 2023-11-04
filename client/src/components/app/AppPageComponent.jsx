@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import LoadingComponent from '@components/app/LoadingComponent';
 import ErrorComponent from '@components/app/ErrorComponent';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '@css/extended_forecast.module.css';
 
 // ForecastItem component for displaying forecast data.

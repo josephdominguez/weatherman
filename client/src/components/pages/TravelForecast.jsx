@@ -1,4 +1,3 @@
-import React from 'react';
 import AppPage from '@components/pages/AppPage';
 import TravelForecastComponent from '@components/app/TravelForecastComponent';
 

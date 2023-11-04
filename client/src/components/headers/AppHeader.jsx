@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from '@contexts/LocationContext';
 import Options from '@components/modals/Options';
@@ -30,7 +30,7 @@ function AppHeader({ pageTitle }) {
           <div className={styles['location-container']}>
             {city && (
               <>
-                <div>{city}'s <br/> {pageTitle}</div>
+                <div>{city}&apos;s <br/> {pageTitle}</div>
               </>
             )}
             {!city && (

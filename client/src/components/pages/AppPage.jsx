@@ -1,4 +1,3 @@
-import React from 'react';
 import AppHeader from '@components/headers/AppHeader';
 import AppFooter from '@components/footers/AppFooter';
 import MusicPlayer from '../utilities/MusicPlayer';

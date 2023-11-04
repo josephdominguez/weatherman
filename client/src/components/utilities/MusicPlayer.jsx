@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import { useMusicPlayer } from "@contexts/MusicPlayerContext";
 

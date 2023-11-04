@@ -1,4 +1,3 @@
-import React from 'react';
 import NavigationMenu from '@components/app/NavigationMenu';
 import styles from '@css/homepage/footer.module.css';
 import githubIcon from '@images/icons/github.png';

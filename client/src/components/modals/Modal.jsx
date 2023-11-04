@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { GoXCircle } from "react-icons/go";
 import styles from "@css/modals/modal.module.css";
 
@@ -13,7 +13,7 @@ function Modal({ toggle, onClose, children }) {
 
     useEffect(() => {
         if (toggle) { document.addEventListener('click', toggleModal); }
-        else { document.removeEventListener('click', toggleModal); };
+        else { document.removeEventListener('click', toggleModal); }
     }, [toggle]);
 
     return (

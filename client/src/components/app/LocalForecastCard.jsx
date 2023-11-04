@@ -1,4 +1,3 @@
-import React from 'react';
 import styles from '@css/local_forecast.module.css';
 
 const LocalForecastCard = ( {weatherData} ) => {

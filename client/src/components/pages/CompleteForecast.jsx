@@ -1,4 +1,3 @@
-import React from 'react';
 import Cycle from '@components/utilities/Cycle';
 import AppPage from '@components/pages/AppPage';
 import { pages } from '@config/config';

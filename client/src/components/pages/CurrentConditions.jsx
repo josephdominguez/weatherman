@@ -1,4 +1,3 @@
-import React from 'react';
 import AppPage from '@components/pages/AppPage';
 import CurrentConditionsComponent from '@components/app/CurrentConditionsComponent';
 

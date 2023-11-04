@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 import AppPageComponent from './AppPageComponent';
 import CurrentConditionsCard from '@components/app/CurrentConditionsCard.jsx';
@@ -10,10 +9,8 @@ function CurrentConditionsComponent() {
     const { zipCode } = location;
 
     const fetchData = async () => {
-        try {
-            const response = await axios.get(`http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`);
-            return response.data.currentConditions;
-        } catch (e) { throw e; }
+        const response = await axios.get(`http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`);
+        return response.data.currentConditions;
     };
 
     const renderData = (data) => {

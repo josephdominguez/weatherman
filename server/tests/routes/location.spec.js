@@ -1,4 +1,4 @@
-const { request, expect, VALID_ZIP, INVALID_ZIP } = require("./config");
+const { request, expect, VALID_ZIP, INVALID_ZIP } = require("../config");
 
 describe("GET /location", function () {
     let response;

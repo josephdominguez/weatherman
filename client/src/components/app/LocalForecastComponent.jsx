@@ -1,4 +1,3 @@
-import React from 'react';
 import axios from 'axios';
 import AppPageComponent from './AppPageComponent';
 import LocalForecastCard from '@components/app/LocalForecastCard.jsx';
@@ -10,10 +9,8 @@ function LocalForecastComponent() {
     const { zipCode } = location;
 
     const fetchData = async () => {
-        try {
-            const response = await axios.get(`http://${API_ENDPOINT}/local-forecast?zipCode=${zipCode}`);
-            return response.data.localForecast;
-        } catch (e) { throw e; }
+        const response = await axios.get(`http://${API_ENDPOINT}/local-forecast?zipCode=${zipCode}`);
+        return response.data.localForecast;
     };
 
     const renderData = (data) => {
