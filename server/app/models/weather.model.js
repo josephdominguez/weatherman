@@ -45,7 +45,6 @@ class Weather {
      */
     async getCurrentConditions(zipCode) {
         const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
-        console.log(url);
         try {
             const response = await axios.get(url);
             const weatherData = response.data;
