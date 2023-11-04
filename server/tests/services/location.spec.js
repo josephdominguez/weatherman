@@ -11,6 +11,8 @@ describe('LocationService', function() {
 
     describe('getLocation', function() {
         describe('for a valid ZIP code', function() {
+            let location;
+            
             before(async function() {
                 location = await locationService.getLocation(VALID_ZIP);
             })
@@ -32,5 +34,13 @@ describe('LocationService', function() {
                 expect(location).to.have.property('lon');
             });
         });
+
+        describe('for an invalid ZIP code', function() {
+            it('throws error', async function() {
+                try { await locationService.getLocation(INVALID_ZIP); }
+                catch(e) { expect(e).to.be.an.instanceOf(Error); }
+            })
+        });
     });
+    
 });
