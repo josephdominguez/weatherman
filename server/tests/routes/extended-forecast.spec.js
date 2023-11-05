@@ -59,5 +59,5 @@ describe('GET /extended-forecast', function() {
         it('returns a 404 status code', function() {
             expect(response.status).to.equal(404)
         });
-    })
+    });
 });

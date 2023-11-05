@@ -1,8 +1,10 @@
 const Weather = require('../models/weather.model.js');
 const weatherAPIKey = process.env.WEATHERAPI_API_KEY;
 const metarAPIKey = process.env.CHECKWX_API_KEY;
-
 const weatherModel = new Weather(weatherAPIKey, metarAPIKey);
+const { getRandomCities } = require('../models/cities.model.js');
+
+const NUMBER_OF_CITIES = 4;
 
 // Retrieve location.
 exports.getLocation = async (req, res) => {
@@ -60,12 +62,16 @@ exports.getLocalForecast = async (req, res) => {
     }
 }
 
+// Retrieves travel forecast for random cities. 
 exports.getTravelForecast = async (req, res) => {
-    const { zipCode } = req.query;
-
+    const travelForecasts = [];
+    const randomCities = getRandomCities(NUMBER_OF_CITIES);
     try {
-        const travelForecast = await weatherModel.getTravelForecast(zipCode);
-        res.json( {travelForecast} );
+        for (const city of randomCities) {
+            const travelForecast = await weatherModel.getTravelForecast(city.zipCode);
+            travelForecasts.push(travelForecast);
+        }
+        res.json( {travelForecasts} );
     } catch (e) {
         res.status(404).json({
             message: 'Invalid ZIP code.'

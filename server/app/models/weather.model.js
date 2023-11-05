@@ -150,6 +150,11 @@ class Weather {
         } catch (e) { throw e; }
     }
 
+    /**
+     * Retrieves a travel forecast for a given zip codes.
+     * @param {string} zipCode - The zip code to fetch the travel forecast for.
+     * @returns {object} An object containing the local weather forecast.
+     */
     async getTravelForecast(zipCode) {
         const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
         try {
@@ -162,8 +167,8 @@ class Weather {
             const conditionIcon = weatherData.current.is_day
                 ? conditionIconsDay[condition]
                 : conditionIconsNight[condition];
-            const minTemp = weatherData.forecast.forecastday[0].day.mintemp_f;
-            const maxTemp = weatherData.forecast.forecastday[0].day.maxtemp_f;
+            const minTemp = parseInt(weatherData.forecast.forecastday[0].day.mintemp_f);
+            const maxTemp = parseInt(weatherData.forecast.forecastday[0].day.maxtemp_f);
             
             return {
                 city,
