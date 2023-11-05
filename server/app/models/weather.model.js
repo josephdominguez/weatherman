@@ -153,7 +153,7 @@ class Weather {
     /**
      * Retrieves a travel forecast for a given zip codes.
      * @param {string} zipCode - The zip code to fetch the travel forecast for.
-     * @returns {object} An object containing the local weather forecast.
+     * @returns {object} An object containing the travel forecast.
      */
     async getTravelForecast(zipCode) {
         const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
