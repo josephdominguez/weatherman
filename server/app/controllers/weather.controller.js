@@ -9,7 +9,6 @@ const NUMBER_OF_CITIES = 4;
 // Retrieve location.
 exports.getLocation = async (req, res) => {
     const { zipCode } = req.query;
-
     try {
         const location = await weatherModel.getLocation(zipCode);
         res.json( {location} );
@@ -23,7 +22,6 @@ exports.getLocation = async (req, res) => {
 // Retrieve current conditions.
 exports.getCurrentConditions = async (req, res) => {
     const { zipCode } = req.query;
-
     try {
         const currentConditions = await weatherModel.getCurrentConditions(zipCode);
         res.json( {currentConditions} );
@@ -37,7 +35,6 @@ exports.getCurrentConditions = async (req, res) => {
 // Retrieve extended forecast.
 exports.getExtendedForecast = async (req, res) => {
     const { zipCode } = req.query;
-
     try {
         const extendedForecast = await weatherModel.getExtendedForecast(zipCode);
         res.json( {extendedForecast} );
@@ -51,7 +48,6 @@ exports.getExtendedForecast = async (req, res) => {
 // Retrieve local forecast.
 exports.getLocalForecast = async (req, res) => {
     const { zipCode } = req.query;
-
     try {
         const localForecast = await weatherModel.getLocalForecast(zipCode);
         res.json( {localForecast} );
