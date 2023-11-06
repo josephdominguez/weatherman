@@ -1,7 +1,7 @@
 .card-container {
     display: flex;
     justify-content: center;
-    min-height: 70vh;
+    height: 70vh;
     width: fit-content;
     min-width: 940px;
     max-width: 940px;
@@ -23,6 +23,8 @@
 @media screen and (max-width: 1280px) {
     /* Stack items vertically for mobile. */
     .card-container {
+        height: unset;
+        min-height: 70vh;
         align-items: center;
         flex-direction: column; 
         justify-content: space-around;

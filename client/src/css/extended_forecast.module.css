@@ -1,7 +1,7 @@
 .forecast-container {
     display: flex;
     justify-content: space-around;
-    min-height: 70vh;
+    height: 72vh;
 }
 
 .forecast-item {
@@ -75,6 +75,7 @@
     }
 
     /* Reduce width of forecast items.  */
+
     .forecast-item {
         min-width: 140px;
         max-width: 140px;
@@ -84,6 +85,7 @@
 @media screen and (max-width: 768px) {
     /* Stack forecast items vertically for mobile. */
     .forecast-container {
+        height: unset;
         align-items: center;
         flex-direction: column; 
         justify-content: space-between;
