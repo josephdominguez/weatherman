@@ -172,6 +172,7 @@ class Weather {
             
             return {
                 city,
+                condition,
                 conditionIcon,
                 minTemp,
                 maxTemp,

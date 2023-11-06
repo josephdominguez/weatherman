@@ -1,19 +1,17 @@
 import axios from 'axios';
 import AppPageComponent from './AppPageComponent';
 import TravelForecastCard from '@components/app/TravelForecastCard.jsx';
-import { useLocation } from '@contexts/LocationContext';
 import { API_ENDPOINT } from '@config/config';
 
 function TravelForecastComponent() {
-    const { location } = useLocation();
-    const { zipCode } = location;
 
     const fetchData = async () => {
-        const response = await axios.get(`http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`);
-        return response.data.currentConditions;
+        const response = await axios.get(`http://${API_ENDPOINT}/travel-forecast`);
+        return response.data.travelForecasts;
     };
 
     const renderData = (data) => {
+        console.log(data);
         return <TravelForecastCard weatherData={data} />;
     };
 
@@ -21,7 +19,7 @@ function TravelForecastComponent() {
         <AppPageComponent
             fetchFunction={fetchData}
             renderData={renderData}
-            dependencies={zipCode}
+            dependencies={null}
         />
     );
 }

@@ -1,41 +1,35 @@
-import styles from '@css/current_conditions.module.css';
+import styles from '@css/travel_forecasts.module.css';
 
-// WeatherInfo component for displaying weather information
-const WeatherInfo = ({ label, value, unit, highlightUnit }) => (
-    <div>
-      {label}: &nbsp; {value} {highlightUnit ? <span className="highlight">{unit}</span> : unit}
-    </div>
+const ForecastItem = ({ forecast }) => (
+    <div className={styles['travel-forecast']}>    
+      <div> 
+        {forecast.city}
+      </div>
+      <div>
+        <img className={styles['condition-icon']} src={forecast.conditionIcon} alt={forecast.condition} />
+      </div>
+      <div> {forecast.minTemp} </div>
+      <div> {forecast.maxTemp} </div>
+  </div>
 );
 
 // Main card component
-const CurrentConditionsCard = ({ weatherData }) => (
-  <div className={styles['card-container']}>
-    <div className={styles['card-item']}>
-      <div className={styles['temperature']}>
-        {weatherData.temperature}&deg;F
+const TravelForecastCard = ({ weatherData }) => (
+  <div className={styles['travel-forecasts-container']}>
+    <div className={styles['travel-header']}>
+      <div>
+        LOW 
       </div>
-      <div className={styles['condition-container']}>
-        <div>{weatherData.condition}</div>
-        <img className={styles['condition-icon']} src={weatherData.conditionIcon} alt={weatherData.condition} />
-      </div>
-      <div className={styles['wind-container']}>
-        <WeatherInfo label="Wind" value={`${weatherData.wind} MPH`} />
+      <div>
+        HIGH
       </div>
     </div>
-    <div className={styles['card-item']}>
-      <div className={styles['details']}>
-        <div className={styles['details-heading']}>
-          <span className='highlight'> {weatherData.city} </span>
-        </div>
-        <WeatherInfo label="Humidity" value={weatherData.humidity} unit="%" />
-        <WeatherInfo label="Dewpoint" value={weatherData.dewpoint} unit="&deg;F" />
-        <WeatherInfo label="Ceiling" value={weatherData.ceiling} unit="" />
-        <WeatherInfo label="Visibility" value={weatherData.visibility} unit="mi." />
-        <WeatherInfo label="Pressure" value={weatherData.pressure} unit="mb" highlightUnit />
-        <WeatherInfo label="Heat Index" value={weatherData.heatIndex} unit="" />
-      </div>
+    <div className={styles['travel-forecasts']}>
+      {weatherData.map((forecast, index) => (
+        <ForecastItem forecast={forecast} key={index} />
+      ))}
     </div>
   </div>
 );
 
-export default CurrentConditionsCard;
+export default TravelForecastCard;

@@ -24,6 +24,11 @@ describe('GET /travel-forecast', function() {
                 expect(travelForecast).to.have.property('city');
             }
         });
+        it('has a condition property', function() {
+            for (let travelForecast of travelForecasts) {
+                expect(travelForecast).to.have.property('condition');
+            }
+        });
         it('has a conditionIcon property', function() {
             for (let travelForecast of travelForecasts) {
                 expect(travelForecast).to.have.property('conditionIcon');

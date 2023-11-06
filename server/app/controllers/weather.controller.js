@@ -4,7 +4,7 @@ const metarAPIKey = process.env.CHECKWX_API_KEY;
 const weatherModel = new Weather(weatherAPIKey, metarAPIKey);
 const { getRandomCities } = require('../models/cities.model.js');
 
-const NUMBER_OF_CITIES = 4;
+const TRAVEL_FORECAST_LENGTH = 4;
 
 // Retrieve location.
 exports.getLocation = async (req, res) => {
@@ -61,8 +61,8 @@ exports.getLocalForecast = async (req, res) => {
 // Retrieves travel forecast for random cities. 
 exports.getTravelForecast = async (req, res) => {
     const travelForecasts = [];
-    const randomCities = getRandomCities(NUMBER_OF_CITIES);
     try {
+        const randomCities = getRandomCities(TRAVEL_FORECAST_LENGTH);
         for (const city of randomCities) {
             const travelForecast = await weatherModel.getTravelForecast(city.zipCode);
             travelForecasts.push(travelForecast);

@@ -1,6 +1,6 @@
 import styles from '@css/local_forecast.module.css';
 
-const LocalForecastCard = ( {weatherData} ) => {
+function LocalForecastCard({weatherData}) {
     return (
         <div className={styles['card-container']}>
             <div className={styles['card-item']}>
@@ -10,6 +10,6 @@ const LocalForecastCard = ( {weatherData} ) => {
             </div>
         </div>
     );
-};
+}
 
 export default LocalForecastCard;
