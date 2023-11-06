@@ -1,4 +1,4 @@
-const { request, expect } = require('../config');
+const { expect, request } = require('../config');
 
 describe('GET / (default route)', function() {
     it('returns a 200 status code', async function() {

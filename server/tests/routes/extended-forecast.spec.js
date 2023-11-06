@@ -24,27 +24,27 @@ describe('GET /extended-forecast', function() {
 
         describe('each forecast', function() {
             it('has a day property', function() {
-                for (let forecast of extendedForecast.forecasts) {
+                for (const forecast of extendedForecast.forecasts) {
                     expect(forecast).to.have.property('day');
                 }
             });
             it('has a condition property', function() {
-                for (let forecast of extendedForecast.forecasts) {
+                for (const forecast of extendedForecast.forecasts) {
                     expect(forecast).to.have.property('condition');
                 }
             });
             it('has a conditionIcon property', function() {
-                for (let forecast of extendedForecast.forecasts) {
+                for (const forecast of extendedForecast.forecasts) {
                     expect(forecast).to.have.property('conditionIcon');
                 }
             });
             it('has a minTemp property', function() {
-                for (let forecast of extendedForecast.forecasts) {
+                for (const forecast of extendedForecast.forecasts) {
                     expect(forecast).to.have.property('minTemp');
                 }
             });
             it('has a maxTemp property', function() {
-                for (let forecast of extendedForecast.forecasts) {
+                for (const forecast of extendedForecast.forecasts) {
                     expect(forecast).to.have.property('maxTemp');
                 }
             });

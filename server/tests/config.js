@@ -1,5 +1,5 @@
-const server = require("../server");
-const supertest = require("supertest");
+const server = require('../server');
+const supertest = require('supertest');
 
 // Defines needed modules.
 const request = supertest(server);
@@ -12,19 +12,19 @@ const INVALID_ZIP = '00000';
 
 // Defines valid and invalid location objects.
 const VALID_LOCATION = {
-    'city': 'Sandy',
-    'zipCode': '84093',
-    'station': 'SLC',
-    'lat': 40,
-    'lon': -111,
-}
+    city: 'Sandy',
+    zipCode: '84093',
+    station: 'SLC',
+    lat: 40,
+    lon: -111,
+};
 const INVALID_LOCATION = {
-    'city': '',
-    'zipCode': '00000',
-    'station': 'XXX',
-    'lat': 999,
-    'lon': 999,
-}
+    city: '',
+    zipCode: '00000',
+    station: 'XXX',
+    lat: 999,
+    lon: 999,
+};
 
 module.exports = {
     request,

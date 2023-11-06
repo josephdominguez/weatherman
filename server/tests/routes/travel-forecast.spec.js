@@ -1,4 +1,4 @@
-const { request, expect } = require('../config');
+const { expect, request } = require('../config');
 
 describe('GET /travel-forecast', function() {
     let response;
@@ -20,27 +20,27 @@ describe('GET /travel-forecast', function() {
 
     describe('each travel forecast', function() {
         it('has a city property', function() {
-            for (let travelForecast of travelForecasts) {
+            for (const travelForecast of travelForecasts) {
                 expect(travelForecast).to.have.property('city');
             }
         });
         it('has a condition property', function() {
-            for (let travelForecast of travelForecasts) {
+            for (const travelForecast of travelForecasts) {
                 expect(travelForecast).to.have.property('condition');
             }
         });
         it('has a conditionIcon property', function() {
-            for (let travelForecast of travelForecasts) {
+            for (const travelForecast of travelForecasts) {
                 expect(travelForecast).to.have.property('conditionIcon');
             }
         });
         it('has a minTemp property', function() {
-            for (let travelForecast of travelForecasts) {
+            for (const travelForecast of travelForecasts) {
                 expect(travelForecast).to.have.property('minTemp');
             }
         });
         it('has a maxTemp property', function() {
-            for (let travelForecast of travelForecasts) {
+            for (const travelForecast of travelForecasts) {
                 expect(travelForecast).to.have.property('maxTemp');
             }
         });

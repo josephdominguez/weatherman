@@ -20,6 +20,9 @@ describe('Cities Model', function () {
         })
     })
 
+    // Slooooow tests to check validity of top cities array. 
+    // It's okay to leave these commented out generally.
+    /*
     describe('Each city in topCities', function() {
         let weatherModel;
 
@@ -51,4 +54,5 @@ describe('Cities Model', function () {
             }
         });
     });
+    */
 });

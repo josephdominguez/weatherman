@@ -27,11 +27,8 @@ describe('Weather Model', function () {
 
         describe('for invalid zip code', function () {
             it('throws error for invalid zip code', async function () {
-                try {
-                    await weatherModel[modelFunction](INVALID_ZIP);
-                } catch (e) {
-                    expect(e).to.be.an.instanceOf(Error);
-                }
+                try { await weatherModel[modelFunction](INVALID_ZIP); }
+                catch (e) { expect(e).to.be.an.instanceOf(Error); }
             });
         });
     }
