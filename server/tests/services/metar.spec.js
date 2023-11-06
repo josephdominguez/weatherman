@@ -10,29 +10,16 @@ describe('METARService', function() {
     });
 
     describe('getForecastStation', function() {
-        describe('for a valid location', function() {
-            const lat = VALID_LOCATION.lat;
-            const lon = VALID_LOCATION.lon;
-            let ceiling;
-            
-            before(async function() {
-                ceiling = await metarService.getCloudCeiling(lat, lon);
-                console.log(ceiling);
-            });
-
-            it('returns cloud ceiling', async function() {
-                expect(ceiling).to.exist;
-            });
+        it('returns cloud ceiling for a valid location', async function() {
+            const { lat, lon } = VALID_LOCATION;
+            const ceiling = await metarService.getCloudCeiling(lat, lon);
+            expect(ceiling).to.exist;
         });
 
-        describe('for an invalid location', function() {
-            const lat = INVALID_LOCATION.lat;
-            const lon = INVALID_LOCATION.lon;
-
-            it('throws error', async function() {
-                try { await metarService.getCloudCeiling(lat, lon); }
-                catch(e) { expect(e).to.be.an.instanceOf(Error); }
-            })
+        it('throws error for invalid location', async function() {
+            const { lat, lon } = INVALID_LOCATION;
+            try { await metarService.getCloudCeiling(lat, lon); }
+            catch(e) { expect(e).to.be.an.instanceOf(Error); }
         });
     });
 });

@@ -10,15 +10,13 @@ describe('NWSService', function() {
 
     describe('getForecastStation', function() {
         it('returns the forecast station identifier for a valid location', async function() {
-            const lat = VALID_LOCATION.lat;
-            const lon = VALID_LOCATION.lon;
+            const {lat, lon } = VALID_LOCATION;
             const station = await nwsService.getForecastStation(lat, lon);
             expect(station).to.equal('SLC');
         });
 
         it('throws error for invalid location', async function() {
-            const lat = INVALID_LOCATION.lat;
-            const lon = INVALID_LOCATION.lon;
+            const {lat, lon } = INVALID_LOCATION;
             try { await nwsService.getForecastStation(lat, lon); }
             catch (e) { expect(e.response.status).to.equal(400); }
         });
