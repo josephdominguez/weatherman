@@ -1,6 +1,15 @@
 const { expect, request } = require('./config');
 
-function testRoute(route, object, properties, validQuery, invalidQuery) {
+/**
+ * Test a specific route for valid and invalid zip codes.
+ *
+ * @param {string} route - The route to test.
+ * @param {string} object - The expected object in the response.
+ * @param {string[]} properties - An array of properties to check within the object.
+ * @param {string} validQuery - The valid zip code to use in the request (can be empty string for no query).
+ * @param {string} invalidQuery - The invalid zip code to use in the request (can be empty string for no query).
+ */
+function testRoute(route, object, properties, validQuery='', invalidQuery='') {
     describe(`for a valid zip code`, function () {
         let data;
 
