@@ -1,3 +1,5 @@
+// Utility functions to extract specific forecast sections from text.
+
 /**
  * Extracts a specific section of forecast from the given input text based on a section identifier.
  *

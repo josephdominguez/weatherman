@@ -1,4 +1,10 @@
-// Define a common set of icons and their paths that are shared between day and night conditions
+// Common set of icons and their paths shared between day and night conditions.
+
+/**
+ * This object contains mappings of weather conditions to their respective icon image paths.
+ *
+ * @type {Object.<string, string>}
+ */
 const commonIcons = {
     'Cloudy': 'images/conditions/cloudy.gif',
     'Mist': 'images/conditions/cloudy.gif',
@@ -45,7 +51,12 @@ const commonIcons = {
     'Moderate or heavy snow with thunder': 'images/conditions/thundersnow.gif',
 };
 
-// Define icons specific to daytime conditions
+
+/**
+ * Icons specific to daytime conditions.
+ *
+ * @type {Object.<string, string>}
+ */
 const conditionIconsDay = {
     ...commonIcons,
     'Sunny': 'images/conditions/clear_day.gif',
@@ -55,7 +66,11 @@ const conditionIconsDay = {
     
 };
 
-// Define icons specific to nighttime conditions
+/**
+ * Icons specific to nighttime conditions.
+ *
+ * @type {Object.<string, string>}
+ */
 const conditionIconsNight = {
     ...commonIcons,
     'Sunny': 'images/conditions/clear_night.gif',

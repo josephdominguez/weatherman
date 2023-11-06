@@ -1,3 +1,10 @@
+// This file contains an array of top cities and a function to retrieve random cities from the list.
+
+/**
+ * An array containing objects representing top cities with their names and zip codes.
+ *
+ * @type {Array}
+ */
 const topCities = [
     { city: 'New York, NY', zipCode: '10019' },
     { city: 'Los Angeles, CA', zipCode: '90045' },
@@ -101,6 +108,13 @@ const topCities = [
     { city: 'Huntsville, AL', zipCode: '35810' },
 ];
 
+/**
+ * Get a list of random cities from the `topCities` array.
+ *
+ * @param {number} n - The number of random cities to retrieve.
+ * @throws {Error} If `n` is greater than the length of `topCities`.
+ * @returns {Array} An array of random city objects.
+ */
 function getRandomCities(n) {
     if (topCities.length < n) {
         throw new Error(`Length of cities list is less than ${n}.`);
