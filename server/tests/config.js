@@ -4,6 +4,7 @@ const supertest = require("supertest");
 // Defines needed modules.
 const request = supertest(server);
 const expect = require('chai').expect;
+const sinon = require('sinon');
 
 // Defines valid zip code (Sandy, UT) and invalid zip code.
 const VALID_ZIP = '84093';
@@ -28,6 +29,7 @@ const INVALID_LOCATION = {
 module.exports = {
     request,
     expect,
+    sinon,
     VALID_ZIP,
     INVALID_ZIP,
     VALID_LOCATION,
