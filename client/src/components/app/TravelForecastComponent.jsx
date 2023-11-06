@@ -10,7 +10,6 @@ function TravelForecastComponent() {
     };
 
     const renderData = (data) => {
-        console.log(data);
         return <TravelForecastCard weatherData={data} />;
     };
 
