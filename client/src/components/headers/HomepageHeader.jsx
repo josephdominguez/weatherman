@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
-import styles from '@css/homepage/header.module.css';
+import ZipCodeSearch from '@components/app/ZipCodeSearch';
 import WeathermanLogo from '@images/logos/logo.svg';
+import { GoPersonFill } from 'react-icons/go';
 import HeroVideo from '@videos/hero_video.mp4';
+import styles from '@css/homepage/header.module.css';
 
 function HomepageHeader() {
   return (
@@ -18,14 +20,14 @@ function HomepageHeader() {
             <img className={styles['logo-image']} src={WeathermanLogo} alt="Weather Logo" />
           </Link>
         </div>
-        <div className={styles['header-links']}>
-          <button className={styles['about-button']}>About</button> {' '}
-
+        <div>
           <Link to="/Login">
-            <button className={styles['signin-button']}>Sign in</button>
+            <GoPersonFill className={styles['user-button']} />
           </Link>
         </div>
       </div>
+
+      <ZipCodeSearch />
     </header>
   );
 }

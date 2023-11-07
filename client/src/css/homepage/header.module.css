@@ -1,5 +1,7 @@
 .homepage-header {
     display: flex;
+    flex-direction: column;
+    gap: 20%;
     position: relative;
     min-height: 75vh;
 }
@@ -25,24 +27,22 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
-    padding: 10px 25px;
+    width: 98%;
+    padding: 10px;
     top: 0;
+}
+
+.user-button {
+    transition: color 0.3s;
+    color: var(--bright-blue);
+}
+
+.user-button:hover {
+    color:  #0077FF;
 }
 
 .logo-image {
     max-height: 150px;
-}
-
-button:hover {
-    background-color: var(--purp-shadow);
-}
-
-.about-button,
-.signin-button {
-    background-color: white;
-    color: black;
-    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.5));
 }
 
 @media (max-width: 768px) {
