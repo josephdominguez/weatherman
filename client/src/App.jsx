@@ -1,10 +1,11 @@
-import { BrowserRouter as Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 // Import context
 import { LocationProvider } from '@contexts/LocationContext';
 import { MusicPlayerProvider } from './contexts/MusicPlayerContext';
 
 // Import pages
+import AuthenticationGuard from '@components/auth/AuthenticationGuard';
 import Homepage from '@components/pages/Homepage';
 import CompleteForecast from '@components/pages/CompleteForecast';
 import CurrentConditions from '@components/pages/CurrentConditions';
@@ -28,7 +29,9 @@ function App() {
             <Route path='/LocalForecast' element={<LocalForecast/>} />
             <Route path='ExtendedForecast' element={<ExtendedForecast/>} />
             <Route path='/TravelForecast' element={<TravelForecast/>} />
-            <Route path='/Profile' element={<Profile/>} />
+            <Route path='/Profile' element={
+              <AuthenticationGuard component={Profile} />} 
+            />
             <Route path='/Callback' element={<Callback/>} />
             <Route path='*' element={<NotFound />} />
           </Routes>
