@@ -1,29 +1,7 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useLocation } from '@contexts/LocationContext';
-import { API_ENDPOINT } from '@config/config';
+import { ZipCodeManager } from '@components/utilities/ZipCodeManager';
 
 function ZipCodeUpdater() {
-  const { location, updateLocation } = useLocation();
-  const [tempZipCode, setTempZipCode] = useState(location.zipCode || '');
-
-  const handleInputChange = (event) => {
-    setTempZipCode(event.target.value);
-  };
-
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') { updateZipCode(); }
-  };
-
-  const updateZipCode = async () => {
-    try {
-      const response = await axios.get(`http://${API_ENDPOINT}/location?zipCode=${tempZipCode}`);
-      const location = response.data.location;
-      updateLocation({ ...location });
-    } catch(e) {
-      updateLocation({ zipCode: tempZipCode });
-    }
-  };
+  const { tempZipCode, handleInputChange, handleKeyPress, updateZipCode } = ZipCodeManager();
 
   return (
     <div>
