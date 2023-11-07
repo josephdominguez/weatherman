@@ -12,7 +12,6 @@ function CurrentConditionsComponent() {
         const response = await axios.get(`http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`);
         return response.data.currentConditions;
     };
-
     const renderData = (data) => {
         return <CurrentConditionsCard weatherData={data} />;
     };

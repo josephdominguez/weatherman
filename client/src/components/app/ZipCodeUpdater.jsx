@@ -1,4 +1,4 @@
-import { ZipCodeManager } from '@components/utilities/ZipCodeManager';
+import ZipCodeManager from '@components/utilities/ZipCodeManager';
 
 function ZipCodeUpdater() {
   const { tempZipCode, handleInputChange, handleKeyPress, updateZipCode } = ZipCodeManager();

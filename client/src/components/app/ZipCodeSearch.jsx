@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { GoSearch } from 'react-icons/go';
-import { ZipCodeManager } from '@components/utilities/ZipCodeManager';
+import ZipCodeManager from '@components/utilities/ZipCodeManager';
 import styles from '@css/app/zipcode_search.module.css';
 
 function ZipCodeSearch() {
