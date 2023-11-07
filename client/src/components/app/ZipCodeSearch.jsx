@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { GoSearch } from 'react-icons/go';
+import { useNavigate } from 'react-router-dom';
 import { useLocation } from '@contexts/LocationContext';
 import { API_ENDPOINT } from '@config/config';
 import styles from '@css/app/zipcode_search.module.css';
 
 function ZipCodeSearch() {
+    const navigate = useNavigate();
     const { location, updateLocation } = useLocation();
     const [tempZipCode, setTempZipCode] = useState(location.zipCode || '');
 
@@ -26,6 +28,7 @@ function ZipCodeSearch() {
             );
             const location = response.data.location;
             updateLocation({ ...location });
+            navigate('/CompleteForecast'); 
         } catch (e) {
             updateLocation({ zipCode: tempZipCode });
         }
