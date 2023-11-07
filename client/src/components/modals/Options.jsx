@@ -6,7 +6,6 @@ import MusicPlayerController from '@components/app/MusicPlayerController';
 import { GoGear } from 'react-icons/go';
 import styles from '@css/modals/options.module.css';
 
-
 function Options() {
     const [toggle, setToggle] = useState(false);
 

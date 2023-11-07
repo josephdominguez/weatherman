@@ -3,7 +3,7 @@ import Footer from '@components/footers/HomepageFooter';
 
 function Homepage() {
     return (
-        <> 
+        <>
             <Header />
             <Footer />
         </>

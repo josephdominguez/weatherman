@@ -1,6 +1,6 @@
 import styles from '@css/travel_forecasts.module.css';
 
-const ForecastItem = ({ forecast }) => (
+function ForecastItem({ forecast }) {
     <div className={styles['travel-forecast']}>
         <div> {forecast.city} </div>
         <div>
@@ -13,10 +13,10 @@ const ForecastItem = ({ forecast }) => (
         <div> {forecast.minTemp} </div>
         <div> {forecast.maxTemp} </div>
     </div>
-);
+}
 
 // Main card component
-const TravelForecastCard = ({ weatherData }) => (
+function TravelForecastCard({ weatherData }) {
     <div className={styles['travel-forecasts-container']}>
         <div className={styles['travel-header']}>
             <div></div>
@@ -30,6 +30,6 @@ const TravelForecastCard = ({ weatherData }) => (
             ))}
         </div>
     </div>
-);
+}
 
 export default TravelForecastCard;

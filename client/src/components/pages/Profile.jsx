@@ -6,9 +6,9 @@ function Profile() {
 
     return (
         <AppPage pageTitle={pageTitle}>
-          <ProfileComponent />
+            <ProfileComponent />
         </AppPage>
-      );
+    );
 }
 
 export default Profile;

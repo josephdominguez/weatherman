@@ -8,7 +8,7 @@ function LocalForecast() {
         <AppPage pageTitle={pageTitle}>
             <LocalForecastComponent />
         </AppPage>
-    )
+    );
 }
 
 export default LocalForecast;

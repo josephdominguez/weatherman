@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useLocation } from '@contexts/LocationContext';
 import { API_ENDPOINT } from '@config/config';
 
-export function ZipCodeManager() {
+function ZipCodeManager() {
     const { location, updateLocation } = useLocation();
     const [tempZipCode, setTempZipCode] = useState(location.zipCode || '');
     const [error, setError] = useState(null);
@@ -44,3 +44,5 @@ export function ZipCodeManager() {
         error
     };
 }
+
+export default ZipCodeManager;

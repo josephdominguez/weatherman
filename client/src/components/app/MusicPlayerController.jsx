@@ -1,6 +1,6 @@
 import { useMusicPlayer } from '@contexts/MusicPlayerContext';
 
-const MusicPlayerController = () => {
+function MusicPlayerController() {
     const { isPlaying, togglePlayer } = useMusicPlayer();
 
     return (
@@ -11,6 +11,6 @@ const MusicPlayerController = () => {
             </button>
         </div>
     );
-};
+}
 
 export default MusicPlayerController;
