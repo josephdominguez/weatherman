@@ -179,6 +179,29 @@ class Weather {
             };
         } catch (e) { throw e; }
     }
+
+    async getLatestObservations(zipCode) {
+        const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
+        try {
+            const response = await axios.get(url);
+            const weatherData = response.data;
+            
+            // Extract travel forecast check from data :)
+            const city = weatherData.location.name;
+            const condition = weatherData.current.condition.text;
+            const temperature = weatherData.current.temp_f;
+            const windDirection = weatherData.current.wind_mph;
+            const windSpeed = weatherData.current.wind_dir;
+            
+            return {
+                city,
+                condition,
+                temperature,
+                windDirection,
+                windSpeed,
+            };
+        } catch (e) { throw e; }
+    }
 }
 
 module.exports = Weather;

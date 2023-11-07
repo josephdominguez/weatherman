@@ -5,6 +5,7 @@ const weatherModel = new Weather(weatherAPIKey, metarAPIKey);
 const { getRandomCities } = require('../models/cities.model.js');
 
 const TRAVEL_FORECAST_LENGTH = 4;
+const LATEST_OBSERVATIONS_LENGTH = 7;
 
 // Retrieve location.
 exports.getLocation = async (req, res) => {
@@ -68,6 +69,23 @@ exports.getTravelForecast = async (req, res) => {
             travelForecasts.push(travelForecast);
         }
         res.json( {travelForecasts} );
+    } catch (e) {
+        res.status(404).json({
+            message: 'Invalid ZIP code.'
+        });
+    }
+}
+
+// Retrieves travel forecast for random cities. 
+exports.getLatestObservations = async (req, res) => {
+    const latestObservations = [];
+    try {
+        const randomCities = getRandomCities(LATEST_OBSERVATIONS_LENGTH);
+        for (const city of randomCities) {
+            const latestObservation = await weatherModel.getLatestObservations(city.zipCode);
+            latestObservations.push(latestObservation);
+        }
+        res.json( {latestObservations} );
     } catch (e) {
         res.status(404).json({
             message: 'Invalid ZIP code.'
