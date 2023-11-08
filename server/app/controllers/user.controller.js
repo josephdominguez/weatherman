@@ -8,7 +8,7 @@ exports.createUser = async (req, res) => {
         res.json(user);
     } catch (e) {
         res.status(500).json({
-            message: 'Error creating user',
+            error: 'Error creating user',
         });
     }
 };
@@ -24,33 +24,22 @@ exports.getUser = async (req, res) => {
         res.json(user);
     } catch (e) {
         res.status(500).json({
-            message: 'Error getting user data.',
+            error: 'Error getting user data.',
         });
     }
 };
 
-// Update user data.
+// Update existing user data.
 exports.updateUser = async (req, res) => {
     try {
         const { sub } = req.body;
         const userData = req.body;
 
-        // Check if the user exists by their sub claim
-        const existingUser = await UserModel.getUserBySub(sub);
-
-        if (!existingUser) {
-            return res.status(404).json({ error: 'User not found' });
-        }
-
-        // Update the user's data with the new information
-        Object.assign(existingUser, userData);
-
-        // Save and return the updated user data
-        const updatedUser = await existingUser.save();
+        const updatedUser = await UserModel.updateUserBySub(sub, userData);
         res.json(updatedUser);
-    } catch (error) {
+    } catch (e) {
         res.status(500).json({
-            message: 'Error updating user data.',
+            error: e.message,
         });
     }
 };

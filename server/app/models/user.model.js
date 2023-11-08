@@ -16,22 +16,46 @@ const User = mongoose.model('User', userSchema);
  */
 class UserModel {
     /**
-     * Get user by Auth0 sub claim (user identifier).
-     * @param {string} sub - The Auth0 user identifier.
-     * @returns {Promise} A Promise that resolves to the user document.
-     */
-    static async getUserBySub(sub) {
-        return User.findOne({ sub }).exec();
-    }
-
-    /**
      * Create a new user.
      * @param {Object} userData - The user data to create a new user.
      * @returns {Promise} A Promise that resolves to the created user document.
      */
     static async createUser(userData) {
-        const user = new User(userData);
-        return user.save();
+        const newUser = new User(userData);
+        return newUser.save();
+    }
+
+    /**
+     * Get user by Auth0 sub claim (user identifier).
+     * @param {string} sub - The Auth0 user identifier.
+     * @returns {Promise} A Promise that resolves to the user document.
+     */
+    static async getUserBySub(sub) {
+        return User.findOne({sub}).exec();
+    }
+
+    /**
+     * Update user data by sub claim (user identifier).
+     * @param {string} sub - The Auth0 user identifier.
+     * @param {Object} updatedData - The updated user data.
+     * @returns {Promise} A Promise that resolves to the updated user document.
+     */
+    static async updateUserBySub(sub, updatedData) {
+        try {
+            const existingUser = await this.getUserBySub(sub);
+            if (!existingUser) {
+                throw new Error('User not found');
+            }
+
+            // Update the user's data with the new information
+            Object.assign(existingUser, updatedData);
+
+            // Save and return the updated user data
+            const updatedUser = await existingUser.save();
+            return updatedUser;
+        } catch (e) {
+            throw new Error(`${e.message}`);
+        }
     }
 
     /**
@@ -58,10 +82,10 @@ class UserModel {
             for (const userData of sampleUsers) {
                 const user = new User(userData);
                 await user.save();
-                console.log('User inserted:', user);
+                console.log(`User inserted: ${user}`);
             }
-        } catch (error) {
-            console.error('Error inserting sample users:', error);
+        } catch (e) {
+            console.error('Error inserting sample users:', e);
         }
     }
 }
