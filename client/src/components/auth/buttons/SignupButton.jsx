@@ -1,12 +1,12 @@
-import LogUserIn from '@components/auth/LogUserIn';
+import SignUserUp from '@components/auth/SignUserUp';
 
 function SignupButton() {
     return (
-        <LogUserIn>
+        <SignUserUp>
             <button className='signup-button'>
                 Sign Up
             </button>
-        </LogUserIn>
+        </SignUserUp>
     );
 }
 
