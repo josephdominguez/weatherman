@@ -1,6 +1,6 @@
-module.exports = app => {
-    const weatherController = require('../controllers/weather.controller.js');
+const weatherController = require('../controllers/weather.controller.js');
 
+module.exports = app => {
     // Retrieve location given a zip code.
     app.get('/location', async (req, res) => {
         try{ await weatherController.getLocation(req, res); }
