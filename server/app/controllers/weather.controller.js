@@ -4,6 +4,7 @@ const metarAPIKey = process.env.CHECKWX_API_KEY;
 const weatherModel = new Weather(weatherAPIKey, metarAPIKey);
 const { getRandomCities } = require('../models/cities.model.js');
 
+// Sets the number of forecasts to return from model.
 const TRAVEL_FORECAST_LENGTH = 4;
 const LATEST_OBSERVATIONS_LENGTH = 7;
 
