@@ -6,7 +6,7 @@ function SignUserUp({ children }) {
     const handleSignUp = async () => {
         await loginWithRedirect({
             appState: {
-                returnTo: '/profile',
+                returnTo: '/SignUpCallback',
             },
             authorizationParams: {
                 screen_hint: 'signup',
