@@ -16,7 +16,7 @@ exports.createUser = async (req, res) => {
 // Retrieve user by sub claim (Auth0 user identifier).
 exports.getUser = async (req, res) => {
     try {
-        const { sub } = req.body;
+        const { sub } = req.query;
         const user = await UserModel.getUserBySub(sub);
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
