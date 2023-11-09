@@ -1,15 +1,15 @@
 import { useAuth0 } from '@auth0/auth0-react';
 
-function LogUserOut({ children }) {
+function LogUserIn({ children }) {
     const { loginWithRedirect } = useAuth0();
 
     const handleLogin = async () => {
         await loginWithRedirect({
             appState: {
-                returnTo: '/Profile',
+                returnTo: '/LoginCallback',
             },
             authorizationParams: {
-                screen_hint: 'signup',
+                screen_hint: 'Login',
             },
         });
     };
@@ -17,4 +17,4 @@ function LogUserOut({ children }) {
     return <div onClick={handleLogin}>{children}</div>;
 }
 
-export default LogUserOut;
+export default LogUserIn;

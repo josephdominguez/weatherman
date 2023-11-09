@@ -15,7 +15,8 @@ import ExtendedForecast from '@components/pages/ExtendedForecast';
 import TravelForecast from '@components/pages/TravelForecast';
 import Profile from '@components/pages/Profile';
 import Callback from '@components/pages/Callback';
-import SignUpCallback from '@components/pages/SignUpCallback';
+import Onboarding from '@components/pages/Onboarding';
+import LoginCallback from '@components/pages/LoginCallback';
 import NotFound from '@components/pages/NotFound';
 
 function App() {
@@ -36,7 +37,10 @@ function App() {
                 <AuthenticationGuard component={Profile} />} 
               />
               <Route path='/Callback' element={<Callback/>} />
-              <Route path='/SignUpCallback' element={<SignUpCallback />} />
+              <Route path='/Onboarding' element={
+                <AuthenticationGuard component={Onboarding}/>} />
+              <Route path='/LoginCallback' element={
+                <AuthenticationGuard component={LoginCallback}/>} />
               <Route path='*' element={<NotFound />} />
             </Routes>
           </MusicPlayerProvider>
