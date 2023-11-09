@@ -7,12 +7,14 @@ export function useUserInfo() {
 }
 
 export function UserInfoProvider({ children }) {
-    const [userInfo, setUserInfo] = useState({
+    const defaultUserInfo = {
         sub: null,
         email: null,
         savedLocations: ['10001'], // Default ZIP Code
         unitPreference: 'imperial', // Default unit preference
-    });
+    };
+
+    const [userInfo, setUserInfo] = useState(defaultUserInfo);
     const [accessToken, setAccessToken] = useState(null);
 
     const updateUserInfo = (newUserInfo) => {
@@ -26,6 +28,10 @@ export function UserInfoProvider({ children }) {
         setAccessToken(token);
     };
 
+    const resetUserInfo = () => {
+        setUserInfo(defaultUserInfo);
+    }
+
     return (
         <UserInfoContext.Provider
             value={{
@@ -33,6 +39,7 @@ export function UserInfoProvider({ children }) {
                 accessToken,
                 updateUserInfo,
                 updateAccessToken,
+                resetUserInfo
             }}
         >
             {children}
