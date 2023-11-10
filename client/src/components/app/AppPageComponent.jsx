@@ -14,7 +14,12 @@ function AppPageComponent({ fetchFunction, renderData, dependencies }) {
             setError(null);
             setLoading(false);
         } catch (e) {
-            setError(e);
+            if (e.response && e.response.data) {
+                const errorMessage = e.response.data;
+                setError(errorMessage);
+            } else {
+                setError(e);                
+            }
             setLoading(false);
         }
     };
