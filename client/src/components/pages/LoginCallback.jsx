@@ -3,8 +3,6 @@ import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import UserAPI from '@components/utilities/UserAPI';
 import Callback from '@components/pages/Callback';
-import { useUserInfo } from '@contexts/UserInfoContext';
-import ZipCodeManager from '@components/utilities/ZipCodeManager';
 
 function LoginCallback() {
     const { user } = useAuth0();
