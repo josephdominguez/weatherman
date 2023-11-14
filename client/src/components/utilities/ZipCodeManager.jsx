@@ -1,44 +1,34 @@
 import { useState } from 'react';
-import axios from 'axios';
 import { useLocation } from '@contexts/LocationContext';
-import { useUserInfo } from '@contexts/UserInfoContext';
-import { API_ENDPOINT } from '@config/config';
 
 function ZipCodeManager() {
-    const { location, updateLocation } = useLocation();
-    const { userInfo } = useUserInfo();
+    const { location, updateLocationByZipCode } = useLocation();
     const [tempZipCode, setTempZipCode] = useState(location.zipCode || '');
     const [error, setError] = useState(null);
 
     const getZipCode = () => {
         return location.zipCode;
-    }
+    };
+
+    const updateZipCode = async (onSuccessCallback) => {
+        try {
+            await updateLocationByZipCode(tempZipCode, onSuccessCallback);
+        } catch (e) {
+            setError('Invalid ZIP code.');
+        }
+    };
 
     const handleInputChange = (event) => {
         setTempZipCode(event.target.value);
     };
 
-    const handleKeyPress = (event, onSuccessCallback) => {
+    const handleKeyPress = async (event, onSuccessCallback) => {
         if (event.key === 'Enter') {
-            updateZipCode(onSuccessCallback);
-        }
-    };
-
-    const updateZipCode = async (zipCode=tempZipCode, onSuccessCallback=false) => {
-        try {
-            const response = await axios.get(
-                `http://${API_ENDPOINT}/location?zipCode=${zipCode}`
-            );
-            const location = response.data.location;
-            updateLocation({ ...location });
-            setError(null);
-
-            if (onSuccessCallback) {
-                onSuccessCallback();
+            try {
+                await updateLocationByZipCode(tempZipCode, onSuccessCallback);
+            } catch (e) {
+                setError('Invalid ZIP code.');
             }
-        } catch (e) {
-            setError('Invalid ZIP code.');
-            updateLocation({ zipCode: zipCode });
         }
     };
 
@@ -46,10 +36,10 @@ function ZipCodeManager() {
         tempZipCode,
         setTempZipCode,
         getZipCode,
+        updateZipCode,
         handleInputChange,
         handleKeyPress,
-        updateZipCode,
-        error
+        error,
     };
 }
 

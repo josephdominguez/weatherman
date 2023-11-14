@@ -1,18 +1,26 @@
 import axios from 'axios';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useUserInfo } from '@contexts/UserInfoContext';
+import { useLocation } from '@contexts/LocationContext';
 import { API_ENDPOINT } from '@config/config';
 
 function UserAPI() {
     const { user } = useAuth0();
     const { updateUserInfo } = useUserInfo();
+    const { updateLocationByZipCode } = useLocation();
 
     // Extracts user info from response body.
-    const _getUserInfo = (response) => {
+    const getUserInfo = (response) => {
         const { sub, email, savedLocations, unitPreference } = response.data;
         const userInfo = { sub, email, savedLocations, unitPreference };
         return userInfo;
     };
+
+    const setUser = async (response) => {
+        const userInfo = getUserInfo(response);
+        updateUserInfo({ ...userInfo });
+        setZipCode(userInfo.savedLocations[0]);
+    }
 
     const createUserWithAPI = async (newUserInfo) => {
         try {
@@ -30,8 +38,7 @@ function UserAPI() {
                     },
                 }
             );
-            const userInfo = _getUserInfo(response);
-            updateUserInfo({ ...userInfo });
+            setUser(response);
         } catch (e) {
             console.error(`Error creating user: ${e}`);
         }
@@ -48,12 +55,16 @@ function UserAPI() {
                     },
                 }
             );
-            const userInfo = _getUserInfo(response);
-            updateUserInfo({ ...userInfo });
+            setUser(response);
         } catch (e) {
             console.error(`Error getting user: ${e}`);
         }
     };
+
+    const setZipCode = async (zipCode) => {
+        try { await updateLocationByZipCode(zipCode); }
+        catch(e) { console.error(`Error updating location: ${e}`); }
+    }
 
     return { createUserWithAPI, getUserFromAPI };
 }
