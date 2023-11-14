@@ -7,11 +7,9 @@ import WeathermanLogo from '@images/logos/logo.svg';
 import { GoPersonFill } from 'react-icons/go';
 import HeroVideo from '@videos/hero_video.mp4';
 import styles from '@css/homepage/header.module.css';
-import { useUserInfo } from '@contexts/UserInfoContext';
 
 function HomepageHeader() {
   const { isAuthenticated } = useAuth0();
-  const {userInfo } = useUserInfo();
 
   return (
     <header className={styles['homepage-header']}>
@@ -41,7 +39,6 @@ function HomepageHeader() {
           )}
         </div>
       </div>
-      {userInfo.sub}
       <ZipCodeSearch />
     </header>
   );
