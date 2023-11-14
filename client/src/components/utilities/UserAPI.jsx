@@ -16,8 +16,7 @@ function UserAPI() {
         return userInfo;
     };
 
-    const setUser = async (response) => {
-        const userInfo = getUserInfo(response);
+    const setUser = async (userInfo) => {
         updateUserInfo({ ...userInfo });
         setZipCode(userInfo.savedLocations[0]);
     }
@@ -38,7 +37,8 @@ function UserAPI() {
                     },
                 }
             );
-            setUser(response);
+            const userInfo = getUserInfo(response);
+            setUser(userInfo);
         } catch (e) {
             console.error(`Error creating user: ${e}`);
         }
@@ -55,7 +55,8 @@ function UserAPI() {
                     },
                 }
             );
-            setUser(response);
+            const userInfo = getUserInfo(response);
+            setUser(userInfo);
         } catch (e) {
             console.error(`Error getting user: ${e}`);
         }
