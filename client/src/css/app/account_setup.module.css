@@ -1,0 +1,29 @@
+.account-setup-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-setup-form-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.account-setup-form-input,
+.account-setup-form-select {
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+.account-setup-form-button {
+    background-color: var(--green);
+    color: white;
+}
+
+.account-setup-form-button:hover {
+    background-color: var(--dimmed-green);
+}

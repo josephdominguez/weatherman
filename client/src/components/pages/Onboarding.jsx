@@ -1,19 +1,16 @@
-import { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
 import UserAPI from '@components/utilities/UserAPI';
 import BlankAppPage from '@components/pages/BlankAppPage';
+import AccountSetup from '@components/app/AccountSetup';
 import styles from '@css/onboarding.module.css';
 
 function Onboarding() {
     const { user } = useAuth0();
-    const navigate = useNavigate();
     const { createUserWithAPI } = UserAPI();
-    const { zipCode, setZipCode } = useState('');
-    const [unitPreference, setUnitPreference] = useState('imperial');
+    const navigate = useNavigate();
 
-    const handleOnboardingSubmit = async (e) => {
-        e.preventDefault();
+    const handleOnboardingSubmit = async (zipCode, unitPreference) => {
         const newUserInfo = {
             sub: user.sub,
             email: user.email,
@@ -28,44 +25,8 @@ function Onboarding() {
         <BlankAppPage>
             <div className={styles['card-container']}>
                 <div className={styles['onboarding-container']}>
-                    <h1 className={styles['onboarding-header']}>Account Setup</h1>
-                    <form
-                        className={styles['onboarding-form']}
-                        onSubmit={handleOnboardingSubmit}
-                    >
-                        <div className={styles['onboarding-form-group']}>
-                            <label className={styles['onboarding-form-label']}>
-                                Zip Code:
-                                <input
-                                    type='text'
-                                    value={zipCode}
-                                    onChange={(e) => setZipCode(e.target.value)}
-                                    className={styles['onboarding-form-input']}
-                                />
-                            </label>
-                        </div>
-
-                        <div className={styles['onboarding-form-group']}>
-                            <label className={styles['onboarding-form-label']}>
-                                Unit Preference:
-                                <select
-                                    value={unitPreference}
-                                    onChange={(e) => setUnitPreference(e.target.value)}
-                                    className={styles['onboarding-form-select']}
-                                >
-                                    <option value='imperial'>Imperial</option>
-                                    <option value='metric'>Metric</option>
-                                </select>
-                            </label>
-                        </div>
-
-                        <button
-                            type='submit'
-                            className={styles['onboarding-form-button']}
-                        >
-                            Complete Onboarding
-                        </button>
-                    </form>
+                    <h1>Onboarding</h1>
+                    <AccountSetup onSubmit={handleOnboardingSubmit} />
                 </div>
             </div>
         </BlankAppPage>
