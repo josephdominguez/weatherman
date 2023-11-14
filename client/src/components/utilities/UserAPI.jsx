@@ -12,17 +12,17 @@ function UserAPI() {
         const { sub, email, savedLocations, unitPreference } = response.data;
         const userInfo = { sub, email, savedLocations, unitPreference };
         return userInfo;
-    }
+    };
 
-    const createUserWithAPI = async() => {
+    const createUserWithAPI = async (newUserInfo) => {
         try {
             const response = await axios.post(
                 `http://${API_ENDPOINT}/users`,
                 {
-                    sub: user.sub,
-                    email: user.email,
-                    savedLocations: ['84093', '12345'],
-                    unitPreference: 'imperial',
+                    sub: newUserInfo.sub,
+                    email: newUserInfo.email,
+                    savedLocations: newUserInfo.zipCode,
+                    unitPreference: newUserInfo.unitPreference,
                 },
                 {
                     headers: {
@@ -37,20 +37,21 @@ function UserAPI() {
         }
     };
 
-    const getUserFromAPI = async(sub) => {
+    const getUserFromAPI = async (sub) => {
         try {
-            const response = await axios.get(                
-            `http://${API_ENDPOINT}/users`,
-            { params: { sub: sub } }, 
-            {
-                headers: {
-                    Authorization: `Bearer ${user?.authToken}`,
-                },
-            });
+            const response = await axios.get(
+                `http://${API_ENDPOINT}/users`,
+                { params: { sub: sub } },
+                {
+                    headers: {
+                        Authorization: `Bearer ${user?.authToken}`,
+                    },
+                }
+            );
             const userInfo = _getUserInfo(response);
-            updateUserInfo({ ...userInfo} );
-        } catch(e) {
-            console.error(`Error getting user: ${e}`)
+            updateUserInfo({ ...userInfo });
+        } catch (e) {
+            console.error(`Error getting user: ${e}`);
         }
     };
 
@@ -58,4 +59,3 @@ function UserAPI() {
 }
 
 export default UserAPI;
-
