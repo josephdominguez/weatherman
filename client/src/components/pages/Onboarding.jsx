@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from 'react-router-dom';
-import { useUserInfo } from '@contexts/UserInfoContext';
 import UserAPI from '@components/utilities/UserAPI';
+import ZipCodeManager from '@components/utilities/ZipCodeManager';
 import BlankAppPage from '@components/pages/BlankAppPage';
 import styles from '@css/onboarding.module.css';
 
@@ -10,18 +10,22 @@ function Onboarding() {
     const { user } = useAuth0();
     const navigate = useNavigate();
     const { createUserWithAPI } = UserAPI();
-    const { updateUserInfo } = useUserInfo();
-    const [zipCode, setZipCode] = useState('');
+    const { zipCode, setZipCode } = useState('');
+    const { updateZipCode, error } = ZipCodeManager();
     const [unitPreference, setUnitPreference] = useState('imperial');
 
     const handleOnboardingSubmit = async (e) => {
         e.preventDefault();
 
-        const userInfo = { sub: user.sub, email: user.email, zipCode, unitPreference };
-        updateUserInfo(userInfo);
+        updateZipCode(zipCode);
 
-        createUserWithAPI(userInfo);
-
+        const newUserInfo = {
+            sub: user.sub,
+            email: user.email,
+            savedLocations: zipCode,
+            unitPreference: unitPreference,
+        };
+        createUserWithAPI(newUserInfo);
         navigate('/CompleteForecast');
     };
 
@@ -30,7 +34,8 @@ function Onboarding() {
             <div className={styles['card-container']}>
                 <div className={styles['onboarding-container']}>
                     <h1 className={styles['onboarding-header']}>Account Setup</h1>
-                    <form className={styles['onboarding-form']}
+                    <form
+                        className={styles['onboarding-form']}
                         onSubmit={handleOnboardingSubmit}
                     >
                         <div className={styles['onboarding-form-group']}>
@@ -43,6 +48,7 @@ function Onboarding() {
                                     className={styles['onboarding-form-input']}
                                 />
                             </label>
+                            {error && <p style={{ color: 'red' }}>{error}</p>}
                         </div>
 
                         <div className={styles['onboarding-form-group']}>
@@ -59,7 +65,10 @@ function Onboarding() {
                             </label>
                         </div>
 
-                        <button type='submit' className={styles['onboarding-form-button']}>
+                        <button
+                            type='submit'
+                            className={styles['onboarding-form-button']}
+                        >
                             Complete Onboarding
                         </button>
                     </form>
