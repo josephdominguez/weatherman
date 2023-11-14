@@ -136,7 +136,7 @@ class Weather {
         try {
             const station = await this.nwsService.getForecastStation(lat, lon);
             const url = await this.nwsService.getAreaForecastDiscussionUrl(station);
-            
+
             const response = await axios.get(url);
             const localForecast = response.data.productText;
 
@@ -148,9 +148,7 @@ class Weather {
                 synopsis: synopsis,
                 shortTerm: shortTerm,
             };
-        } catch (e) { 
-            throw e; 
-        }
+        } catch (e) { throw e; }
     }
 
     /**
