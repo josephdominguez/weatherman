@@ -31,9 +31,3 @@
 .close-modal-button:hover {
     fill: var(--red);
 }
-
-@media (max-width: 768px) {
-    .modal-content {
-        max-width: 75%;
-    }
-}
