@@ -13,7 +13,6 @@ import CurrentConditions from '@components/pages/CurrentConditions';
 import LocalForecast from '@components/pages/LocalForecast';
 import ExtendedForecast from '@components/pages/ExtendedForecast';
 import TravelForecast from '@components/pages/TravelForecast';
-import Profile from '@components/pages/Profile';
 import Callback from '@components/pages/Callback';
 import Onboarding from '@components/pages/Onboarding';
 import LoginCallback from '@components/pages/LoginCallback';
@@ -33,9 +32,6 @@ function App() {
               <Route path='/LocalForecast' element={<LocalForecast/>} />
               <Route path='ExtendedForecast' element={<ExtendedForecast/>} />
               <Route path='/TravelForecast' element={<TravelForecast/>} />
-              <Route path='/Profile' element={
-                <AuthenticationGuard component={Profile} />} 
-              />
               <Route path='/Callback' element={<Callback/>} />
               <Route path='/Onboarding' element={
                 <AuthenticationGuard component={Onboarding}/>} />
