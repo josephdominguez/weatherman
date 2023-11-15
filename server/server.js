@@ -1,18 +1,13 @@
 const express = require('express');
-const session = require('express-session');
 const expressValidator = require('express-validator');
-const bodyParser = require('body-parser');
 const cors = require('cors');
-const passport = require('passport');
+const bodyParser = require('body-parser');
 
 // Loads environment variables.
 require('dotenv').config();
 
 // Loads MongoDB connection code.
 require('./app/models/db.model.js');
-
-// Loads Passport/Auth0 configuration.
-require('./app/config/passport.config.js');
 
 // Defines port for Express server.
 const PORT = process.env.PORT || 8080;
@@ -27,14 +22,6 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
-app.use(
-    session({
-        secret: 'some-secret',
-        resave: true,
-        saveUninitialized: true,
-    })
-);
-app.use(passport.initialize());
 
 // Loads routes.
 require('./app/routes/weather.routes.js')(app);
