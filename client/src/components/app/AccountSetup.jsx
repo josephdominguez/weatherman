@@ -1,13 +1,20 @@
 import { useState } from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useUserInfo } from '@contexts/UserInfoContext';
 import styles from '@css/app/account_setup.module.css';
 
 function AccountSetup({ onSubmit }) {
-    const [zipCode, setZipCode] = useState('');
+    const { isAuthenticated } = useAuth0();
+    const { userInfo } = useUserInfo();
+    const [zipCode, setZipCode] = useState(() => {
+        if (isAuthenticated) { return userInfo.savedLocations[0]; }
+        else { return ''; }
+    });
     const [unitPreference, setUnitPreference] = useState('imperial'); // Default to imperial.
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        onSubmit({ zipCode, unitPreference });
+        onSubmit(zipCode, unitPreference);
     };
 
     return (
@@ -40,7 +47,7 @@ function AccountSetup({ onSubmit }) {
                 </div>
 
                 <button type='submit' className={styles['account-setup-form-button']}>
-                    Submit
+                    Update
                 </button>
             </form>
         </div>
