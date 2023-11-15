@@ -16,10 +16,10 @@ function UserAPI() {
         return userInfo;
     };
 
-    const setUser = async (userInfo) => {
+    const setUserInfo = async (userInfo) => {
         updateUserInfo({ ...userInfo });
         setZipCode(userInfo.savedLocations[0]);
-    }
+    };
 
     const createUserWithAPI = async (newUserInfo) => {
         try {
@@ -38,7 +38,7 @@ function UserAPI() {
                 }
             );
             const userInfo = getUserInfo(response);
-            setUser(userInfo);
+            setUserInfo(userInfo);
         } catch (e) {
             console.error(`Error creating user: ${e}`);
         }
@@ -56,18 +56,44 @@ function UserAPI() {
                 }
             );
             const userInfo = getUserInfo(response);
-            setUser(userInfo);
+            setUserInfo(userInfo);
         } catch (e) {
             console.error(`Error getting user: ${e}`);
         }
     };
 
-    const setZipCode = async (zipCode) => {
-        try { await updateLocationByZipCode(zipCode); }
-        catch(e) { console.error(`Error updating location: ${e}`); }
-    }
+    const updateUserWithAPI = async (updatedUserInfo) => {
+        try {
+            const response = await axios.put(
+                `http://${API_ENDPOINT}/users`,
+                {
+                    sub: updatedUserInfo.sub,
+                    email: updatedUserInfo.email,
+                    savedLocations: updatedUserInfo.savedLocations,
+                    unitPreference: updatedUserInfo.unitPreference,
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${user?.authToken}`,
+                    },
+                }
+            );
+            const updatedInfo = getUserInfo(response);
+            updateUserInfo(updatedInfo);
+        } catch (e) {
+            console.error(`Error updating user: ${e}`);
+        }
+    };
 
-    return { createUserWithAPI, getUserFromAPI };
+    const setZipCode = async (zipCode) => {
+        try {
+            await updateLocationByZipCode(zipCode);
+        } catch (e) {
+            console.error(`Error updating location: ${e}`);
+        }
+    };
+
+    return { createUserWithAPI, getUserFromAPI, updateUserWithAPI };
 }
 
 export default UserAPI;
