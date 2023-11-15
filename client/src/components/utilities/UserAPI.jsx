@@ -5,7 +5,7 @@ import { useLocation } from '@contexts/LocationContext';
 import { API_ENDPOINT } from '@config/config';
 
 function UserAPI() {
-    const { user } = useAuth0();
+    const { getAccessTokenSilently } = useAuth0();
     const { updateUserInfo } = useUserInfo();
     const { updateLocationByZipCode } = useLocation();
 
@@ -23,17 +23,18 @@ function UserAPI() {
 
     const createUserWithAPI = async (newUserInfo) => {
         try {
+            const accessToken = await getAccessTokenSilently();
             const response = await axios.post(
                 `http://${API_ENDPOINT}/users`,
                 {
                     sub: newUserInfo.sub,
                     email: newUserInfo.email,
-                    savedLocations: newUserInfo.zipCode,
+                    savedLocations: newUserInfo.savedLocations,
                     unitPreference: newUserInfo.unitPreference,
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${user?.authToken}`,
+                        Authorization: `Bearer ${accessToken}`,
                     },
                 }
             );
@@ -46,12 +47,14 @@ function UserAPI() {
 
     const getUserFromAPI = async (sub) => {
         try {
+            const accessToken = await getAccessTokenSilently();
+            console.log(accessToken);
+            console.log(sub);
             const response = await axios.get(
-                `http://${API_ENDPOINT}/users`,
-                { params: { sub: sub } },
+                `http://${API_ENDPOINT}/users?sub=${sub}`,
                 {
                     headers: {
-                        Authorization: `Bearer ${user?.authToken}`,
+                        Authorization: `Bearer ${accessToken}`,
                     },
                 }
             );
@@ -64,6 +67,7 @@ function UserAPI() {
 
     const updateUserWithAPI = async (updatedUserInfo) => {
         try {
+            const accessToken = await getAccessTokenSilently();
             const response = await axios.put(
                 `http://${API_ENDPOINT}/users`,
                 {
@@ -74,12 +78,12 @@ function UserAPI() {
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${user?.authToken}`,
+                        Authorization: `Bearer ${accessToken}`,
                     },
                 }
             );
-            const updatedInfo = getUserInfo(response);
-            updateUserInfo(updatedInfo);
+            const userInfo = getUserInfo(response);
+            setUserInfo(userInfo);
         } catch (e) {
             console.error(`Error updating user: ${e}`);
         }
