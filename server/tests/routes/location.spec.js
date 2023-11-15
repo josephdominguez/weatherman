@@ -1,5 +1,5 @@
 const { VALID_ZIP, INVALID_ZIP } = require('../config');
-const { testRoute} = require('../test.utils');
+const { testRoute } = require('../test.utils');
 
 describe('GET /location', function () {
     const route = '/location/?zipCode=';
