@@ -1,4 +1,5 @@
 const express = require('express');
+const session = require('express-session');
 const expressValidator = require('express-validator');
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -26,6 +27,13 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors(corsOptions));
+app.use(
+    session({
+        secret: 'some-secret',
+        resave: true,
+        saveUninitialized: true,
+    })
+);
 app.use(passport.initialize());
 
 // Loads routes.
