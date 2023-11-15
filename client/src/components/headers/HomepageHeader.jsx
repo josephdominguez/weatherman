@@ -33,7 +33,7 @@ function HomepageHeader() {
             </>
           )}
           {isAuthenticated && (
-            <Link to="/Profile">
+            <Link to="/CompleteForecast">
               <GoPersonFill className={styles['user-button']} />
             </Link>
           )}
