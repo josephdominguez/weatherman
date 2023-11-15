@@ -1,0 +1,15 @@
+.profile-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-container h2 {
+    margin: 5px 0px;
+}
+
+.logout-container button {
+    margin-top: 15px;
+    width: 100%;
+    background-color: red;
+    color: white;
+}
