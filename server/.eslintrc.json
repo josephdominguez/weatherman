@@ -7,10 +7,12 @@
         "chai": true
     },
     "extends": "eslint:recommended",
+    "plugins": ["@stylistic/js"],
     "parserOptions": {
         "ecmaVersion": "latest"
     },
     "rules": {
-
+        "@stylistic/js/nonblock-statement-body-position": ["error", "beside"],
+        "@stylistic/js/brace-style": ["error", "1tbs", { "allowSingleLine": true }]
     }
 }

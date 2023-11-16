@@ -24,6 +24,7 @@
     "redis": "^4.6.10"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin-js": "^1.2.0",
     "chai": "^4.3.10",
     "eslint": "^8.53.0",
     "mocha": "^10.2.0",
