@@ -34,14 +34,24 @@ describe('GET /travel-forecast', function() {
                 expect(travelForecast).to.have.property('conditionIcon');
             }
         });
-        it('has a minTemp property', function() {
+        it('has a minTempF property', function() {
             for (const travelForecast of travelForecasts) {
-                expect(travelForecast).to.have.property('minTemp');
+                expect(travelForecast).to.have.property('minTempF');
             }
         });
-        it('has a maxTemp property', function() {
+        it('has a minTempC property', function() {
             for (const travelForecast of travelForecasts) {
-                expect(travelForecast).to.have.property('maxTemp');
+                expect(travelForecast).to.have.property('minTempC');
+            }
+        });
+        it('has a maxTempF property', function() {
+            for (const travelForecast of travelForecasts) {
+                expect(travelForecast).to.have.property('maxTempF');
+            }
+        });
+        it('has a maxTempC property', function() {
+            for (const travelForecast of travelForecasts) {
+                expect(travelForecast).to.have.property('maxTempC');
             }
         });
     });

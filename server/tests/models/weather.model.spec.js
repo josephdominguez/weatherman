@@ -27,8 +27,11 @@ describe('Weather Model', function () {
 
         describe('for invalid zip code', function () {
             it('throws error for invalid zip code', async function () {
-                try { await weatherModel[modelFunction](INVALID_ZIP); }
-                catch (e) { expect(e).to.be.an.instanceOf(Error); }
+                try {
+                    await weatherModel[modelFunction](INVALID_ZIP);
+                } catch (e) {
+                    expect(e).to.be.an.instanceOf(Error);
+                }
             });
         });
     }
@@ -39,6 +42,29 @@ describe('Weather Model', function () {
         test('getLocation', object, properties);
     });
 
+    describe('getCurrentConditions', function () {
+        const object = 'current conditions';
+        const properties = [
+            'temperatureF',
+            'temperatureC',
+            'condition',
+            'conditionIcon',
+            'windMPH',
+            'windKPH',
+            'city',
+            'humidity',
+            'dewpointF',
+            'dewpointC',
+            'visibilityMiles',
+            'visiblityKilometers',
+            'pressureMB',
+            'pressureIN',
+            'heatIndex',
+            'ceiling',
+        ];
+        test('getCurrentConditions', object, properties);
+    });
+
     describe('getLocalForecast', function () {
         const object = 'local forecast';
         const properties = ['synopsis', 'shortTerm'];
@@ -47,31 +73,46 @@ describe('Weather Model', function () {
 
     describe('getTravelForecast', function () {
         const object = 'travel forecast';
-        const properties = ['city', 'conditionIcon', 'minTemp', 'maxTemp'];
+        const properties = [
+            'city',
+            'conditionIcon',
+            'minTempF',
+            'minTempF',
+            'maxTempF',
+            'minTempC',
+        ];
         test('getTravelForecast', object, properties);
     });
 
     describe('getExtendedForecast', function () {
-        const properties = ['day', 'condition', 'conditionIcon', 'minTemp', 'maxTemp'];
+        const properties = [
+            'day',
+            'condition',
+            'conditionIcon',
+            'minTempF',
+            'minTempC',
+            'maxTempF',
+            'maxTempC',
+        ];
         describe('for valid zip code', function () {
             let data;
-        
+
             before(async function () {
                 data = await weatherModel.getExtendedForecast(VALID_ZIP);
             });
-        
+
             it(`returns city`, function () {
                 expect(data).to.have.property('city');
             });
-        
+
             it(`returns forecasts`, function () {
                 expect(data).to.have.property('forecasts');
                 expect(data.forecasts).to.be.an('array');
             });
 
-            describe('each forecast', function() {
+            describe('each forecast', function () {
                 for (const property of properties) {
-                    it(`has a ${property} property`, function() {
+                    it(`has a ${property} property`, function () {
                         for (const forecast of data.forecasts) {
                             expect(forecast).to.have.property(property);
                         }

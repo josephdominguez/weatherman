@@ -50,17 +50,22 @@ class Weather {
             const weatherData = response.data;
 
             // Extract and format current weather conditions.
-            const temperature = parseInt(weatherData.current.temp_f);
+            const temperatureF = parseInt(weatherData.current.temp_f);
+            const temperatureC = parseInt(weatherData.current.temp_c);
             const condition = weatherData.current.condition.text;
             const conditionIcon = weatherData.current.is_day
                 ? conditionIconsDay[condition]
                 : conditionIconsNight[condition];
-            const wind = weatherData.current.wind_mph;
+            const windMPH = weatherData.current.wind_mph;
+            const windKPH = weatherData.current.wind_kph;
             const city = weatherData.location.name;
             const humidity = weatherData.current.humidity;
-            const dewpoint = weatherData.forecast.forecastday[0].hour[0].dewpoint_f;
-            const visibility = weatherData.current.vis_miles;
-            const pressure = weatherData.current.pressure_mb;
+            const dewpointF = weatherData.forecast.forecastday[0].hour[0].dewpoint_f;
+            const dewpointC = weatherData.forecast.forecastday[0].hour[0].dewpoint_c;
+            const visibilityMiles = weatherData.current.vis_miles;
+            const visiblityKilometers = weatherData.current.vis_km;
+            const pressureIN = weatherData.current.pressure_in;
+            const pressureMB = weatherData.current.pressure_mb;
             const heatIndex = weatherData.forecast.forecastday[0].hour[0].heatindex_f;
 
             // Use METAR API to obtain cloud ceiling.
@@ -69,15 +74,20 @@ class Weather {
             const ceiling = await this.metarService.getCloudCeiling(lat, lon);
 
             return {
-                temperature,
+                temperatureF,
+                temperatureC,
                 condition,
                 conditionIcon,
-                wind,
+                windMPH,
+                windKPH,
                 city,
                 humidity,
-                dewpoint,
-                visibility,
-                pressure,
+                dewpointF,
+                dewpointC,
+                visibilityMiles,
+                visiblityKilometers,
+                pressureIN,
+                pressureMB,
                 heatIndex,
                 ceiling,
             };
@@ -104,15 +114,19 @@ class Weather {
                 const day = this._getDayOfWeekAbbreviation(date).toUpperCase();
                 const condition = forecast.day.condition.text;
                 const conditionIcon = conditionIconsDay[condition];
-                const minTemp = parseInt(forecast.day.mintemp_f);
-                const maxTemp = parseInt(forecast.day.maxtemp_f);
+                const minTempF = parseInt(forecast.day.mintemp_f);
+                const minTempC = parseInt(forecast.day.mintemp_c);
+                const maxTempF = parseInt(forecast.day.maxtemp_f);
+                const maxTempC = parseInt(forecast.day.maxtemp_c);
 
                 forecasts.push({
                     day,
                     condition,
                     conditionIcon,
-                    minTemp,
-                    maxTemp,
+                    minTempF,
+                    minTempC,
+                    maxTempF,
+                    maxTempC,
                 });
             }
             // Extract location for page title.
@@ -168,15 +182,19 @@ class Weather {
             const conditionIcon = weatherData.current.is_day
                 ? conditionIconsDay[condition]
                 : conditionIconsNight[condition];
-            const minTemp = parseInt(weatherData.forecast.forecastday[0].day.mintemp_f);
-            const maxTemp = parseInt(weatherData.forecast.forecastday[0].day.maxtemp_f);
+            const minTempF = parseInt(weatherData.forecast.forecastday[0].day.mintemp_f);
+            const minTempC = parseInt(weatherData.forecast.forecastday[0].day.mintemp_c);
+            const maxTempF = parseInt(weatherData.forecast.forecastday[0].day.maxtemp_f);
+            const maxTempC = parseInt(weatherData.forecast.forecastday[0].day.maxtemp_c);
             
             return {
                 city,
                 condition,
                 conditionIcon,
-                minTemp,
-                maxTemp,
+                minTempF,
+                minTempC,
+                maxTempF,
+                maxTempC,
             };
         } catch (e) { throw e; }
     }
@@ -190,16 +208,20 @@ class Weather {
             // Extract travel forecast check from data :)
             const city = weatherData.location.name;
             const condition = weatherData.current.condition.text;
-            const temperature = weatherData.current.temp_f;
-            const windDirection = weatherData.current.wind_mph;
-            const windSpeed = weatherData.current.wind_dir;
+            const temperatureF = weatherData.current.temp_f;
+            const temperatureC = weatherData.current.temp_c;
+            const windSpeedMPH = weatherData.current.wind_mph;
+            const windSpeedKPH = weatherData.current.wind_kph;
+            const windDirection = weatherData.current.wind_dir;
             
             return {
                 city,
                 condition,
-                temperature,
+                temperatureF,
+                temperatureC,
+                windSpeedMPH,
+                windSpeedKPH,
                 windDirection,
-                windSpeed,
             };
         } catch (e) { throw e; }
     }

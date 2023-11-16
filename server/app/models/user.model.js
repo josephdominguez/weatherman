@@ -31,7 +31,7 @@ class UserModel {
      * @returns {Promise} A Promise that resolves to the user document.
      */
     static async getUserBySub(sub) {
-        return User.findOne({sub}).exec();
+        return User.findOne({ sub }).exec();
     }
 
     /**

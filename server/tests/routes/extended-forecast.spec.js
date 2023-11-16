@@ -38,14 +38,24 @@ describe('GET /extended-forecast', function() {
                     expect(forecast).to.have.property('conditionIcon');
                 }
             });
-            it('has a minTemp property', function() {
+            it('has a minTempF property', function() {
                 for (const forecast of extendedForecast.forecasts) {
-                    expect(forecast).to.have.property('minTemp');
+                    expect(forecast).to.have.property('minTempF');
                 }
             });
-            it('has a maxTemp property', function() {
+            it('has a minTempC property', function() {
                 for (const forecast of extendedForecast.forecasts) {
-                    expect(forecast).to.have.property('maxTemp');
+                    expect(forecast).to.have.property('minTempC');
+                }
+            });
+            it('has a maxTempF property', function() {
+                for (const forecast of extendedForecast.forecasts) {
+                    expect(forecast).to.have.property('maxTempF');
+                }
+            });
+            it('has a maxTempC property', function() {
+                for (const forecast of extendedForecast.forecasts) {
+                    expect(forecast).to.have.property('maxTempC');
                 }
             });
         });

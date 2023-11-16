@@ -5,17 +5,22 @@ describe('GET /current-conditions', function () {
     const route = '/current-conditions/?zipCode=';
     const object = 'currentConditions';
     const properties = [
-        'temperature',
+        'temperatureF',
+        'temperatureC',
         'condition',
         'conditionIcon',
-        'wind',
+        'windMPH',
+        'windKPH',
         'city',
         'humidity',
-        'dewpoint',
-        'visibility',
-        'pressure',
+        'dewpointF',
+        'dewpointC',
+        'visibilityMiles',
+        'visiblityKilometers',
+        'pressureMB',
+        'pressureIN',
         'heatIndex',
-        'ceiling',
+        'ceiling',        
     ];
     const validQuery = VALID_ZIP;
     const invalidQuery = INVALID_ZIP;

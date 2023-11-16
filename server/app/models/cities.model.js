@@ -119,12 +119,12 @@ function getRandomCities(n) {
     if (topCities.length < n) {
         throw new Error(`Length of cities list is less than ${n}.`);
     }
-    
+
     const randomCities = [];
     while (randomCities.length < n) {
         const index = Math.floor(Math.random() * topCities.length);
         const city = topCities[index];
-        if (!randomCities.includes(city) ) {
+        if (!randomCities.includes(city)) {
             randomCities.push(topCities[index]);
         }
     }
