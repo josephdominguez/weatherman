@@ -15,10 +15,10 @@ describe('GET /current-conditions', function () {
         'humidity',
         'dewpointF',
         'dewpointC',
-        'visibilityMiles',
-        'visiblityKilometers',
-        'pressureMB',
+        'visibilityM',
+        'visiblityKM',
         'pressureIN',
+        'pressureMB',
         'heatIndex',
         'ceiling',        
     ];

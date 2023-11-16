@@ -55,10 +55,10 @@ describe('Weather Model', function () {
             'humidity',
             'dewpointF',
             'dewpointC',
-            'visibilityMiles',
-            'visiblityKilometers',
-            'pressureMB',
+            'visibilityM',
+            'visiblityK',
             'pressureIN',
+            'pressureMB',
             'heatIndex',
             'ceiling',
         ];

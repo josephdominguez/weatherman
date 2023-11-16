@@ -62,8 +62,8 @@ class Weather {
             const humidity = weatherData.current.humidity;
             const dewpointF = weatherData.forecast.forecastday[0].hour[0].dewpoint_f;
             const dewpointC = weatherData.forecast.forecastday[0].hour[0].dewpoint_c;
-            const visibilityMiles = weatherData.current.vis_miles;
-            const visiblityKilometers = weatherData.current.vis_km;
+            const visibilityM = weatherData.current.vis_miles;
+            const visibilityKM = weatherData.current.vis_km;
             const pressureIN = weatherData.current.pressure_in;
             const pressureMB = weatherData.current.pressure_mb;
             const heatIndex = weatherData.forecast.forecastday[0].hour[0].heatindex_f;
@@ -84,8 +84,8 @@ class Weather {
                 humidity,
                 dewpointF,
                 dewpointC,
-                visibilityMiles,
-                visiblityKilometers,
+                visibilityM,
+                visibilityKM,
                 pressureIN,
                 pressureMB,
                 heatIndex,
