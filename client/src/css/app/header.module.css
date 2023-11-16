@@ -44,20 +44,10 @@
     display: block;
 }
 
-.clock {
-    font-size: 42px;
-    text-align: right;
-    margin-top: auto;
-}
-
 @media screen and (max-width: 1280px) {
     /* Adjust font sizes. */
     .location-container {
         font-size: 42px;
-    }
-
-    .clock {
-        font-size: 32px;
     }
 
     /* Shrink images. */
@@ -70,10 +60,6 @@
     /* Adjust font sizes. */
     .location-container {
         font-size: 22px;
-    }
-
-    .clock {
-        font-size: 18px;
     }
 
     /* Shrink images. */
