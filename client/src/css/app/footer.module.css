@@ -4,6 +4,7 @@
     border-top: 2px solid white;
     background-color: var(--blue);
     flex-shrink: 0;
+    padding: 0px 15px;
 }
 
 .footer-container {

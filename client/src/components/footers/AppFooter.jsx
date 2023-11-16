@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useLocation } from '@contexts/LocationContext';
 import { useUserInfo } from '@contexts/UserInfoContext';
 import { API_ENDPOINT } from '@config/config';
+import Cycle from '@components/Utilities/Cycle';
 import styles from '@css/app/footer.module.css';
 
 function AppFooter() {
@@ -16,13 +17,15 @@ function AppFooter() {
     const { userInfo } = useUserInfo();
     const { unitPreference } = userInfo;
 
+    const components = ['HumidityDewpointCard', 'CityNameCard', 'ConditionCard'];
+    const componentProps = [{weatherData, unitPreference}];
+
     const fetchWeatherData = async () => {
         try {
-            // TO-DO: Replace endpoint with footer endpoint.
             const response = await axios.get(
-                `http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`
+                `http://${API_ENDPOINT}/weather-updates?zipCode=${zipCode}`
             );
-            const weatherData = response.data.currentConditions;
+            const weatherData = response.data.weatherUpdates;
             setWeatherData(weatherData);
             setError(null);
             setLoading(false);
@@ -54,17 +57,10 @@ function AppFooter() {
 
     return (
         <footer className={styles['app-footer']}>
-            <div className={styles['footer-container']}>
-                <div className={styles['footer-item']}>
-                    Humidity: {weatherData.humidity}%
-                </div>
-                <div className={styles['footer-item']}>
-                    {unitPreference === 'imperial' &&
-                        `Dewpoint: ${weatherData.dewpointF}\u00b0F`}
-                    {unitPreference === 'metric' &&
-                        `Dewpoint: ${weatherData.dewpointC}\u00b0C`}
-                </div>
-            </div>
+            <Cycle 
+            components={components}
+            componentProps={componentProps}
+            cycleSpeed={5000}/>
         </footer>
     );
 }
