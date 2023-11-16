@@ -11,12 +11,15 @@ function WeatherInfo({ label, value, unit, highlightUnit }) {
 }
 
 // Main card component
-function CurrentConditionsCard({ weatherData }) {
+function CurrentConditionsCard({ weatherData, unitPreference }) {
     return (
         <div className={styles['card-container']}>
             <div className={styles['card-item']}>
                 <div className={styles['temperature']}>
-                    {weatherData.temperature}&deg;F
+                    {unitPreference === 'imperial' &&
+                        `${weatherData.temperatureF}\u00b0F`}
+                    {unitPreference === 'metric' &&
+                        `${weatherData.temperatureC}\u00b0C`}
                 </div>
                 <div className={styles['condition-container']}>
                     <div>{weatherData.condition}</div>
@@ -27,9 +30,18 @@ function CurrentConditionsCard({ weatherData }) {
                     />
                 </div>
                 <div className={styles['wind-container']}>
-                    <WeatherInfo 
-                        label='Wind' 
-                        value={`${weatherData.wind} MPH`} />
+                    {unitPreference === 'imperial' && (
+                        <WeatherInfo
+                            label='Wind'
+                            value={`${weatherData.windMPH} MPH`}
+                        />
+                    )}
+                    {unitPreference === 'metric' && (
+                        <WeatherInfo
+                            label='Wind'
+                            value={`${weatherData.windKPH} KPH`}
+                        />
+                    )}
                 </div>
             </div>
             <div className={styles['card-item']}>
@@ -40,28 +52,58 @@ function CurrentConditionsCard({ weatherData }) {
                     <WeatherInfo
                         label='Humidity'
                         value={weatherData.humidity}
-                        unit='%' />
-                    <WeatherInfo
-                        label='Dewpoint'
-                        value={weatherData.dewpoint}
-                        unit='&deg;F' />
-                    <WeatherInfo 
-                        label='Ceiling' 
-                        value={weatherData.ceiling} 
-                        unit='' />
-                    <WeatherInfo
-                        label='Visibility'
-                        value={weatherData.visibility}
-                        unit='mi.' />
-                    <WeatherInfo
-                        label='Pressure'
-                        value={weatherData.pressure}
-                        unit='mb'
-                        highlightUnit />
+                        unit='%'
+                    />
+                    {unitPreference === 'imperial' && (
+                        <WeatherInfo
+                            label='Dewpoint'
+                            value={weatherData.dewpointF}
+                            unit='&deg;F'
+                        />
+                    )}
+                    {unitPreference === 'metric' && (
+                        <WeatherInfo
+                            label='Dewpoint'
+                            value={weatherData.dewpointC}
+                            unit='&deg;C'
+                        />
+                    )}
+                    <WeatherInfo label='Ceiling' value={weatherData.ceiling} unit='' />
+                    {unitPreference === 'imperial' && (
+                        <WeatherInfo
+                            label='Visibility'
+                            value={weatherData.visibilityM}
+                            unit='mi.'
+                        />
+                    )}
+                    {unitPreference === 'metric' && (
+                        <WeatherInfo
+                            label='Visibility'
+                            value={weatherData.visibilityKM}
+                            unit='km.'
+                        />
+                    )}
+                    {unitPreference === 'imperial' && (
+                        <WeatherInfo
+                            label='Pressure'
+                            value={weatherData.pressureIN}
+                            unit='in'
+                            highlightUnit
+                        />
+                    )}
+                    {unitPreference === 'metric' && (
+                        <WeatherInfo
+                            label='Pressure'
+                            value={weatherData.pressureMB}
+                            unit='mb'
+                            highlightUnit
+                        />
+                    )}
                     <WeatherInfo
                         label='Heat Index'
                         value={weatherData.heatIndex}
-                        unit='' />
+                        unit=''
+                    />
                 </div>
             </div>
         </div>

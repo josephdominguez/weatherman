@@ -9,12 +9,14 @@ function ExtendedForecastComponent() {
     const { zipCode } = location;
 
     const fetchData = async () => {
-        const response = await axios.get(`http://${API_ENDPOINT}/extended-forecast?zipCode=${zipCode}`);
+        const response = await axios.get(
+            `http://${API_ENDPOINT}/extended-forecast?zipCode=${zipCode}`
+        );
         return response.data.extendedForecast;
     };
 
-    const renderData = (data) => {
-        return <ExtendedForecastCard weatherData={data} />;
+    const renderData = (data, unitPreference) => {
+        return <ExtendedForecastCard weatherData={data} unitPreference={unitPreference}/>;
     };
 
     return (

@@ -9,8 +9,8 @@ function TravelForecastComponent() {
         return response.data.travelForecasts;
     };
 
-    const renderData = (data) => {
-        return <TravelForecastCard weatherData={data} />;
+    const renderData = (data, unitPreference) => {
+        return <TravelForecastCard weatherData={data} unitPreference={unitPreference} />;
     };
 
     return (

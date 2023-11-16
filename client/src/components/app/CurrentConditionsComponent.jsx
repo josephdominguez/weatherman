@@ -9,11 +9,15 @@ function CurrentConditionsComponent() {
     const { zipCode } = location;
 
     const fetchData = async () => {
-        const response = await axios.get(`http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`);
+        const response = await axios.get(
+            `http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`
+        );
         return response.data.currentConditions;
     };
-    const renderData = (data) => {
-        return <CurrentConditionsCard weatherData={data} />;
+    const renderData = (data, unitPreference) => {
+        return (
+            <CurrentConditionsCard weatherData={data} unitPreference={unitPreference} />
+        );
     };
 
     return (

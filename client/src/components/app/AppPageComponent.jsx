@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useUserInfo } from '@contexts/UserInfoContext';
 import LoadingComponent from '@components/app/LoadingComponent';
 import ErrorComponent from '@components/app/ErrorComponent';
 
@@ -6,6 +7,9 @@ function AppPageComponent({ fetchFunction, renderData, dependencies }) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    const { userInfo } = useUserInfo();
+    const { unitPreference } = userInfo;
 
     const fetchData = async () => {
         try {
@@ -18,7 +22,7 @@ function AppPageComponent({ fetchFunction, renderData, dependencies }) {
                 const errorMessage = e.response.data;
                 setError(errorMessage);
             } else {
-                setError(e);                
+                setError(e);
             }
             setLoading(false);
         }
@@ -36,7 +40,7 @@ function AppPageComponent({ fetchFunction, renderData, dependencies }) {
         return <ErrorComponent error={error} />;
     }
 
-    return renderData(data);
+    return renderData(data, unitPreference);
 }
 
 export default AppPageComponent;
