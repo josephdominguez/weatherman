@@ -5,9 +5,15 @@ function VisibilityCeilingCard({ weatherData, unitPreference }) {
         <div className={styles['footer-container']}>
             <div className={styles['footer-item']}>
                 {unitPreference === 'imperial' &&
-                    `Visibility: ${weatherData.visibilityM} Ceiling: ${weatherData.ceiling}`}
+                    `Visibility: ${weatherData.visibilityM} mi.`}
                 {unitPreference === 'metric' &&
-                    `Visibility: ${weatherData.visibilityKM} Ceiling: ${weatherData.ceiling}`}
+                    `Visibility: ${weatherData.visibilityKM} km.`}
+            </div>
+            <div className={styles['footer-item']}>
+                {unitPreference === 'imperial' &&
+                    `Ceiling: ${weatherData.ceiling}`}
+                {unitPreference === 'metric' &&
+                    `Ceiling: ${weatherData.ceiling}`}
             </div>
         </div>
     );
