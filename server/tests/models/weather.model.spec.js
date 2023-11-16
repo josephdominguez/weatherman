@@ -63,6 +63,33 @@ describe('Weather Model', function () {
         testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
     });
 
+    describe('getWeatherUpdates', function () {
+        const modelFunction = 'getWeatherUpdates';
+        const object = 'weather updates';
+        const properties = [
+            'temperatureF',
+            'temperatureC',
+            'condition',
+            'windDirection',
+            'windSpeedMPH',
+            'windSpeedKPH',
+            'windChillF',
+            'windChillC',
+            'city',
+            'humidity',
+            'dewpointF',
+            'dewpointC',
+            'visibilityM',
+            'visibilityKM',
+            'pressureIN',
+            'pressureMB',
+            'ceiling',
+            'alert',
+        ];
+        const inputType='ZIP code';
+        testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
+    });
+
     describe('getExtendedForecast', function () {
         const properties = [
             'day',

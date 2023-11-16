@@ -110,7 +110,6 @@ exports.getWeatherUpdates = async (req, res) => {
         const weatherUpdates = await weatherModel.getWeatherUpdates(zipCode);
         res.json({ weatherUpdates });
     } catch (e) {
-        console.log(e);
         res.status(404).json({
             message: 'Invalid ZIP code.',
         });

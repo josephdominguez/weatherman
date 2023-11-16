@@ -2,6 +2,16 @@ const { expect, request, VALID_ZIP, INVALID_ZIP } = require('../config');
 const { testRoute } = require('../test.utils');
 
 describe('Weather Routes', function () {
+    describe('GET /location', function () {
+        const route = '/location/?zipCode=';
+        const object = 'location';
+        const properties = ['city', 'zipCode', 'lat', 'lon'];
+        const inputType = 'ZIP code';
+        const validQuery = VALID_ZIP;
+        const invalidQuery = INVALID_ZIP;
+        testRoute(route, object, properties, inputType, validQuery, invalidQuery);
+    });
+    
     describe('GET /current-conditions', function () {
         const route = '/current-conditions/?zipCode=';
         const object = 'currentConditions';
@@ -39,10 +49,29 @@ describe('Weather Routes', function () {
         testRoute(route, object, properties, inputType, validQuery, invalidQuery);
     });
 
-    describe('GET /location', function () {
-        const route = '/location/?zipCode=';
-        const object = 'location';
-        const properties = ['city', 'zipCode', 'lat', 'lon'];
+    describe('GET /weather-updates', function () {
+        const route = '/weather-updates/?zipCode=';
+        const object = 'weatherUpdates';
+        const properties = [
+            'temperatureF',
+            'temperatureC',
+            'condition',
+            'windDirection',
+            'windSpeedMPH',
+            'windSpeedKPH',
+            'windChillF',
+            'windChillC',
+            'city',
+            'humidity',
+            'dewpointF',
+            'dewpointC',
+            'visibilityM',
+            'visibilityKM',
+            'pressureIN',
+            'pressureMB',
+            'ceiling',
+            'alert',
+        ];
         const inputType = 'ZIP code';
         const validQuery = VALID_ZIP;
         const invalidQuery = INVALID_ZIP;

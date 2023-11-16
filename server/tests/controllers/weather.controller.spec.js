@@ -37,4 +37,11 @@ describe('Weather Controller', function () {
         const inputType = 'call';
         testController(weatherController, controllerFunction, object, inputType);
     });
+
+    describe('getWeatherUpdates', function () {
+        const controllerFunction = 'getWeatherUpdates';
+        const object = 'weatherUpdates';
+        const inputType = 'ZIP code';
+        testController(weatherController, controllerFunction, object, inputType, VALID_ZIP, INVALID_ZIP);
+    });
 });

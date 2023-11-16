@@ -261,8 +261,8 @@ class Weather {
             const ceiling = await this.metarService.getCloudCeiling(lat, lon);
             
             // Extract and format weather alert if it exists.
-            const alert = weatherData.alerts.alert[0]?.desc
-                            .replace(/\n/g, '');
+            const rawAlert = weatherData.alerts.alert[0]?.desc;
+            const alert = rawAlert ? rawAlert.replace(/\n/g, '') : '';
 
             return {
                 temperatureF,
