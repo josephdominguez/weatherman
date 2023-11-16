@@ -56,12 +56,12 @@ class Weather {
             const conditionIcon = weatherData.current.is_day
                 ? conditionIconsDay[condition]
                 : conditionIconsNight[condition];
-            const windMPH = weatherData.current.wind_mph;
-            const windKPH = weatherData.current.wind_kph;
+            const windMPH = parseInt(weatherData.current.wind_mph);
+            const windKPH = parseInt(weatherData.current.wind_kph);
             const city = weatherData.location.name;
             const humidity = weatherData.current.humidity;
-            const dewpointF = weatherData.forecast.forecastday[0].hour[0].dewpoint_f;
-            const dewpointC = weatherData.forecast.forecastday[0].hour[0].dewpoint_c;
+            const dewpointF = parseInt(weatherData.forecast.forecastday[0].hour[0].dewpoint_f);
+            const dewpointC = parseInt(weatherData.forecast.forecastday[0].hour[0].dewpoint_c);
             const visibilityM = weatherData.current.vis_miles;
             const visibilityKM = weatherData.current.vis_km;
             const pressureIN = weatherData.current.pressure_in;
@@ -222,6 +222,69 @@ class Weather {
                 windSpeedMPH,
                 windSpeedKPH,
                 windDirection,
+            };
+        } catch (e) { throw e; }
+    }
+
+    /**
+     * Retrieves weather updates for a given zip code.
+     * @param {string} zipCode - The zip code to fetch weather data for.
+     * @returns {object} An object containing weather updates.
+     */
+    async getWeatherUpdates(zipCode) {
+        const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=yes`;
+        try {
+            const response = await axios.get(url);
+            const weatherData = response.data;
+            
+            // Extract and format current weather conditions.
+            const temperatureF = parseInt(weatherData.current.temp_f);
+            const temperatureC = parseInt(weatherData.current.temp_c);
+            const condition = weatherData.current.condition.text;
+            const windMPH = weatherData.current.wind_mph;
+            const windKPH = weatherData.current.wind_kph;
+            const windSpeedMPH = weatherData.current.wind_mph;
+            const windSpeedKPH = weatherData.current.wind_kph;
+            const windChillF = parseInt(weatherData.forecast.forecastday[0].hour[0].windchill_f);
+            const windChillC = parseInt(weatherData.forecast.forecastday[0].hour[0].windchill_c);
+            const city = weatherData.location.name;
+            const humidity = weatherData.current.humidity;
+            const dewpointF = parseInt(weatherData.forecast.forecastday[0].hour[0].dewpoint_f);
+            const dewpointC = parseInt(weatherData.forecast.forecastday[0].hour[0].dewpoint_c);
+            const visibilityM = weatherData.current.vis_miles;
+            const visibilityKM = weatherData.current.vis_km;
+            const pressureIN = weatherData.current.pressure_in;
+            const pressureMB = weatherData.current.pressure_mb;
+
+            // Use METAR API to obtain cloud ceiling.
+            const lat = weatherData.location.lat;
+            const lon = weatherData.location.lon;
+            const ceiling = await this.metarService.getCloudCeiling(lat, lon);
+            
+            // Extract and format weather alert if it exists.
+            const alert = weatherData.alerts.alert[0]?.desc
+                            .replace(/\n/g, '');
+
+            return {
+                temperatureF,
+                temperatureC,
+                condition,
+                windMPH,
+                windKPH,
+                windSpeedMPH,
+                windSpeedKPH,
+                windChillF,
+                windChillC,
+                city,
+                humidity,
+                dewpointF,
+                dewpointC,
+                visibilityM,
+                visibilityKM,
+                pressureIN,
+                pressureMB,
+                ceiling,
+                alert
             };
         } catch (e) { throw e; }
     }

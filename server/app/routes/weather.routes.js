@@ -1,5 +1,5 @@
 const weatherController = require('../controllers/weather.controller.js');
-const { validateZipCode } = require('./validators.js');
+const { validateZipCode } = require('../validators/validators.js');
 
 module.exports = app => {
     // Retrieve location given a zip code.
@@ -35,6 +35,12 @@ module.exports = app => {
     // Retrieve data for latest observations.
     app.get('/latest-observations', validateZipCode, async (req, res) => {
         try{ await weatherController.getLatestObservations(req, res); }
+        catch(e) { throw e; }
+    });
+
+    // Retrieve data for weather updates (used in app footer).
+    app.get('/weather-updates', validateZipCode, async (req, res) => {
+        try{ await weatherController.getWeatherUpdates(req, res); }
         catch(e) { throw e; }
     });
 }

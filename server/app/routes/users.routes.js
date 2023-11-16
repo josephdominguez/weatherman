@@ -1,6 +1,6 @@
 const userController = require('../controllers/user.controller.js');
 const checkJwt = require('../config/auth.config.js');
-const { validateUserInfo, validateUserSub } = require('./validators.js');
+const { validateUserInfo, validateUserSub } = require('../validators/validators.js');
 
 
 module.exports = app => {
