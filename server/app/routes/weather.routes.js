@@ -1,26 +1,27 @@
 const weatherController = require('../controllers/weather.controller.js');
+const { validateZipCode } = require('./validators.js');
 
 module.exports = app => {
     // Retrieve location given a zip code.
-    app.get('/location', async (req, res) => {
+    app.get('/location', validateZipCode, async (req, res) => {
         try{ await weatherController.getLocation(req, res); }
         catch(e) { throw e; }
     });
     
     // Retrieve data for current conditions.
-    app.get('/current-conditions', async (req, res) => {
+    app.get('/current-conditions', validateZipCode, async (req, res) => {
         try{ await weatherController.getCurrentConditions(req, res); }
         catch(e) { throw e; }
     });
 
     // Retrieve data for extended forecast.
-    app.get('/extended-forecast', async (req, res) => {
+    app.get('/extended-forecast', validateZipCode, async (req, res) => {
         try{ await weatherController.getExtendedForecast(req, res); }
         catch(e) { throw e; }
     });
 
     // Retrieve data for local forecast.
-    app.get('/local-forecast', async (req, res) => {
+    app.get('/local-forecast', validateZipCode, async (req, res) => {
         try { await weatherController.getLocalForecast(req, res); }
         catch(e) { throw e; }
     });
@@ -32,7 +33,7 @@ module.exports = app => {
     });
 
     // Retrieve data for latest observations.
-    app.get('/latest-observations', async (req, res) => {
+    app.get('/latest-observations', validateZipCode, async (req, res) => {
         try{ await weatherController.getLatestObservations(req, res); }
         catch(e) { throw e; }
     });
