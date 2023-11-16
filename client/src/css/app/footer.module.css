@@ -11,3 +11,20 @@
     display: flex;
     justify-content: space-around;
 }
+
+.footer-item {
+    font-size: 40px;
+}
+
+@media (max-width: 1280px) {
+    .footer-item {
+        font-size: 34px;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .footer-item {
+        font-size: 24px;
+    }
+}

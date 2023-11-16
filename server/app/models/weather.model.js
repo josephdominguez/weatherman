@@ -241,8 +241,7 @@ class Weather {
             const temperatureF = parseInt(weatherData.current.temp_f);
             const temperatureC = parseInt(weatherData.current.temp_c);
             const condition = weatherData.current.condition.text;
-            const windMPH = weatherData.current.wind_mph;
-            const windKPH = weatherData.current.wind_kph;
+            const windDirection = weatherData.current.wind_dir;
             const windSpeedMPH = weatherData.current.wind_mph;
             const windSpeedKPH = weatherData.current.wind_kph;
             const windChillF = parseInt(weatherData.forecast.forecastday[0].hour[0].windchill_f);
@@ -269,8 +268,7 @@ class Weather {
                 temperatureF,
                 temperatureC,
                 condition,
-                windMPH,
-                windKPH,
+                windDirection,
                 windSpeedMPH,
                 windSpeedKPH,
                 windChillF,

@@ -17,8 +17,17 @@ function AppFooter() {
     const { userInfo } = useUserInfo();
     const { unitPreference } = userInfo;
 
-    const components = ['HumidityDewpointCard', 'CityNameCard', 'ConditionCard'];
-    const componentProps = [{weatherData, unitPreference}];
+    const components = [
+        'CityNameCard',
+        'ConditionCard',
+        'TempWindChillCard',
+        'HumidityDewpointCard',
+        'BarometricPressureCard',
+        'WindConditionsCard',
+        'VisibilityCeilingCard',
+
+    ];
+    const componentProps = [{ weatherData, unitPreference }];
 
     const fetchWeatherData = async () => {
         try {
@@ -57,10 +66,11 @@ function AppFooter() {
 
     return (
         <footer className={styles['app-footer']}>
-            <Cycle 
-            components={components}
-            componentProps={componentProps}
-            cycleSpeed={5000}/>
+            <Cycle
+                components={components}
+                componentProps={componentProps}
+                cycleSpeed={5000}
+            />
         </footer>
     );
 }
