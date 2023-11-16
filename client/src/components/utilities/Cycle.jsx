@@ -1,8 +1,6 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import LoadingComponent from '@components/app/LoadingComponent';
 
-function Cycle({ components, componentProps=[], cycleSpeed }) {
-    console.log(...componentProps);
+function Cycle({ components, componentProps=[], cycleSpeed, loadingComponent: LoadingComponent}) {
     const [currentComponentIndex, setCurrentComponentIndex] = useState(0);
     const CurrentComponent = components[currentComponentIndex];
     const Component = lazy(() => import(`../app/${CurrentComponent}.jsx`));
@@ -17,7 +15,7 @@ function Cycle({ components, componentProps=[], cycleSpeed }) {
     }, [currentComponentIndex]);
 
     return (
-        <Suspense fallback={<LoadingComponent />}>
+        <Suspense fallback={LoadingComponent ? <LoadingComponent /> : null}>
             {componentProps ? <Component {...componentProps[0]} /> : <Component />}
         </Suspense>
     );

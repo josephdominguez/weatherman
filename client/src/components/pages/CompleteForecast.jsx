@@ -1,5 +1,6 @@
 import Cycle from '@components/utilities/Cycle';
 import AppPage from '@components/pages/AppPage';
+import LoadingComponent from '@components/app/LoadingComponent';
 import { pages } from '@config/config';
 
 // Generates list of components to cycle through. 
@@ -10,7 +11,7 @@ const components = pages.map(page => page.component)
 function CompleteForecast() {
   return (
       <AppPage pageTitle='Forecast'>
-        <Cycle components={components} cycleSpeed={8000} />
+        <Cycle components={components} cycleSpeed={8000} loadingComponent={LoadingComponent} />
       </AppPage>
   );
 }
