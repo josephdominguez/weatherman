@@ -46,7 +46,7 @@ const validateZipCode = validate([
 ]);
 
 const validateUserSub = validate([
-    body('sub').notEmpty().withMessage('Sub cannot be empty.'),
+    query('sub').notEmpty().withMessage('Sub cannot be empty.'),
 ]);
 
 const validateUserInfo = validate([
