@@ -1,4 +1,5 @@
 const { expect, VALID_ZIP, INVALID_ZIP } = require('../config');
+const { testModel } = require('../test.utils');
 const Weather = require('../../app/models/weather.model');
 const weatherAPIKey = process.env.WEATHERAPI_API_KEY;
 const metarAPIKey = process.env.CHECKWX_API_KEY;
@@ -6,43 +7,16 @@ const metarAPIKey = process.env.CHECKWX_API_KEY;
 describe('Weather Model', function () {
     const weatherModel = new Weather(weatherAPIKey, metarAPIKey);
 
-    function test(modelFunction, object, properties) {
-        describe('for valid zip code', function () {
-            let data;
-
-            before(async function () {
-                data = await weatherModel[modelFunction](VALID_ZIP);
-            });
-
-            it(`returns ${object}`, function () {
-                expect(data).to.exist;
-            });
-
-            for (const property of properties) {
-                it(`has a ${property} property`, function () {
-                    expect(data).to.have.property(property);
-                });
-            }
-        });
-
-        describe('for invalid zip code', function () {
-            it('throws error for invalid zip code', async function () {
-                try {
-                    await weatherModel[modelFunction](INVALID_ZIP);
-                } catch (e) {
-                    expect(e).to.be.an.instanceOf(Error);
-                }
-            });
-        });
-    }
-
     describe('getLocation', function () {
+        const modelFunction = 'getLocation';
         const object = 'location';
         const properties = ['city', 'zipCode', 'lat', 'lon'];
-        test('getLocation', object, properties);
+        const inputType='ZIP code';
+        testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
     });
 
     describe('getCurrentConditions', function () {
+        const modelFunction = 'getCurrentConditions';
         const object = 'current conditions';
         const properties = [
             'temperatureF',
@@ -62,16 +36,20 @@ describe('Weather Model', function () {
             'heatIndex',
             'ceiling',
         ];
-        test('getCurrentConditions', object, properties);
+        const inputType='ZIP code';
+        testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
     });
 
     describe('getLocalForecast', function () {
+        const modelFunction = 'getLocalForecast';
         const object = 'local forecast';
         const properties = ['synopsis', 'shortTerm'];
-        test('getLocalForecast', object, properties);
+        const inputType='ZIP code';
+        testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
     });
 
     describe('getTravelForecast', function () {
+        const modelFunction = 'getTravelForecast';
         const object = 'travel forecast';
         const properties = [
             'city',
@@ -81,7 +59,8 @@ describe('Weather Model', function () {
             'maxTempF',
             'minTempC',
         ];
-        test('getTravelForecast', object, properties);
+        const inputType='ZIP code';
+        testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
     });
 
     describe('getExtendedForecast', function () {
