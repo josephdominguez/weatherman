@@ -16,7 +16,7 @@ describe('GET /current-conditions', function () {
         'dewpointF',
         'dewpointC',
         'visibilityM',
-        'visiblityKM',
+        'visibilityKM',
         'pressureIN',
         'pressureMB',
         'heatIndex',

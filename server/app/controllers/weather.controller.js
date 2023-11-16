@@ -15,7 +15,7 @@ exports.getLocation = async (req, res) => {
         const location = await weatherModel.getLocation(zipCode);
         res.json( {location} );
     } catch(e) {
-        res.status(500).json({
+        res.status(404).json({
             message: 'Invalid ZIP code.'
         });``
     }
@@ -28,7 +28,7 @@ exports.getCurrentConditions = async (req, res) => {
         const currentConditions = await weatherModel.getCurrentConditions(zipCode);
         res.json( {currentConditions} );
     } catch (e) {
-        res.status(500).json({
+        res.status(404).json({
             message: 'Invalid ZIP code.'
         });
     }
@@ -41,7 +41,7 @@ exports.getExtendedForecast = async (req, res) => {
         const extendedForecast = await weatherModel.getExtendedForecast(zipCode);
         res.json( {extendedForecast} );
     } catch (e) {
-        res.status(500).json({
+        res.status(404).json({
             message: 'Invalid ZIP code.',
         });
     }
@@ -54,13 +54,12 @@ exports.getLocalForecast = async (req, res) => {
         const localForecast = await weatherModel.getLocalForecast(zipCode);
         res.json( {localForecast} );
     } catch (e) {
-        console.log(e);
         if (e instanceof TypeError) {
             res.status(404).json({
                 message: 'No local forecast found.',
             })
         } else {
-            res.status(500).json({
+            res.status(404).json({
                 message: 'Invalid ZIP code.',
             });
         }
@@ -78,7 +77,7 @@ exports.getTravelForecast = async (req, res) => {
         }
         res.json( {travelForecasts} );
     } catch (e) {
-        res.status(500).json({
+        res.status(404).json({
             message: 'Invalid ZIP code.',
         });
     }
@@ -95,7 +94,7 @@ exports.getLatestObservations = async (req, res) => {
         }
         res.json( {latestObservations} );
     } catch (e) {
-        res.status(500).json({
+        res.status(404).json({
             message: 'Invalid ZIP code.'
         });
     }

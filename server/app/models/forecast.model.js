@@ -19,12 +19,12 @@ exports.extractForecastSection = (section, text) => {
 
 exports.extractSynopsis = (text) => {
     const synopsis = exports.extractForecastSection('SYNOPSIS', text);
-    if (!synopsis) { synopsis = 'No synopsis available.'; }
+    if (!synopsis) { return 'No synopsis available.'; }
     return synopsis;
 };
 
 exports.extractShortTerm = (text) => {
     const shortTerm = exports.extractForecastSection('SHORT TERM', text);
-    if (!shortTerm) { synopsis = 'No short term forecast available.'; }
+    if (!shortTerm) { return 'No short term forecast available.'; }
     return shortTerm;
 };

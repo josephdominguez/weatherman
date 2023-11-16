@@ -56,7 +56,7 @@ describe('Weather Model', function () {
             'dewpointF',
             'dewpointC',
             'visibilityM',
-            'visiblityK',
+            'visibilityKM',
             'pressureIN',
             'pressureMB',
             'heatIndex',

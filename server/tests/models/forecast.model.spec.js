@@ -37,9 +37,9 @@ describe('Forecast Model', function () {
             expect(result).to.equal('This is the SYNOPSIS section text.');
         });
 
-        it('should return an empty string if the SYNOPSIS section is not found', function () {
+        it('should return a message if the SYNOPSIS section is not found', function () {
             const result = forecast.extractSynopsis(otherText);
-            expect(result).to.equal('');
+            expect(result).to.equal('No synopsis available.');
         });
     });
 
@@ -49,9 +49,9 @@ describe('Forecast Model', function () {
             expect(result).to.equal('This is the SHORT TERM section text.');
         });
 
-        it('should return an empty string if the SHORT TERM section is not found', function () {
+        it('should return a message if the SHORT TERM section is not found', function () {
             const result = forecast.extractShortTerm(otherText);
-            expect(result).to.equal('');
+            expect(result).to.equal('No short term forecast available.');
         });
     });
 });
