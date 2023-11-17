@@ -5,7 +5,7 @@ exports.createUser = async (req, res) => {
     try {
         const userData = req.body;
         const user = await UserModel.createUser(userData);
-        res.json(user);
+        res.json({user});
     } catch (e) {
         res.status(500).json({
             error: 'Error creating user',
@@ -21,7 +21,7 @@ exports.getUser = async (req, res) => {
         if (!user) {
             return res.status(404).json({ error: 'User not found' });
         }
-        res.json(user);
+        res.json({user});
     } catch (e) {
         res.status(500).json({
             error: 'Error getting user data.',
@@ -36,7 +36,7 @@ exports.updateUser = async (req, res) => {
         const userData = req.body;
 
         const updatedUser = await UserModel.updateUserBySub(sub, userData);
-        res.json(updatedUser);
+        res.json({updatedUser});
     } catch (e) {
         res.status(500).json({
             error: e.message,
