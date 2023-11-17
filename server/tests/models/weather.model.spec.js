@@ -36,7 +36,7 @@ describe('Weather Model', function () {
             'heatIndex',
             'ceiling',
         ];
-        const inputType='ZIP code';
+        const inputType = 'ZIP code';
         testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
     });
 
@@ -44,7 +44,7 @@ describe('Weather Model', function () {
         const modelFunction = 'getLocalForecast';
         const object = 'local forecast';
         const properties = ['synopsis', 'shortTerm'];
-        const inputType='ZIP code';
+        const inputType = 'ZIP code';
         testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
     });
 
@@ -59,7 +59,7 @@ describe('Weather Model', function () {
             'maxTempF',
             'minTempC',
         ];
-        const inputType='ZIP code';
+        const inputType = 'ZIP code';
         testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
     });
 
@@ -86,7 +86,7 @@ describe('Weather Model', function () {
             'ceiling',
             'alert',
         ];
-        const inputType='ZIP code';
+        const inputType = 'ZIP code';
         testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
     });
 
