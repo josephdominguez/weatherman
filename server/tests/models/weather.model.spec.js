@@ -11,8 +11,12 @@ describe('Weather Model', function () {
         const modelFunction = 'getLocation';
         const object = 'location';
         const properties = ['city', 'zipCode', 'lat', 'lon'];
-        const inputType='ZIP code';
-        testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        };
+        testModel(weatherModel, modelFunction, object, properties, inputConfig);
     });
 
     describe('getCurrentConditions', function () {
@@ -36,16 +40,24 @@ describe('Weather Model', function () {
             'heatIndex',
             'ceiling',
         ];
-        const inputType = 'ZIP code';
-        testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        };
+        testModel(weatherModel, modelFunction, object, properties, inputConfig);
     });
 
     describe('getLocalForecast', function () {
         const modelFunction = 'getLocalForecast';
         const object = 'local forecast';
         const properties = ['synopsis', 'shortTerm'];
-        const inputType = 'ZIP code';
-        testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        };
+        testModel(weatherModel, modelFunction, object, properties, inputConfig);
     });
 
     describe('getTravelForecast', function () {
@@ -59,8 +71,12 @@ describe('Weather Model', function () {
             'maxTempF',
             'minTempC',
         ];
-        const inputType = 'ZIP code';
-        testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        };
+        testModel(weatherModel, modelFunction, object, properties, inputConfig);
     });
 
     describe('getWeatherUpdates', function () {
@@ -86,8 +102,12 @@ describe('Weather Model', function () {
             'ceiling',
             'alert',
         ];
-        const inputType = 'ZIP code';
-        testModel(weatherModel, modelFunction, object, properties, inputType, VALID_ZIP, INVALID_ZIP);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        };
+        testModel(weatherModel, modelFunction, object, properties, inputConfig);
     });
 
     describe('getExtendedForecast', function () {

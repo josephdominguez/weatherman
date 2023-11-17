@@ -6,12 +6,14 @@ describe('Weather Routes', function () {
         const route = '/location/?zipCode=';
         const object = 'location';
         const properties = ['city', 'zipCode', 'lat', 'lon'];
-        const inputType = 'ZIP code';
-        const validQuery = VALID_ZIP;
-        const invalidQuery = INVALID_ZIP;
-        testRoute(route, object, properties, inputType, validQuery, invalidQuery);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        };
+        testRoute(route, object, properties, inputConfig);
     });
-    
+
     describe('GET /current-conditions', function () {
         const route = '/current-conditions/?zipCode=';
         const object = 'currentConditions';
@@ -33,20 +35,24 @@ describe('Weather Routes', function () {
             'heatIndex',
             'ceiling',
         ];
-        const inputType = 'ZIP code';
-        const validQuery = VALID_ZIP;
-        const invalidQuery = INVALID_ZIP;
-        testRoute(route, object, properties, inputType, validQuery, invalidQuery);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        };
+        testRoute(route, object, properties, inputConfig);
     });
 
     describe('GET /local-forecast', function () {
         const route = '/local-forecast/?zipCode=';
         const object = 'localForecast';
         const properties = ['synopsis', 'shortTerm'];
-        const inputType = 'ZIP code';
-        const validQuery = VALID_ZIP;
-        const invalidQuery = INVALID_ZIP;
-        testRoute(route, object, properties, inputType, validQuery, invalidQuery);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        };
+        testRoute(route, object, properties, inputConfig);
     });
 
     describe('GET /weather-updates', function () {
@@ -72,10 +78,12 @@ describe('Weather Routes', function () {
             'ceiling',
             'alert',
         ];
-        const inputType = 'ZIP code';
-        const validQuery = VALID_ZIP;
-        const invalidQuery = INVALID_ZIP;
-        testRoute(route, object, properties, inputType, validQuery, invalidQuery);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        };
+        testRoute(route, object, properties, inputConfig);
     });
 
     describe('GET /extended-forecast', function () {

@@ -6,42 +6,64 @@ describe('Weather Controller', function () {
     describe('getLocation', function () {
         const controllerFunction = 'getLocation';
         const object = 'location';
-        const inputType = 'ZIP code';
-        testController(weatherController, controllerFunction, object, inputType, VALID_ZIP, INVALID_ZIP);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        }
+        testController(weatherController, controllerFunction, object, inputConfig);
     });
 
     describe('getCurrentConditions', function () {
         const controllerFunction = 'getCurrentConditions';
         const object = 'currentConditions';
-        const inputType = 'ZIP code';
-        testController(weatherController, controllerFunction, object, inputType, VALID_ZIP, INVALID_ZIP);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        }
+        testController(weatherController, controllerFunction, object, inputConfig);
     });
 
     describe('getExtendedForecast', function () {
         const controllerFunction = 'getExtendedForecast';
         const object = 'extendedForecast';
-        const inputType = 'ZIP code';
-        testController(weatherController, controllerFunction, object, inputType, VALID_ZIP, INVALID_ZIP);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        }
+        testController(weatherController, controllerFunction, object, inputConfig);
     });
 
     describe('getLocalForecast', function () {
         const controllerFunction = 'getLocalForecast';
         const object = 'localForecast';
-        const inputType = 'ZIP code';
-        testController(weatherController, controllerFunction, object, inputType, VALID_ZIP, INVALID_ZIP);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        }
+        testController(weatherController, controllerFunction, object, inputConfig);
     });
 
     describe('getTravelForecast', function () {
         const controllerFunction = 'getTravelForecast';
         const object = 'travelForecasts';
-        const inputType = 'call';
-        testController(weatherController, controllerFunction, object, inputType);
+        const inputConfig = {
+            type: 'call',
+        }
+        testController(weatherController, controllerFunction, object, inputConfig);
     });
 
     describe('getWeatherUpdates', function () {
         const controllerFunction = 'getWeatherUpdates';
         const object = 'weatherUpdates';
-        const inputType = 'ZIP code';
-        testController(weatherController, controllerFunction, object, inputType, VALID_ZIP, INVALID_ZIP);
+        const inputConfig = {
+            type: 'ZIP code',
+            validInput: VALID_ZIP,
+            invalidInput: INVALID_ZIP,
+        }
+        testController(weatherController, controllerFunction, object, inputConfig);
     });
 });

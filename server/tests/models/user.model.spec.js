@@ -10,71 +10,47 @@ describe('User Model', function () {
         const modelFunction = 'createUser';
         const object = 'user';
         const properties = userSchema;
-        const inputType = 'user';
-        const validInput = VALID_USER;
-        const invalidInput = INVALID_USER;
-        testModel(
-            userModel,
-            modelFunction,
-            object,
-            properties,
-            inputType,
-            validInput,
-            invalidInput
-        );
+        const inputConfig = {
+            inputType: 'user',
+            validInput: VALID_USER,
+            invalidInput: INVALID_USER,
+        };
+        testModel(userModel, modelFunction, object, properties, inputConfig);
     });
 
     describe('getUserBySub', function () {
         const modelFunction = 'getUserBySub';
         const object = 'user';
         const properties = userSchema;
-        const inputType = 'sub';
-        const validInput = VALID_SUB;
-        const invalidInput = INVALID_SUB;
-        testModel(
-            userModel,
-            modelFunction,
-            object,
-            properties,
-            inputType,
-            validInput,
-            invalidInput
-        );
+        const inputConfig = {
+            inputType: 'sub',
+            validInput: VALID_SUB,
+            invalidInput: INVALID_SUB,
+        };
+        testModel(userModel, modelFunction, object, properties, inputConfig);
     });
 
     describe('updateUserBySub()', function () {
         const modelFunction = 'updateUserBySub';
         const object = 'updatedUser';
         const properties = userSchema;
-        const inputType = 'user';
-        const validInput = [VALID_SUB, VALID_USER];
-        const invalidInput = [INVALID_SUB, VALID_USER];
-        testModel(
-            userModel,
-            modelFunction,
-            object,
-            properties,
-            inputType,
-            validInput,
-            invalidInput
-        );
+        const inputConfig = {
+            inputType: 'user',
+            validInput: [VALID_SUB, VALID_USER],
+            invalidInput: [INVALID_SUB, VALID_USER],
+        };
+        testModel(userModel, modelFunction, object, properties, inputConfig);
     });
 
     describe('deleteUserBySub', function () {
         const modelFunction = 'deleteUserBySub';
         const object = 'deletedUser';
         const properties = userSchema;
-        const inputType = 'sub';
-        const validInput = VALID_SUB;
-        const invalidInput = INVALID_SUB;
-        testModel(
-            userModel,
-            modelFunction,
-            object,
-            properties,
-            inputType,
-            validInput,
-            invalidInput
-        );
+        const inputConfig = {
+            inputType: 'sub',
+            validInput: VALID_SUB,
+            invalidInput: INVALID_SUB,
+        };
+        testModel(userModel, modelFunction, object, properties, inputConfig);
     });
 });
