@@ -16,13 +16,32 @@ const User = mongoose.model('User', userSchema);
  */
 class UserModel {
     /**
+     * Validate user data against the user schema.
+     * @param {Object} userData - The user data to validate.
+     * @returns {string|null} An error message if validation fails, or null if validation passes.
+     */
+    validateUserData(userData) {
+        const userValidation = new User(userData);
+        const validationError = userValidation.validateSync();
+        if (validationError) {
+            return validationError.message;
+        }
+        return null; // Validation passed
+    }
+
+    /**
      * Create a new user.
      * @param {Object} userData - The user data to create a new user.
      * @returns {Promise} A Promise that resolves to the created user document.
      */
-    static async createUser(userData) {
-        const newUser = new User(userData);
-        return newUser.save();
+    async createUser(userData) {
+        try {
+            await this.validateUserData(userData);
+            const newUser = new User(userData);
+            return newUser.save();
+        } catch (e) {
+            throw new Error(`Error creating user: ${e.message}`);
+        }
     }
 
     /**
@@ -30,7 +49,7 @@ class UserModel {
      * @param {string} sub - The Auth0 user identifier.
      * @returns {Promise} A Promise that resolves to the user document.
      */
-    static async getUserBySub(sub) {
+    async getUserBySub(sub) {
         return User.findOne({ sub }).exec();
     }
 
@@ -40,7 +59,7 @@ class UserModel {
      * @param {Object} updatedData - The updated user data.
      * @returns {Promise} A Promise that resolves to the updated user document.
      */
-    static async updateUserBySub(sub, updatedData) {
+    async updateUserBySub(sub, updatedData) {
         try {
             const existingUser = await this.getUserBySub(sub);
             if (!existingUser) {
@@ -53,6 +72,23 @@ class UserModel {
             // Save and return the updated user data
             const updatedUser = await existingUser.save();
             return updatedUser;
+        } catch (e) {
+            throw new Error(`${e.message}`);
+        }
+    }
+
+    /**
+     * Delete a user by their sub.
+     * @param {string} sub - The Auth0 user identifier.
+     * @returns {Promise} A Promise that resolves to the deleted user document.
+     */
+    async deleteUserBySub(sub) {
+        try {
+            const deletedUser = await User.findOneAndDelete({sub}).exec();
+            if (!deletedUser) {
+                throw new Error('User not found');
+            }
+            return deletedUser;
         } catch (e) {
             throw new Error(`${e.message}`);
         }
