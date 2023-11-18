@@ -7,7 +7,7 @@ describe('Weather Controller', function () {
         const controllerFunction = 'getLocation';
         const object = 'location';
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         }
@@ -18,7 +18,7 @@ describe('Weather Controller', function () {
         const controllerFunction = 'getCurrentConditions';
         const object = 'currentConditions';
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         }
@@ -29,7 +29,7 @@ describe('Weather Controller', function () {
         const controllerFunction = 'getExtendedForecast';
         const object = 'extendedForecast';
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         }
@@ -40,7 +40,7 @@ describe('Weather Controller', function () {
         const controllerFunction = 'getLocalForecast';
         const object = 'localForecast';
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         }
@@ -51,7 +51,7 @@ describe('Weather Controller', function () {
         const controllerFunction = 'getTravelForecast';
         const object = 'travelForecasts';
         const inputConfig = {
-            type: 'call',
+            inputType: 'call',
         }
         testController(weatherController, controllerFunction, object, inputConfig);
     });
@@ -60,7 +60,7 @@ describe('Weather Controller', function () {
         const controllerFunction = 'getWeatherUpdates';
         const object = 'weatherUpdates';
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         }

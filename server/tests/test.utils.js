@@ -7,15 +7,15 @@ const { expect, request, sinon } = require('./config');
  * @param {string} object - The expected object in the response.
  * @param {string[]} properties - An array of properties to check within the object.
  * @param {Object} [inputConfig={}] - The input configuration object.
- * @param {string} [inputConfig.type=''] - The type of input being tested (e.g., 'ZIP code').
+ * @param {string} [inputConfig.inputType=''] - The type of input being tested (e.g., 'ZIP code').
  * @param {string} [inputConfig.validInput=''] - The valid input to use in the request (can be an empty string for no query).
  * @param {string} [inputConfig.invalidInput=''] - The invalid input to use in the request (can be an empty string for no query).
  * @param {Function[]} [additionalTests=[]] - Additional tests to run.
  */
 function testRoute(route, object, properties, inputConfig = {}, additionalTests = []) {
-    const { type = '', validInput = '', invalidInput = '' } = inputConfig;
+    const { inputType = '', validInput = '', invalidInput = '' } = inputConfig;
 
-    describe(`for valid ${type}`, function () {
+    describe(`for valid ${inputType}`, function () {
         let response;
         let data;
 
@@ -33,7 +33,7 @@ function testRoute(route, object, properties, inputConfig = {}, additionalTests 
             expect(response.body).to.have.property(object);
         });
 
-        describe(`returns ${object} object`, function () {
+        describe(`each ${object} object`, function () {
             for (const property of properties) {
                 it(`has a ${property} property`, function () {
                     expect(data).to.have.property(property);
@@ -43,7 +43,7 @@ function testRoute(route, object, properties, inputConfig = {}, additionalTests 
     });
 
     if (invalidInput) {
-        describe(`for invalid ${type}`, function () {
+        describe(`for invalid ${inputType}`, function () {
             let response;
 
             before(async function () {
@@ -67,13 +67,13 @@ function testRoute(route, object, properties, inputConfig = {}, additionalTests 
  * @param {string} controllerFunction - The name of the controller function to be tested.
  * @param {string} object - The expected object in the response.
  * @param {Object} [inputConfig={}] - The input configuration object.
- * @param {string} [inputConfig.type=''] - The type of input being tested (e.g., 'zip code', 'parameter', etc.).
+ * @param {string} [inputConfig.inputType=''] - The type of input being tested (e.g., 'zip code', 'parameter', etc.).
  * @param {string} [inputConfig.validInput=''] - The valid input to be used in the controller function.
  * @param {string} [inputConfig.invalidInput=''] - The invalid input to be used in the controller function.
  * @param {Function[]} [additionalTests=[]] - Additional tests to run.
  */
 function testController(controller, controllerFunction, object, inputConfig = {}, additionalTests = []) {
-    const { type = '', validInput = '', invalidInput = '' } = inputConfig;
+    const { inputType = '', validInput = '', invalidInput = '' } = inputConfig;
 
     let req, res, json, sandbox;
     sandbox = sinon.createSandbox();
@@ -84,7 +84,7 @@ function testController(controller, controllerFunction, object, inputConfig = {}
         status: sandbox.stub().returnsThis(),
     };
 
-    describe(`for valid ${type}`, function () {
+    describe(`for valid ${inputType}`, function () {
         before(async function () {
             req = { query: { zipCode: validInput } };
             await controller[controllerFunction](req, res);
@@ -96,7 +96,7 @@ function testController(controller, controllerFunction, object, inputConfig = {}
     });
 
     if (invalidInput) {
-        describe(`for invalid ${type}`, function () {
+        describe(`for invalid ${inputType}`, function () {
             before(async function () {
                 req = { query: { zipCode: invalidInput } };
                 try {
@@ -128,15 +128,15 @@ function testController(controller, controllerFunction, object, inputConfig = {}
  * @param {string} object - The expected object in the response.
  * @param {string[]} properties - An array of properties to check within the object.
  * @param {Object} [inputConfig={}] - The input configuration object.
- * @param {string} inputConfig.type - The type of input being tested (e.g., 'zip code', 'parameter', etc.).
+ * @param {string} inputConfig.inputType - The type of input being tested (e.g., 'zip code', 'parameter', etc.).
  * @param {string} inputConfig.validInput - The valid input to be used in the model function.
  * @param {string} inputConfig.invalidInput - The invalid input to be used in the model function.
  * @param {Function[]} [additionalTests=[]] - Additional tests to run.
  */
 function testModel(model, modelFunction, object, properties, inputConfig = {}, additionalTests = []) {
-    const { type = '', validInput = '', invalidInput = '' } = inputConfig;
+    const { inputType = '', validInput = '', invalidInput = '' } = inputConfig;
 
-    describe(`for valid ${type}`, function () {
+    describe(`for valid ${inputType}`, function () {
         let data;
 
         before(async function () {
@@ -147,16 +147,18 @@ function testModel(model, modelFunction, object, properties, inputConfig = {}, a
             expect(data).to.exist;
         });
 
-        for (const property of properties) {
-            it(`has a ${property} property`, function () {
-                expect(data).to.have.property(property);
-            });
-        }
+        describe(`each ${object} object`, function () {
+            for (const property of properties) {
+                it(`has a ${property} property`, function () {
+                    expect(data).to.have.property(property);
+                });
+            }
+        });
     });
 
     if (invalidInput) {
-        describe(`for invalid ${type}`, function () {
-            it(`throws error for ${type}`, async function () {
+        describe(`for invalid ${inputType}`, function () {
+            it(`throws error for ${inputType}`, async function () {
                 try {
                     await model[modelFunction](invalidInput);
                 } catch (e) {

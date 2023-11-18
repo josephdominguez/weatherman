@@ -7,7 +7,7 @@ describe('Weather Routes', function () {
         const object = 'location';
         const properties = ['city', 'zipCode', 'lat', 'lon'];
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         };
@@ -36,7 +36,7 @@ describe('Weather Routes', function () {
             'ceiling',
         ];
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         };
@@ -48,7 +48,7 @@ describe('Weather Routes', function () {
         const object = 'localForecast';
         const properties = ['synopsis', 'shortTerm'];
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         };
@@ -79,7 +79,7 @@ describe('Weather Routes', function () {
             'alert',
         ];
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         };

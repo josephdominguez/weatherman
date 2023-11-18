@@ -12,7 +12,7 @@ describe('Weather Model', function () {
         const object = 'location';
         const properties = ['city', 'zipCode', 'lat', 'lon'];
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         };
@@ -41,7 +41,7 @@ describe('Weather Model', function () {
             'ceiling',
         ];
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         };
@@ -53,7 +53,7 @@ describe('Weather Model', function () {
         const object = 'local forecast';
         const properties = ['synopsis', 'shortTerm'];
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         };
@@ -72,7 +72,7 @@ describe('Weather Model', function () {
             'minTempC',
         ];
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         };
@@ -103,7 +103,7 @@ describe('Weather Model', function () {
             'alert',
         ];
         const inputConfig = {
-            type: 'ZIP code',
+            inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
         };
