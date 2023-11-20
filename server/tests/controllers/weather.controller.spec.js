@@ -10,7 +10,7 @@ describe('Weather Controller', function () {
             inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
-        }
+        };
         testController(weatherController, controllerFunction, object, inputConfig);
     });
 
@@ -21,7 +21,7 @@ describe('Weather Controller', function () {
             inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
-        }
+        };
         testController(weatherController, controllerFunction, object, inputConfig);
     });
 
@@ -32,7 +32,7 @@ describe('Weather Controller', function () {
             inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
-        }
+        };
         testController(weatherController, controllerFunction, object, inputConfig);
     });
 
@@ -43,7 +43,7 @@ describe('Weather Controller', function () {
             inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
-        }
+        };
         testController(weatherController, controllerFunction, object, inputConfig);
     });
 
@@ -52,7 +52,7 @@ describe('Weather Controller', function () {
         const object = 'travelForecasts';
         const inputConfig = {
             inputType: 'call',
-        }
+        };
         testController(weatherController, controllerFunction, object, inputConfig);
     });
 
@@ -63,7 +63,7 @@ describe('Weather Controller', function () {
             inputType: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
-        }
+        };
         testController(weatherController, controllerFunction, object, inputConfig);
     });
 });

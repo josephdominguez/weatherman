@@ -10,7 +10,7 @@ describe('User Controller', function () {
             type: 'ZIP code',
             validInput: VALID_ZIP,
             invalidInput: INVALID_ZIP,
-        }
+        };
         testController(userController, controllerFunction, object, inputConfig);
     });
 });
