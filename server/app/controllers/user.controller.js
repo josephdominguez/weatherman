@@ -1,4 +1,5 @@
-const UserModel = require('../models/user.model.js');
+const User = require('../models/user.model');
+const UserModel = new User();
 
 // Create a new user.
 exports.createUser = async (req, res) => {
@@ -23,6 +24,7 @@ exports.getUser = async (req, res) => {
         }
         res.json({user});
     } catch (e) {
+        console.log(e);
         res.status(500).json({
             error: 'Error getting user data.',
         });
@@ -35,8 +37,8 @@ exports.updateUser = async (req, res) => {
         const { sub } = req.body;
         const userData = req.body;
 
-        const updatedUser = await UserModel.updateUserBySub(sub, userData);
-        res.json({updatedUser});
+        const user = await UserModel.updateUserBySub(sub, userData);
+        res.json({user});
     } catch (e) {
         res.status(500).json({
             error: e.message,
