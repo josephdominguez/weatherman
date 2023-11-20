@@ -11,7 +11,7 @@ function UserAPI() {
 
     // Extracts user info from response body.
     const getUserInfo = (response) => {
-        const { sub, email, savedLocations, unitPreference } = response.data;
+        const { sub, email, savedLocations, unitPreference } = response.data.user;
         const userInfo = { sub, email, savedLocations, unitPreference };
         return userInfo;
     };
@@ -48,8 +48,6 @@ function UserAPI() {
     const getUserFromAPI = async (sub) => {
         try {
             const accessToken = await getAccessTokenSilently();
-            console.log(accessToken);
-            console.log(sub);
             const response = await axios.get(
                 `http://${API_ENDPOINT}/users?sub=${sub}`,
                 {
