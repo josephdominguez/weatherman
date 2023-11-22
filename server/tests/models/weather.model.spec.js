@@ -1,3 +1,4 @@
+const timezoneMock = require('timezone-mock');
 const { expect, VALID_ZIP, INVALID_ZIP } = require('../config');
 const { testModel } = require('../test.utils');
 const Weather = require('../../app/models/weather.model');
@@ -161,10 +162,16 @@ describe('Weather Model', function () {
     describe('(Private functions)', function () {
         describe('_getDayOfWeekAbbreviation', function () {
             it('returns abbreviated day of week given date object', function () {
+                // Sets a mock timezone for test
+                timezoneMock.register('US/Eastern'); 
+
                 const knownDate = new Date('2012-12-21');
                 const abbreviatedDay =
                     weatherModel._getDayOfWeekAbbreviation(knownDate);
                 expect(abbreviatedDay).to.equal('Thu');
+
+                // Cleans up mock timezone
+                timezoneMock.unregister();
             });
         });
     });
