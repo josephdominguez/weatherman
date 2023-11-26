@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useLocation } from '@contexts/LocationContext';
 import { useUserInfo } from '@contexts/UserInfoContext';
 import { API_ENDPOINT } from '@config/config';
-import Cycle from '@components/Utilities/Cycle';
+import Cycle from '@components/utilities/Cycle';
 import styles from '@css/app/footer.module.css';
 
 function AppFooter() {
