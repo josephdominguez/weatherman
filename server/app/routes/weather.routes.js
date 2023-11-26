@@ -33,7 +33,7 @@ module.exports = app => {
     });
 
     // Retrieve data for latest observations.
-    app.get('/latest-observations', validateZipCode, async (req, res) => {
+    app.get('/latest-observations', async (req, res) => {
         try{ await weatherController.getLatestObservations(req, res); }
         catch(e) { throw e; }
     });

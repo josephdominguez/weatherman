@@ -34,6 +34,11 @@ export const pages = [
         title: "Travel Forecast",
         path: "/TravelForecast",
     },
+    {
+        component: "LatestObservationsComponent",
+        title: "Latest Observations",
+        path: "/LatestObservations",
+    },
 ];
 
 /**

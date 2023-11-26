@@ -166,8 +166,8 @@ class Weather {
     }
 
     /**
-     * Retrieves a travel forecast for a given zip codes.
-     * @param {string} zipCode - The zip code to fetch the travel forecast for.
+     * Retrieves a travel forecast for a given zip code.
+     * @param {string} zipCode - The zip code to fetch the travel forecast.
      * @returns {object} An object containing the travel forecast.
      */
     async getTravelForecast(zipCode) {
@@ -199,13 +199,18 @@ class Weather {
         } catch (e) { throw e; }
     }
 
+    /**
+     * Retrieves a observations for a given zip code.
+     * @param {string} zipCode - The zip code to fetch the forecast.
+     * @returns {object} An object containing the latest observations.
+     */
     async getLatestObservations(zipCode) {
         const url = `${WEATHER_API_ENDPOINT}/forecast.json?key=${this.weatherAPIKey}&q=${zipCode}&days=1&aqi=no&alerts=no`;
         try {
             const response = await axios.get(url);
             const weatherData = response.data;
             
-            // Extract travel forecast check from data :)
+            // Extract forecast check from data :)
             const city = weatherData.location.name;
             const condition = weatherData.current.condition.text;
             const temperatureF = weatherData.current.temp_f;
