@@ -10,7 +10,9 @@ module.exports = (app) => {
         (req, res, next) => verifySubInBody(req, res, next),
         async (req, res) => {
             try { await userController.createUser(req, res); } 
-            catch (e) { throw e }
+            catch (e) {
+                console.log(e);
+                 throw e }
         }
     );
 

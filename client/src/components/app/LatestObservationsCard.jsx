@@ -2,12 +2,11 @@ import styles from '@css/latest_observations.module.css';
 
 function LatestObservationsItem({ forecast }) {
     return (
-        <div>
+        <div className={styles['latest-observations']}>
             <div>{forecast.city}</div>
             <div>{forecast.temperatureF}</div>
             <div>{forecast.condition}</div>
-            <div>{forecast.windDirection}</div>
-            <div>{forecast.windSpeedMPH}</div>
+            <div>{forecast.windDirection}{' '}{forecast.windSpeedMPH}</div>
         </div>
     );
 }
@@ -26,7 +25,7 @@ function LatestObservationsCard({ weatherData, unitPreference }) {
                         <div>WEATHER</div>
                         <div>WIND</div>
                     </div>
-                    <div className={styles['forecast']}>
+                    <div className={styles['latest-observations-container']}>
                         {weatherData.map((forecast, index) => (
                             <LatestObservationsItem
                                 forecast={forecast}
