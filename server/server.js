@@ -12,7 +12,7 @@ require('./app/models/db.model.js');
 // Defines port for Express server.
 const PORT = process.env.PORT || 8080;
 // Listen on all available network interfaces.
-const HOST = '0.0.0.0';
+const HOST = '127.0.0.1';
 
 // Configures CORS options, allowing all origins for test purposes.
 const corsOptions = {
