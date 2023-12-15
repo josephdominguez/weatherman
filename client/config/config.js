@@ -1,5 +1,5 @@
 // Defines the API endpoint for making requests.
-export const API_ENDPOINT = "localhost:8080";
+export const API_ENDPOINT = "localhost:3000";
 
 /**
  * `pages` is an array representing each page in the application.
