@@ -10,7 +10,7 @@ function ExtendedForecastComponent() {
 
     const fetchData = async () => {
         const response = await axios.get(
-            `http://${API_ENDPOINT}/extended-forecast?zipCode=${zipCode}`
+            `${API_ENDPOINT}/extended-forecast?zipCode=${zipCode}`
         );
         return response.data.extendedForecast;
     };

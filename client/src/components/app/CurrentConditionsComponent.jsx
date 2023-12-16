@@ -10,7 +10,7 @@ function CurrentConditionsComponent() {
 
     const fetchData = async () => {
         const response = await axios.get(
-            `http://${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`
+            `${API_ENDPOINT}/current-conditions?zipCode=${zipCode}`
         );
         return response.data.currentConditions;
     };

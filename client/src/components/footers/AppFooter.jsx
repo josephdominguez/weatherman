@@ -32,7 +32,7 @@ function AppFooter() {
     const fetchWeatherData = async () => {
         try {
             const response = await axios.get(
-                `http://${API_ENDPOINT}/weather-updates?zipCode=${zipCode}`
+                `${API_ENDPOINT}/weather-updates?zipCode=${zipCode}`
             );
             const weatherData = response.data.weatherUpdates;
             setWeatherData(weatherData);

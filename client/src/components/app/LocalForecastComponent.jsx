@@ -9,7 +9,7 @@ function LocalForecastComponent() {
     const { zipCode } = location;
 
     const fetchData = async () => {
-        const response = await axios.get(`http://${API_ENDPOINT}/local-forecast?zipCode=${zipCode}`);
+        const response = await axios.get(`${API_ENDPOINT}/local-forecast?zipCode=${zipCode}`);
         return response.data.localForecast;
     };
 
