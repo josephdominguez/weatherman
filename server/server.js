@@ -11,8 +11,6 @@ require('./app/models/db.model.js');
 
 // Defines port for Express server.
 const PORT = process.env.PORT || 8080;
-// Listen on all available network interfaces.
-const HOST = '0.0.0.0';
 
 // Configures CORS options, allowing all origins for test purposes.
 const corsOptions = {
@@ -35,8 +33,8 @@ app.get('/', (req, res) => {
 });
 
 // Starts server.
-const server = app.listen(PORT, HOST, () => {
-    console.log(`Server is running on port ${HOST}:${PORT}.`);
+const server = app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
 });
 
 module.exports = server;
