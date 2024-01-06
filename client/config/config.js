@@ -1,5 +1,5 @@
 // Defines the API endpoint for making requests.
-export const API_ENDPOINT = "https://theweatherman.cc/api";
+export const API_ENDPOINT = import.meta.env.VITE_API_SERVER_URL;
 
 /**
  * `pages` is an array representing each page in the application.
