@@ -19,6 +19,10 @@
     align-items: center;
 }
 
+.loading-card-container {
+    margin: auto;
+}
+
 @media screen and (max-width: 1280px) {
     /* Stack items vertically for mobile. */
     .card-container {
