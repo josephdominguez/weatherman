@@ -32,12 +32,25 @@
 }
 
 .tabButton {
+    background-color: #333;
+    color: #fff;
     border-radius: 0px !important;
 }
 
 .tabButton.activeTab {
-    background-color: #333;
-    color: #fff;
+    background-color: var(--magenta);
+    border-color: var(--orange);
+    transition: none;
+}
+
+.tabButton.activeTab:hover { 
+    cursor: default;
+    border-color: var(--orange);
+}
+
+.tabButton.activeTab:focus {
+    outline: none;
+    box-shadow: none;
 }
 
 .menu {

@@ -32,13 +32,19 @@
     top: 0;
 }
 
+.auth-container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}
+
 .user-button {
     transition: color 0.3s;
     color: var(--bright-blue);
 }
 
 .user-button:hover {
-    color:  #0077FF;
+    color:  var(--bright-blue-toggle);
 }
 
 .logo-image {
