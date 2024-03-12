@@ -25,7 +25,7 @@ function UserAPI() {
         try {
             const accessToken = await getAccessTokenSilently();
             const response = await axios.post(
-                `http://${API_ENDPOINT}/users`,
+                `${API_ENDPOINT}/users`,
                 {
                     sub: newUserInfo.sub,
                     email: newUserInfo.email,
@@ -49,7 +49,7 @@ function UserAPI() {
         try {
             const accessToken = await getAccessTokenSilently();
             const response = await axios.get(
-                `http://${API_ENDPOINT}/users?sub=${sub}`,
+                `${API_ENDPOINT}/users?sub=${sub}`,
                 {
                     headers: {
                         Authorization: `Bearer ${accessToken}`,
@@ -67,7 +67,7 @@ function UserAPI() {
         try {
             const accessToken = await getAccessTokenSilently();
             const response = await axios.put(
-                `http://${API_ENDPOINT}/users`,
+                `${API_ENDPOINT}/users`,
                 {
                     sub: updatedUserInfo.sub,
                     email: updatedUserInfo.email,

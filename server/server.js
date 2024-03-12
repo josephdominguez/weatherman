@@ -27,6 +27,25 @@ app.use(cors(corsOptions));
 require('./app/routes/weather.routes.js')(app);
 require('./app/routes/users.routes')(app);
 
+app.use((req, res, next) => {
+    try {
+      const token = req.headers.authorization.split(' ')[1];
+
+      // Decode the token to inspect its claims, including 'aud'
+      const decodedToken = jwt.verify(token, 'your-secret-key');
+      
+      // Log the 'aud' claim
+      console.log('Token Audience (aud):', decodedToken.aud);
+  
+      // Continue with the request handling
+      next();
+    } catch (error) {
+      // Handle token verification errors
+      console.error('Token Verification Error:', error.message);
+      res.status(401).json({ error: 'Unauthorized' });
+    }
+});
+
 // Creates default route.
 app.get('/', (req, res) => {
     res.json({ message: 'Server is running.' });

@@ -21,7 +21,7 @@ export function LocationProvider({ children }) {
     const updateLocationByZipCode = async (zipCode, onSuccessCallback) => {
         try {
             const response = await axios.get(
-                `http://${API_ENDPOINT}/location?zipCode=${zipCode}`
+                `${API_ENDPOINT}/location?zipCode=${zipCode}`
             );
             const newLocation = response.data.location;
             updateLocation(newLocation);
