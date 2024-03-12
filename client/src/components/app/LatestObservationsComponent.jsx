@@ -5,7 +5,7 @@ import { API_ENDPOINT } from '@config/config';
 
 function LatestObservationsComponent() {
     const fetchData = async () => {
-        const response = await axios.get(`http://${API_ENDPOINT}/latest-observations`);
+        const response = await axios.get(`${API_ENDPOINT}/latest-observations`);
         return response.data.latestObservations;
     };
 
