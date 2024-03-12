@@ -216,6 +216,11 @@ class Weather {
             // Map the condition to its abbreviation, if available
             const fullCondition = weatherData.current.condition.text;
             const condition = abbreviatedConditions[fullCondition] || fullCondition; 
+
+            const temperatureF = parseInt(weatherData.current.temp_f);
+            const temperatureC = parseInt(weatherData.current.temp_c);
+            const windSpeedMPH = parseInt(weatherData.current.wind_mph);
+            const windSpeedKPH = parseInt(weatherData.current.wind_kph);
             const windDirection = weatherData.current.wind_dir;
             
             return {
