@@ -4,6 +4,7 @@ const MetarService = require('../services/metar.service.js');
 const NWSService = require('../services/nws.service.js');
 const forecastModel = require('./forecast.model.js');
 const { conditionIconsDay, conditionIconsNight } = require('./condition-icons.model.js');
+const { abbreviatedConditions } = require('./abbreviatedConditions.js');
 
 // Sets endpoints for APIs.
 const WEATHER_API_ENDPOINT = 'https://api.weatherapi.com/v1';
@@ -212,11 +213,9 @@ class Weather {
             
             // Extract forecast check from data :)
             const city = weatherData.location.name;
-            const condition = weatherData.current.condition.text;
-            const temperatureF = weatherData.current.temp_f;
-            const temperatureC = weatherData.current.temp_c;
-            const windSpeedMPH = weatherData.current.wind_mph;
-            const windSpeedKPH = weatherData.current.wind_kph;
+            // Map the condition to its abbreviation, if available
+            const fullCondition = weatherData.current.condition.text;
+            const condition = abbreviatedConditions[fullCondition] || fullCondition; 
             const windDirection = weatherData.current.wind_dir;
             
             return {
