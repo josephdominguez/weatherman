@@ -211,8 +211,9 @@ class Weather {
             const response = await axios.get(url);
             const weatherData = response.data;
             
-            // Extract forecast check from data :)
+            // Extract forecast check from data
             const city = weatherData.location.name;
+            
             // Map the condition to its abbreviation, if available
             const fullCondition = weatherData.current.condition.text;
             const condition = abbreviatedConditions[fullCondition] || fullCondition; 
