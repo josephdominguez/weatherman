@@ -9,6 +9,7 @@ const commonIcons = {
     'Cloudy': 'images/conditions/cloudy.gif',
     'Mist': 'images/conditions/cloudy.gif',
     'Patchy rain possible': 'images/conditions/shower.gif',
+    'Patchy rain nearby': 'images/conditions/shower.gif',
     'Patchy snow possible': 'images/conditions/snow.gif',
     'Patchy sleet possible': 'images/conditions/sleet.gif',
     'Patchy freezing drizzle possible': 'images/conditions/freezing_rain.gif',
@@ -61,6 +62,7 @@ const conditionIconsDay = {
     ...commonIcons,
     'Sunny': 'images/conditions/clear_day.gif',
     'Clear': 'images/conditions/clear_day.gif',
+    'Partly Cloudy': 'images/conditions/partly_cloudy_day.gif',
     'Partly cloudy': 'images/conditions/partly_cloudy_day.gif',
     'Overcast': 'images/conditions/mostly_cloudy_day.gif',
     
@@ -75,6 +77,7 @@ const conditionIconsNight = {
     ...commonIcons,
     'Sunny': 'images/conditions/clear_night.gif',
     'Clear': 'images/conditions/clear_night.gif',
+    'Partly Cloudy ': 'images/conditions/partly_cloudy_night.gif',
     'Partly cloudy': 'images/conditions/partly_cloudy_night.gif',
     'Cloudy': 'images/conditions/cloudy.gif',
     'Overcast': 'images/conditions/mostly_cloudy_night.gif',

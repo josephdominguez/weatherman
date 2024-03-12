@@ -113,7 +113,7 @@ class Weather {
                 const date = new Date(forecast.date);
 
                 const day = this._getDayOfWeekAbbreviation(date).toUpperCase();
-                const condition = forecast.day.condition.text;
+                const condition = forecast.day.condition.text.trim();
                 const conditionIcon = conditionIconsDay[condition];
                 const minTempF = parseInt(forecast.day.mintemp_f);
                 const minTempC = parseInt(forecast.day.mintemp_c);
