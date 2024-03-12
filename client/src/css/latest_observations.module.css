@@ -3,24 +3,28 @@
 .observations-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    text-align: left;
+    height: 100%;
+    padding: 0 10px;
 }
 
 .observations-header {
     display: grid;
     grid-template-columns: 3fr 1fr 4fr 2fr;
-    text-shadow: 3.5px 3px 0px black;
+    column-gap: 25px;
+    font-size: 36px;
 }
 
 .latest-observations-container {
     display: flex;
     flex-direction: column;
-    grid-row-gap: 35px;
-    font-size: 42px;
-    text-shadow: 3.5px 3px 0px black;
+    flex-grow: 1;
+    justify-content: space-around;
+    font-size: 48px;
 }
 
 .latest-observations {
     display: grid;
     grid-template-columns: 3fr 1fr 4fr 2fr;
+    column-gap: 25px;
 }
