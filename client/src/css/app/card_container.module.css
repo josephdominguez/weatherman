@@ -15,7 +15,6 @@
 .card-item {
     display: flex;
     flex-direction: column;
-    padding: 2vh 6vh;
     text-align: center;
     align-items: center;
 }

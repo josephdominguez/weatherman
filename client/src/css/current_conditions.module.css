@@ -4,6 +4,10 @@ main {
     background: var(--sunset-gradient-top) fixed;
 }
 
+.card-item {
+    padding: 20px 60px;
+}
+
 .condition-container {
     margin-bottom: 150px;
 }

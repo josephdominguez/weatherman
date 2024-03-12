@@ -1,5 +1,9 @@
 @import 'app/card_container.module.css';
 
+.card-item {
+    padding: 20px 60px;
+}
+
 .forecast {
     font-size: 38px;
     line-height: 1.5rem;
