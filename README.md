@@ -22,7 +22,7 @@ The WeatherStar4000 reimagined.
 
 ## Description
 
-[TheWeatherman](https://theweatherman.cc/) recreates the iconic interface of the Weather Channel's WeatherStar 4000 as a modern full stack web application. `weatherman` allows users to view realtime weather forecasts by their ZIP code. Users can view a complete forecast or navigate to individual parts of the forecast.
+[TheWeatherman](https://theweatherman.cc/) recreates the iconic interface of the Weather Channel's WeatherStar 4000 as a modern full stack web application. `weatherman` allows users to view real-time weather forecasts by their ZIP code. Users can view a complete forecast or navigate to individual parts of the forecast.
 
 ## Features
 
